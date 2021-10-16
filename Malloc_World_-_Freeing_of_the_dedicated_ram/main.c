@@ -2,7 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    initMap(5,5);
+    initMap();
 
     return 0;
 }

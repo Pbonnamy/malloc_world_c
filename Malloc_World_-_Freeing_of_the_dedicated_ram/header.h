@@ -3,4 +3,4 @@
 #include <string.h>
 
 
-void initMap (int rows, int columns);
+void initMap ();
