@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-enum values{
+enum mapEntity{
     playerVal = 1,
     portal2Val = -3,
     portal1Val = -2,
