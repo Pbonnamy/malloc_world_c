@@ -43,14 +43,28 @@ void populate(int **map, int rows, int columns, int entity, int max){
     }
 }
 
-void populateLevel(int **map, int rows, int columns){
+void populateLevel(int **map, int rows, int columns, int level){
     populate(map, rows, columns, playerVal, 1);
-    populate(map, rows, columns, plant1Val, 3);
-    populate(map, rows, columns, rock1Val, 3);
-    populate(map, rows, columns, wood1Val, 3);
-    populate(map, rows, columns, portal1Val, 1);
     populate(map, rows, columns, npcVal, 1);
     populate(map, rows, columns, wallVal, 7);
+
+    if(level == 1){
+        populate(map, rows, columns, plant1Val, 3);
+        populate(map, rows, columns, rock1Val, 3);
+        populate(map, rows, columns, wood1Val, 3);
+        populate(map, rows, columns, portal1Val, 1);
+    }else if(level == 2){
+        populate(map, rows, columns, plant2Val, 3);
+        populate(map, rows, columns, rock2Val, 3);
+        populate(map, rows, columns, wood2Val, 3);
+        populate(map, rows, columns, portal1Val, 1);
+        populate(map, rows, columns, portal2Val, 1);
+    }else if(level == 3){
+        populate(map, rows, columns, plant3Val, 3);
+        populate(map, rows, columns, rock3Val, 3);
+        populate(map, rows, columns, wood3Val, 3);
+        populate(map, rows, columns, portal2Val, 1);
+    }
 }
 
 void initMap(){
@@ -60,7 +74,13 @@ void initMap(){
     int columns = 7;
 
     int **lv1 = createLevel(rows,columns);
-    populateLevel(lv1, rows, columns);
+    populateLevel(lv1, rows, columns,1);
 
-    printMap(lv1, rows, columns);
+    int **lv2 = createLevel(rows,columns);
+    populateLevel(lv2, rows, columns,2);
+
+    int **lv3 = createLevel(rows,columns);
+    populateLevel(lv3, rows, columns,3);
+
+    printMap(lv3, rows, columns);
 }
