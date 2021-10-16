@@ -1,12 +1,13 @@
 # depslib dependency file v1.0
-1634383730 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\main.c
+1634385382 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\main.c
 	"header.h"
 
-1634383729 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\header.h
+1634390797 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<time.h>
 
-1634384680 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\map.c
+1634391207 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\map.c
 	"header.h"
 
