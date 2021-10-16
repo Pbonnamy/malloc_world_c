@@ -2,6 +2,7 @@
 
 int main(int argc, char **argv)
 {
-    printf("Hello world!\n");
+    initMap(5,5);
+
     return 0;
 }
