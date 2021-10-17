@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 
-enum values{
+enum mapEntity{
     playerVal = 1,
     portal2Val = -3,
     portal1Val = -2,
@@ -18,6 +18,11 @@ enum values{
     plant3Val = 9,
     rock3Val = 10,
     wood3Val = 11,
+    monster1Val = 12,
+    monster2Val = 22,
+    monster3Val = 32,
+    lastMonsterVal = 42,
+    bossVal = 99
 };
 
 void initMap ();
