@@ -39,7 +39,15 @@ void populate(int **map, int rows, int columns, int entity, int max){
             row = rand2(0,rows-1);
             column = rand2(0,rows-1);
         }
-        map[row][column] = entity;
+        if(entity == monster1Val){
+            map[row][column] = rand2(monster1Val,monster2Val-1);
+        }else if(entity == monster2Val){
+            map[row][column] = rand2(monster2Val,monster3Val-1);
+        }else if(entity == monster3Val){
+            map[row][column] = rand2(monster3Val,lastMonsterVal-1);
+        }else{
+            map[row][column] = entity;
+        }
     }
 }
 
@@ -53,17 +61,21 @@ void populateLevel(int **map, int rows, int columns, int level){
         populate(map, rows, columns, rock1Val, 3);
         populate(map, rows, columns, wood1Val, 3);
         populate(map, rows, columns, portal1Val, 1);
+        populate(map, rows, columns, monster1Val, 10);
     }else if(level == 2){
         populate(map, rows, columns, plant2Val, 3);
         populate(map, rows, columns, rock2Val, 3);
         populate(map, rows, columns, wood2Val, 3);
         populate(map, rows, columns, portal1Val, 1);
         populate(map, rows, columns, portal2Val, 1);
+        populate(map, rows, columns, monster2Val, 10);
     }else if(level == 3){
         populate(map, rows, columns, plant3Val, 3);
         populate(map, rows, columns, rock3Val, 3);
         populate(map, rows, columns, wood3Val, 3);
         populate(map, rows, columns, portal2Val, 1);
+        populate(map, rows, columns, monster3Val, 10);
+        populate(map, rows, columns, bossVal, 1);
     }
 }
 
@@ -82,5 +94,5 @@ void initMap(){
     int **lv3 = createLevel(rows,columns);
     populateLevel(lv3, rows, columns,3);
 
-    printMap(lv3, rows, columns);
+    printMap(lv1, rows, columns);
 }
