@@ -39,12 +39,12 @@ void populate(int **map, int rows, int columns, int entity, int max){
             row = rand2(0,rows-1);
             column = rand2(0,rows-1);
         }
-        if(entity == monster1Val){
-            map[row][column] = rand2(monster1Val,monster2Val-1);
-        }else if(entity == monster2Val){
-            map[row][column] = rand2(monster2Val,monster3Val-1);
-        }else if(entity == monster3Val){
-            map[row][column] = rand2(monster3Val,lastMonsterVal-1);
+        if(entity == monster1){
+            map[row][column] = rand2(monster1,monster2-1);
+        }else if(entity == monster2){
+            map[row][column] = rand2(monster2,monster3-1);
+        }else if(entity == monster3){
+            map[row][column] = rand2(monster3,lastMonster-1);
         }else{
             map[row][column] = entity;
         }
@@ -52,30 +52,30 @@ void populate(int **map, int rows, int columns, int entity, int max){
 }
 
 void populateLevel(int **map, int rows, int columns, int level){
-    populate(map, rows, columns, playerVal, 1);
-    populate(map, rows, columns, npcVal, 1);
-    populate(map, rows, columns, wallVal, 7);
+    populate(map, rows, columns, player, 1);
+    populate(map, rows, columns, npc, 1);
+    populate(map, rows, columns, wall, 7);
 
     if(level == 1){
-        populate(map, rows, columns, plant1Val, 3);
-        populate(map, rows, columns, rock1Val, 3);
-        populate(map, rows, columns, wood1Val, 3);
-        populate(map, rows, columns, portal1Val, 1);
-        populate(map, rows, columns, monster1Val, 10);
+        populate(map, rows, columns, plant1, 3);
+        populate(map, rows, columns, rock1, 3);
+        populate(map, rows, columns, wood1, 3);
+        populate(map, rows, columns, portal1, 1);
+        populate(map, rows, columns, monster1, 10);
     }else if(level == 2){
-        populate(map, rows, columns, plant2Val, 3);
-        populate(map, rows, columns, rock2Val, 3);
-        populate(map, rows, columns, wood2Val, 3);
-        populate(map, rows, columns, portal1Val, 1);
-        populate(map, rows, columns, portal2Val, 1);
-        populate(map, rows, columns, monster2Val, 10);
+        populate(map, rows, columns, plant2, 3);
+        populate(map, rows, columns, rock2, 3);
+        populate(map, rows, columns, wood2, 3);
+        populate(map, rows, columns, portal1, 1);
+        populate(map, rows, columns, portal2, 1);
+        populate(map, rows, columns, monster2, 10);
     }else if(level == 3){
-        populate(map, rows, columns, plant3Val, 3);
-        populate(map, rows, columns, rock3Val, 3);
-        populate(map, rows, columns, wood3Val, 3);
-        populate(map, rows, columns, portal2Val, 1);
-        populate(map, rows, columns, monster3Val, 10);
-        populate(map, rows, columns, bossVal, 1);
+        populate(map, rows, columns, plant3, 3);
+        populate(map, rows, columns, rock3, 3);
+        populate(map, rows, columns, wood3, 3);
+        populate(map, rows, columns, portal2, 1);
+        populate(map, rows, columns, monster3, 10);
+        populate(map, rows, columns, boss, 1);
     }
 }
 

@@ -4,25 +4,25 @@
 #include <time.h>
 
 enum mapEntity{
-    playerVal = 1,
-    portal2Val = -3,
-    portal1Val = -2,
-    wallVal = -1,
-    npcVal = 2,
-    plant1Val = 3,
-    rock1Val = 4,
-    wood1Val = 5,
-    plant2Val = 6,
-    rock2Val = 7,
-    wood2Val = 8,
-    plant3Val = 9,
-    rock3Val = 10,
-    wood3Val = 11,
-    monster1Val = 12,
-    monster2Val = 22,
-    monster3Val = 32,
-    lastMonsterVal = 42,
-    bossVal = 99
+    player = 1,
+    portal2 = -3,
+    portal1 = -2,
+    wall = -1,
+    npc = 2,
+    plant1 = 3,
+    rock1 = 4,
+    wood1 = 5,
+    plant2 = 6,
+    rock2 = 7,
+    wood2 = 8,
+    plant3 = 9,
+    rock3 = 10,
+    wood3 = 11,
+    monster1 = 12,
+    monster2 = 22,
+    monster3 = 32,
+    lastMonster = 42,
+    boss = 99
 };
 
 void initMap ();
