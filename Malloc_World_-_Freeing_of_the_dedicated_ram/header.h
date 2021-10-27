@@ -34,8 +34,8 @@ enum mapEntity{
     boss = 99
 };
 
-Levels initMap (int rows, int columns);
+void initMap (Levels *levels, int rows, int columns);
 void printMap(int **map, int rows, int columns);
 
-void handleMovement();
+void handleMovement(Levels *lv);
 

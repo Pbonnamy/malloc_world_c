@@ -4,11 +4,13 @@ int main(int argc, char **argv)
 {
     srand(time(NULL));
 
-    Levels levels = initMap(7,7);
+    Levels *levels = malloc(sizeof(Levels)*1);
 
-    printMap(levels.lv1, levels.rows, levels.columns);
+    initMap(levels, 7,7);
 
-    handleMovement();
+    handleMovement(levels);
+
+    printf("%d", levels->columns);
 
     return 0;
 }

@@ -80,21 +80,17 @@ void populateLevel(int **map, int rows, int columns, int level){
     }
 }
 
-Levels initMap(int rows, int columns){
+void initMap(Levels *lv, int rows, int columns){
 
-    Levels lv;
+    lv->rows = rows;
+    lv->columns = columns;
 
-    lv.rows = rows;
-    lv.columns = columns;
+    lv->lv1 = createLevel(rows,columns);
+    populateLevel(lv->lv1, rows, columns,1);
 
-    lv.lv1 = createLevel(rows,columns);
-    populateLevel(lv.lv1, rows, columns,1);
+    lv->lv2 = createLevel(rows,columns);
+    populateLevel(lv->lv2, rows, columns,2);
 
-    lv.lv2 = createLevel(rows,columns);
-    populateLevel(lv.lv2, rows, columns,2);
-
-    lv.lv3 = createLevel(rows,columns);
-    populateLevel(lv.lv3, rows, columns,3);
-
-    return lv;
+    lv->lv3 = createLevel(rows,columns);
+    populateLevel(lv->lv3, rows, columns,3);
 }

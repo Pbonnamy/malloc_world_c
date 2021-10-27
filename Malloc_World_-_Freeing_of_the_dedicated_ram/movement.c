@@ -1,7 +1,10 @@
 #include "header.h"
 
-void handleMovement(){
-    char direction;
+void handleMovement(Levels *lv){
+
+    lv->columns = 14;
+
+    /*char direction;
 
     do{
         printf("\nWhich direction ? : ");
@@ -9,5 +12,5 @@ void handleMovement(){
         fflush(stdin);
         printf("Direction : %c\n", direction);
 
-    }while(direction != 'p');
+    }while(direction != 'p');*/
 }
