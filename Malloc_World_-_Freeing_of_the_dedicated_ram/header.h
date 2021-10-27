@@ -3,6 +3,15 @@
 #include <string.h>
 #include <time.h>
 
+typedef struct {
+    int **lv1;
+    int **lv2;
+    int **lv3;
+    int rows;
+    int columns;
+} Levels;
+
+
 enum mapEntity{
     player = 1,
     portal2 = -3,
@@ -25,4 +34,8 @@ enum mapEntity{
     boss = 99
 };
 
-void initMap ();
+Levels initMap (int rows, int columns);
+void printMap(int **map, int rows, int columns);
+
+void handleMovement();
+

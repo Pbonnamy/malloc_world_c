@@ -1,5 +1,6 @@
 #include "header.h"
 
+
 int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
@@ -79,20 +80,21 @@ void populateLevel(int **map, int rows, int columns, int level){
     }
 }
 
-void initMap(){
-    srand(time(NULL));
+Levels initMap(int rows, int columns){
 
-    int rows = 7;
-    int columns = 7;
+    Levels lv;
 
-    int **lv1 = createLevel(rows,columns);
-    populateLevel(lv1, rows, columns,1);
+    lv.rows = rows;
+    lv.columns = columns;
 
-    int **lv2 = createLevel(rows,columns);
-    populateLevel(lv2, rows, columns,2);
+    lv.lv1 = createLevel(rows,columns);
+    populateLevel(lv.lv1, rows, columns,1);
 
-    int **lv3 = createLevel(rows,columns);
-    populateLevel(lv3, rows, columns,3);
+    lv.lv2 = createLevel(rows,columns);
+    populateLevel(lv.lv2, rows, columns,2);
 
-    printMap(lv1, rows, columns);
+    lv.lv3 = createLevel(rows,columns);
+    populateLevel(lv.lv3, rows, columns,3);
+
+    return lv;
 }
