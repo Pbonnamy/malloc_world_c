@@ -1,6 +1,6 @@
 #include "header.h"
 
-int main(int argc, char **argv)
+int main()
 {
     srand(time(NULL));
 
