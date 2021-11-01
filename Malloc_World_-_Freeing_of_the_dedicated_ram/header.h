@@ -3,6 +3,8 @@
 #include <string.h>
 #include <time.h>
 
+typedef struct Player Player;
+
 typedef struct {
     int **lv1;
     int **lv2;
