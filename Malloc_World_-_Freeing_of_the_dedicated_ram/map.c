@@ -5,7 +5,7 @@ int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
-void printMap(int **map, int rows, int columns){
+void printMap(int **level, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
@@ -46,11 +46,11 @@ void addPlayer(int **map, int rows, int columns, PlayerPos *pc){
     map[row][column] = player;
 }
 
-void populate(int **map, int rows, int columns, int entity, int max){
+void populate(int **map, int rows, int columns, int entity, int quantity){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
 
-    for(int i = 0 ; i< max; i++){
+    for(int i = 0 ; i< quantity; i++){
         while(map[row][column] != 0){
             row = rand2(0,rows-1);
             column = rand2(0,rows-1);

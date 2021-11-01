@@ -41,7 +41,7 @@ enum mapEntity{
 };
 
 void initMap (Levels *lv, int rows, int columns, PlayerPos *pc);
-void printMap(int **map, int rows, int columns);
+void printMap(int **level, int rows, int columns);
 
 void handleMovement(Levels *lv, PlayerPos *pc);
 
