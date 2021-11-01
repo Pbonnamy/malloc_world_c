@@ -2,7 +2,7 @@
 
 void handleMovement(Levels *lv){
 
-    lv->columns = 14;
+    printMap(lv->lv1,lv->rows,lv->columns);
 
     /*char direction;
 
