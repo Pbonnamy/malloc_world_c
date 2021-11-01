@@ -31,11 +31,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="header.h" />
 		<Unit filename="main.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="map.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
