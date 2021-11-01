@@ -31,6 +31,21 @@ int ** createLevel(int rows, int columns){
     return map;
 }
 
+void addPlayer(int **map, int rows, int columns, PlayerPos *pc){
+    int row = rand2(0,rows-1);
+    int column = rand2(0,columns-1);
+
+    while(map[row][column] != 0){
+        row = rand2(0,rows-1);
+        column = rand2(0,rows-1);
+    }
+
+    pc->posRow = row;
+    pc->posColumn = column;
+
+    map[row][column] = player;
+}
+
 void populate(int **map, int rows, int columns, int entity, int max){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
@@ -53,7 +68,6 @@ void populate(int **map, int rows, int columns, int entity, int max){
 }
 
 void populateLevel(int **map, int rows, int columns, int level){
-    populate(map, rows, columns, player, 1);
     populate(map, rows, columns, npc, 1);
     populate(map, rows, columns, wall, 7);
 
@@ -80,17 +94,18 @@ void populateLevel(int **map, int rows, int columns, int level){
     }
 }
 
-void initMap(Levels *lv, int rows, int columns){
+void initMap(Levels *lv, int rows, int columns, PlayerPos *pc){
 
     lv->rows = rows;
     lv->columns = columns;
 
     lv->lv1 = createLevel(rows,columns);
-    populateLevel(lv->lv1, rows, columns,1);
+    populateLevel(lv->lv1, rows, columns, 1);
+    addPlayer(lv->lv1, rows, columns, pc);
 
     lv->lv2 = createLevel(rows,columns);
-    populateLevel(lv->lv2, rows, columns,2);
+    populateLevel(lv->lv2, rows, columns, 2);
 
     lv->lv3 = createLevel(rows,columns);
-    populateLevel(lv->lv3, rows, columns,3);
+    populateLevel(lv->lv3, rows, columns, 3);
 }

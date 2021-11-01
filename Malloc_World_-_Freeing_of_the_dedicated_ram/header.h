@@ -13,6 +13,10 @@ typedef struct {
     int columns;
 } Levels;
 
+typedef struct {
+    int posRow;
+    int posColumn;
+}PlayerPos; // Will be merged later with struct player
 
 enum mapEntity{
     player = 1,
@@ -36,8 +40,8 @@ enum mapEntity{
     boss = 99
 };
 
-void initMap (Levels *levels, int rows, int columns);
+void initMap (Levels *lv, int rows, int columns, PlayerPos *pc);
 void printMap(int **map, int rows, int columns);
 
-void handleMovement(Levels *lv);
+void handleMovement(Levels *lv, PlayerPos *pc);
 
