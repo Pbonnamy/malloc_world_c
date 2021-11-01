@@ -6,11 +6,9 @@ int main()
 
     Levels *levels = malloc(sizeof(Levels)*1);
 
-    initMap(levels, 7,7);
+    initMap(levels, 8,8);
 
     handleMovement(levels);
-
-    printf("%d", levels->columns);
 
     return 0;
 }
