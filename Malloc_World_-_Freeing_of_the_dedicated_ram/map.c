@@ -9,7 +9,7 @@ void printMap(int **level, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
-            printf(" %2d ", map[i][j]);
+            printf(" %2d ", level[i][j]);
         }
         printf("\n");
     }
