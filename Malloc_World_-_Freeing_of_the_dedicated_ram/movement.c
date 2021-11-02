@@ -29,7 +29,6 @@ int checkCollision(int ** level, int targetRow, int targetColumn, int rows, int 
             printf("\nImpossible : this is a wall\n\n");
 
         }else{
-            printf("\n");
             allowed = 1;
         }
     }else{
@@ -70,13 +69,14 @@ void handleMovement(Levels *lv, PlayerPos *pc){
     char direction;
 
     do{
-        //system("cls"); //clear console
 
         printMap(lv->lv1,lv->rows,lv->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");
         fflush(stdin);
         scanf("%c", &direction);
+
+        system("cls"); //clear console
 
         move(lv->lv1, pc, direction, lv->rows, lv->columns);
 

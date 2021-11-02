@@ -33,3 +33,18 @@
 1635761728 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\player.c
 	"header.h"
 
+1635845006 source:c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\main.c
+	"header.h"
+
+1635845006 c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\header.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
+1635845006 source:c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\map.c
+	"header.h"
+
+1635845006 source:c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\player.c
+	"header.h"
+
