@@ -29,6 +29,7 @@ int checkCollision(int ** level, int targetRow, int targetColumn, int rows, int 
             printf("\nImpossible : this is a wall\n\n");
 
         }else{
+            printf("\n\n\n");
             allowed = 1;
         }
     }else{
@@ -67,6 +68,8 @@ void move (int ** level, PlayerPos * pc, char direction, int rows, int columns){
 void handleMovement(Levels *lv, PlayerPos *pc){
 
     char direction;
+
+    printf("\nWelcome to Malloc World !\n\n");
 
     do{
 
