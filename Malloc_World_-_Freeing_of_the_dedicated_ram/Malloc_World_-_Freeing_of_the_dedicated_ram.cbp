@@ -31,17 +31,19 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="header.h" />
+		<Unit filename="headers/header.h" />
+		<Unit filename="headers/map.h" />
+		<Unit filename="headers/player.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="map.c">
+		<Unit filename="sources/map.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="movement.c">
+		<Unit filename="sources/movement.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="player.c">
+		<Unit filename="sources/player.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
