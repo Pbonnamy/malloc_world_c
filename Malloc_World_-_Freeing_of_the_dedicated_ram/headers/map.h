@@ -6,6 +6,12 @@ typedef struct {
     int columns;
 } Levels;
 
+typedef struct {
+    int **map;
+
+} Level;
+
+
 enum mapEntity{
     player = 1,
     portal2 = -3,

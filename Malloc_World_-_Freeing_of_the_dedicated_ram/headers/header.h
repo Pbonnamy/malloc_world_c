@@ -5,6 +5,8 @@
 
 #include "map.h"
 #include "player.h"
+#include "combat.h"
+#include "ressource.h"
 
 typedef struct Player Player;
 
