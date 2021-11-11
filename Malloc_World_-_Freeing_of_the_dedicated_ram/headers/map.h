@@ -1,10 +1,22 @@
-typedef struct {
+#ifndef MAP_H
+#define MAP_H
+
+#include "header.h"
+
+struct Levels{
     int **lv1;
     int **lv2;
     int **lv3;
     int rows;
     int columns;
-} Levels;
+};
+
+struct Level{
+    int **map;
+    RessourceList ressourceList;
+    MonsterList monsterList;
+    int value;
+};
 
 enum mapEntity{
     player = 1,
@@ -27,3 +39,5 @@ enum mapEntity{
     lastMonster = 42,
     boss = 99
 };
+
+#endif
