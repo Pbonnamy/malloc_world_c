@@ -34,7 +34,7 @@
 		<Unit filename="headers/header.h" />
 		<Unit filename="headers/map.h" />
 		<Unit filename="headers/player.h" />
-		<Unit filename="main.c">
+		<Unit filename="sources/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sources/map.c">
