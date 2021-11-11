@@ -1,22 +1,12 @@
-struct item{
-    int id;
-    char* name;
-    enum type{
-        Arme,
-        Outil,
-        Ressource,
-        Armure,
-        Soin,
-    };
-    char* description;
-};
-typedef struct item item;
+#ifndef PLAYER_H
+#define PLAYER_H
 
-typedef struct Player{
-    char* username;
-    int experience;
-    int level;
-    int life_point;
-    int max_hit_point;
-    item item[];
-}Player;
+#include "header.h"
+
+struct PlayerPos{
+    int posRow;
+    int posColumn;
+};
+
+#endif
+
