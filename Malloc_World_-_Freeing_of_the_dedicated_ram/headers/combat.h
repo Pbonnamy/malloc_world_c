@@ -13,8 +13,8 @@ struct Monster {
 };
 
 struct MonsterList{
-    Monster monster;
-    MonsterList * next;
+    Monster *monster;
+    MonsterList *next;
 };
 
 #endif

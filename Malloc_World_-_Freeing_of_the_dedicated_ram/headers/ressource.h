@@ -11,8 +11,8 @@ struct Ressource{
 };
 
 struct RessourceList{
-    Ressource ressource;
-    RessourceList * next;
+    Ressource *ressource;
+    RessourceList *next;
 };
 
 #endif

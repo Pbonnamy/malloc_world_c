@@ -3,9 +3,9 @@
 
 #include "header.h"
 
-struct PlayerPos{
-    int posRow;
-    int posColumn;
+struct Player{
+    int row;
+    int column;
 };
 
 #endif
