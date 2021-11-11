@@ -10,7 +10,7 @@ typedef struct Monster Monster;
 typedef struct MonsterList MonsterList;
 typedef struct Levels Levels;
 typedef struct Level Level;
-typedef struct Inventory Inventory;
+typedef struct InventoryNode InventoryNode;
 typedef struct Player Player;
 typedef struct Ressource Ressource;
 typedef struct RessourceList RessourceList;

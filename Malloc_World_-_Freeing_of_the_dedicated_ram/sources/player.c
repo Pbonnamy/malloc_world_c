@@ -1,26 +1,26 @@
 #include "../headers/header.h"
 
-void printInventory(Inventory *inventory){
-    if(inventory == NULL){
+void printInventory(InventoryNode *inventoryNode){
+    if(inventoryNode == NULL){
         printf("Inventaire vide");
     }else{
-        while(inventory != NULL){
-            printf("Value : %d | Quantity : %d\n",inventory->value,inventory->quantity);
-            inventory = inventory->next;
+        while(inventoryNode != NULL){
+            printf("Value : %d | Quantity : %d\n",inventoryNode->value,inventoryNode->quantity);
+            inventoryNode = inventoryNode->next;
         }
     }
 }
 
-void addToInventory(Inventory **inventory, int item, int quantity){
-    Inventory *newNode= malloc(sizeof(Inventory));
+void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
+    InventoryNode *newNode= malloc(sizeof(InventoryNode));
     newNode->value = item;
     newNode->quantity = quantity;
     newNode->next = NULL;
 
-    if(*inventory == NULL){
-        *inventory = newNode;
+    if(*inventoryHead == NULL){
+        *inventoryHead = newNode;
     }else{
-        Inventory *lastNode = *inventory;
+        InventoryNode *lastNode = *inventoryHead;
 
         while(lastNode->next != NULL){
             lastNode = lastNode->next;

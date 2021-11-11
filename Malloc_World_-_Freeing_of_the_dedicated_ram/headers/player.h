@@ -3,10 +3,10 @@
 
 #include "header.h"
 
-struct Inventory{
+struct InventoryNode{
     int value;
     int quantity;
-    Inventory *next;
+    InventoryNode *next;
 };
 
 struct Player{
@@ -16,7 +16,7 @@ struct Player{
     int currentHp;
     int row;
     int column;
-    Inventory *inventory;
+    InventoryNode *inventory ;
 };
 
 enum items{
