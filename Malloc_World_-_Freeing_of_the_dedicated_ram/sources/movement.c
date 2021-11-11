@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../headers/header.h"
 
 int checkCollision(int ** level, int targetRow, int targetColumn, int rows, int columns){
     int allowed = 0;

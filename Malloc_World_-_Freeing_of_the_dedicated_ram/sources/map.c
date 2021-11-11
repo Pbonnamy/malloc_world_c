@@ -1,4 +1,4 @@
-#include "header.h"
+#include "../headers/header.h"
 
 
 int rand2 (int min, int max){
