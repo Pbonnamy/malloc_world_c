@@ -10,6 +10,7 @@ typedef struct Monster Monster;
 typedef struct MonsterList MonsterList;
 typedef struct Levels Levels;
 typedef struct Level Level;
+typedef struct Inventory Inventory;
 typedef struct Player Player;
 typedef struct Ressource Ressource;
 typedef struct RessourceList RessourceList;
@@ -19,7 +20,8 @@ typedef struct RessourceList RessourceList;
 #include "map.h"
 #include "player.h"
 
-void initMap (Levels *levels, int rows, int columns, Player *player);
+void initMap(Levels *levels, int rows, int columns, Player *player);
+void initPlayer(Player *player);
 void printMap(int **map, int rows, int columns);
 void handleMovement(Levels *levels, Player *player);
 

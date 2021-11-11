@@ -1,6 +1,5 @@
 #include "../headers/header.h"
 
-
 int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
