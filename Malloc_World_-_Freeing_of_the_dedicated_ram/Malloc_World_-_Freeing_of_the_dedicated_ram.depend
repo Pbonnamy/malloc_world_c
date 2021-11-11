@@ -51,3 +51,15 @@
 1635845294 source:c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\movement.c
 	"header.h"
 
+1636631677 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\map.c
+	"../headers/header.h"
+
+1635789124 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+
+1636631698 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\movement.c
+	"../headers/header.h"
+
