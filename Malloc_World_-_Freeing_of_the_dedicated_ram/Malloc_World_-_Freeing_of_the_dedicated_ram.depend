@@ -54,12 +54,21 @@
 1636631677 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\map.c
 	"../headers/header.h"
 
-1635789124 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
+1636631868 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
+	"map.h"
+	"player.h"
 
 1636631698 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\movement.c
 	"../headers/header.h"
+
+1636631707 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\player.c
+	"../headers/header.h"
+
+1636631818 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\map.h
+
+1636631886 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\player.h
 
