@@ -1,30 +1,30 @@
 #include "../headers/header.h"
 
-int checkCollision(int ** level, int targetRow, int targetColumn, int rows, int columns){
+int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int columns){
     int allowed = 0;
 
     if(targetRow >= 0 && targetRow < rows && targetColumn >= 0 && targetColumn < columns){
-        int target = level[targetRow][targetColumn];
+        int target = level->map[targetRow][targetColumn];
 
-        if(target == plant1 || target == plant2 || target == plant3 ||
-           target == wood1 || target == wood2 || target == wood3 ||
-           target == rock1 || target == rock2 || target == rock3){
+        if(target == _plant1 || target == _plant2 || target == _plant3 ||
+           target == _wood1 || target == _wood2 || target == _wood3 ||
+           target == _rock1 || target == _rock2 || target == _rock3){
 
             printf("\nTODO : harvest ressource\n\n");
 
-        }else if (target >= monster1 && target <= boss){
+        }else if (target >= _monster1 && target <= _boss){
 
             printf("\nTODO : combat\n\n");
 
-        }else if (target == portal1 || target == portal2){
+        }else if (target == _portal1 || target == _portal2){
 
             printf("\nTODO : switch level\n\n");
 
-        }else if (target == npc){
+        }else if (target == _npc){
 
             printf("\nTODO : handle npc\n\n");
 
-        }else if( target ==  wall){
+        }else if( target ==  _wall){
 
             printf("\nImpossible : this is a wall\n\n");
 
@@ -39,33 +39,33 @@ int checkCollision(int ** level, int targetRow, int targetColumn, int rows, int 
     return allowed;
 }
 
-void move (int ** level, PlayerPos * pc, char direction, int rows, int columns){
+void move (Level *level, Player *player, char direction, int rows, int columns){
 
-    level[pc->posRow][pc->posColumn] = 0;
+    level->map[player->row][player->column] = _empty;
 
     if(direction == 'z'){
-        if(checkCollision(level, pc->posRow-1, pc->posColumn, rows, columns)){
-            pc->posRow -= 1;
+        if(checkCollision(level, player->row-1, player->column, rows, columns)){
+            player->row -= 1;
         }
     }else if(direction == 's'){
-        if(checkCollision(level, pc->posRow+1, pc->posColumn, rows, columns)){
-            pc->posRow += 1;
+        if(checkCollision(level, player->row+1, player->column, rows, columns)){
+            player->row += 1;
         }
     }else if(direction == 'q'){
-        if(checkCollision(level, pc->posRow, pc->posColumn-1, rows, columns)){
-            pc->posColumn -= 1;
+        if(checkCollision(level, player->row, player->column-1, rows, columns)){
+            player->column -= 1;
         }
     }else if (direction == 'd'){
-        if(checkCollision(level, pc->posRow, pc->posColumn+1, rows, columns)){
-            pc->posColumn += 1;
+        if(checkCollision(level, player->row, player->column+1, rows, columns)){
+            player->column += 1;
         }
     }
 
-    level[pc->posRow][pc->posColumn] = 1;
+    level->map[player->row][player->column] = _player;
 
 }
 
-void handleMovement(Levels *lv, PlayerPos *pc){
+void handleMovement(Levels *levels, Player *player){
 
     char direction;
 
@@ -73,7 +73,7 @@ void handleMovement(Levels *lv, PlayerPos *pc){
 
     do{
 
-        printMap(lv->lv1,lv->rows,lv->columns);
+        printMap(levels->lv1->map, levels->rows, levels->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");
         fflush(stdin);
@@ -81,7 +81,7 @@ void handleMovement(Levels *lv, PlayerPos *pc){
 
         system("cls"); //clear console
 
-        move(lv->lv1, pc, direction, lv->rows, lv->columns);
+        move(levels->lv1, player, direction, levels->rows, levels->columns);
 
     }while(direction != 'e');
 }

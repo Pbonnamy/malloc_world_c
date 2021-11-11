@@ -10,7 +10,7 @@ typedef struct Monster Monster;
 typedef struct MonsterList MonsterList;
 typedef struct Levels Levels;
 typedef struct Level Level;
-typedef struct PlayerPos PlayerPos;
+typedef struct Player Player;
 typedef struct Ressource Ressource;
 typedef struct RessourceList RessourceList;
 
@@ -19,9 +19,8 @@ typedef struct RessourceList RessourceList;
 #include "map.h"
 #include "player.h"
 
-void initMap (Levels *lv, int rows, int columns, PlayerPos *pc);
-void printMap(int **level, int rows, int columns);
-
-void handleMovement(Levels *lv, PlayerPos *pc);
+void initMap (Levels *levels, int rows, int columns, Player *player);
+void printMap(int **map, int rows, int columns);
+void handleMovement(Levels *levels, Player *player);
 
 #endif
