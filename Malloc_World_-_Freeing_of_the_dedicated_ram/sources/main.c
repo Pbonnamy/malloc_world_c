@@ -10,7 +10,9 @@ int main()
     initMap(levels, 10, 10, player);
     initPlayer(player);
 
-    //handleMovement(levels, player);
+    //printRessourceList(levels->lv1->ressourceList);
+    //printMonsterList(levels->lv1->monsterList);
+    handleMovement(levels, player);
 
     return 0;
 }

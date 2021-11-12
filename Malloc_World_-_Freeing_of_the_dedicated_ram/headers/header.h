@@ -6,14 +6,12 @@
 #include <string.h>
 #include <time.h>
 
-typedef struct Monster Monster;
-typedef struct MonsterList MonsterList;
+typedef struct MonsterNode MonsterNode;
 typedef struct Levels Levels;
 typedef struct Level Level;
 typedef struct InventoryNode InventoryNode;
 typedef struct Player Player;
-typedef struct Ressource Ressource;
-typedef struct RessourceList RessourceList;
+typedef struct RessourceNode RessourceNode;
 
 #include "combat.h"
 #include "ressource.h"
@@ -35,8 +33,18 @@ int rand2 (int min, int max);
 void printMap(int **map, int rows, int columns);
 void createLevel(Level *level, int rows, int columns, int nbLevel);
 void addPlayer(Level *level, int rows, int columns, Player *player);
-void populate(int **map, int rows, int columns, int entity, int quantity);
+void populate(Level *level, int rows, int columns, int entity, int quantity);
 void populateLevel(Level *level, int rows, int columns);
 void initMap(Levels *levels, int rows, int columns, Player *player);
+
+//RESSOURCE
+int isRessource(int entity);
+void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column);
+void printRessourceList(RessourceNode *ressourceNode);
+
+//COMBAT
+int isMonster(int entity);
+void addToMonsterList(MonsterNode **monsterHead, int entity, int row, int column);
+void printMonsterList(MonsterNode *monsterNode);
 
 #endif

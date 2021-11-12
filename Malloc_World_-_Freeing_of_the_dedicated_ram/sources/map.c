@@ -16,6 +16,8 @@ void printMap(int **map, int rows, int columns){
 
 void createLevel(Level *level, int rows, int columns, int nbLevel){
     level->map = malloc(sizeof(int*)*rows);
+    level->monsterList = NULL;
+    level->ressourceList = NULL;
     level->value = nbLevel;
 
     for(int i = 0; i < columns; i ++){
@@ -44,52 +46,62 @@ void addPlayer(Level *level, int rows, int columns, Player *player){
     level->map[row][column] = _player;
 }
 
-void populate(int **map, int rows, int columns, int entity, int quantity){
+void populate(Level *level, int rows, int columns, int entity, int quantity){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
+    int monsterVal;
 
     for(int i = 0 ; i< quantity; i++){
-        while(map[row][column] != 0){
+        while(level->map[row][column] != 0){
             row = rand2(0,rows-1);
             column = rand2(0,rows-1);
         }
 
         if(entity == _monster1){
-            map[row][column] = rand2(_monster1, _monster2-1);
+            monsterVal = rand2(_monster1, _monster2-1);
+            level->map[row][column] = monsterVal;
         }else if(entity == _monster2){
-            map[row][column] = rand2(_monster2, _monster3-1);
+            monsterVal = rand2(_monster2, _monster3-1);
+            level->map[row][column] = monsterVal;
         }else if(entity == _monster3){
-            map[row][column] = rand2(_monster3, _lastMonster-1);
+            monsterVal = rand2(_monster3, _lastMonster-1);
+            level->map[row][column] = monsterVal;
         }else{
-            map[row][column] = entity;
+            level->map[row][column] = entity;
+        }
+
+        if(isRessource(entity)){
+            addToRessourceList(&level->ressourceList, entity, row, column);
+        }else if (isMonster(entity)){
+            addToMonsterList(&level->monsterList, monsterVal, row, column);
         }
     }
 }
 
 void populateLevel(Level *level, int rows, int columns){
-    populate(level->map, rows, columns, _npc, 1);
-    populate(level->map, rows, columns, _wall, 7);
+    populate(level, rows, columns, _npc, 1);
+    populate(level, rows, columns, _wall, 7);
 
     if(level->value == 1){
-        populate(level->map, rows, columns, _plant1, 3);
-        populate(level->map, rows, columns, _rock1, 3);
-        populate(level->map, rows, columns, _wood1, 3);
-        populate(level->map, rows, columns, _portal1, 1);
-        populate(level->map, rows, columns, _monster1, 10);
+        populate(level, rows, columns, _plant1, 3);
+        populate(level, rows, columns, _rock1, 3);
+        populate(level, rows, columns, _wood1, 3);
+        populate(level, rows, columns, _portal1, 1);
+        populate(level, rows, columns, _monster1, 10);
     }else if(level->value == 2){
-        populate(level->map, rows, columns, _plant2, 3);
-        populate(level->map, rows, columns, _rock2, 3);
-        populate(level->map, rows, columns, _wood2, 3);
-        populate(level->map, rows, columns, _portal1, 1);
-        populate(level->map, rows, columns, _portal2, 1);
-        populate(level->map, rows, columns, _monster2, 10);
+        populate(level, rows, columns, _plant2, 3);
+        populate(level, rows, columns, _rock2, 3);
+        populate(level, rows, columns, _wood2, 3);
+        populate(level, rows, columns, _portal1, 1);
+        populate(level, rows, columns, _portal2, 1);
+        populate(level, rows, columns, _monster2, 10);
     }else if(level->value == 3){
-        populate(level->map, rows, columns, _plant3, 3);
-        populate(level->map, rows, columns, _rock3, 3);
-        populate(level->map, rows, columns, _wood3, 3);
-        populate(level->map, rows, columns, _portal2, 1);
-        populate(level->map, rows, columns, _monster3, 10);
-        populate(level->map, rows, columns, _boss, 1);
+        populate(level, rows, columns, _plant3, 3);
+        populate(level, rows, columns, _rock3, 3);
+        populate(level, rows, columns, _wood3, 3);
+        populate(level, rows, columns, _portal2, 1);
+        populate(level, rows, columns, _monster3, 10);
+        populate(level, rows, columns, _boss, 1);
     }
 }
 
