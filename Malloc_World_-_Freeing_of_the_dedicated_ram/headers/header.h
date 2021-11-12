@@ -49,7 +49,7 @@ void populateLevel(Level *level, int rows, int columns);
 void initMap(Levels *levels, int rows, int columns, Player *player);
 
 //RESSOURCE
-int isRessource(int entity);
+int isMapRessource(int entity);
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column);
 void printRessourceList(RessourceNode *ressourceNode);
 

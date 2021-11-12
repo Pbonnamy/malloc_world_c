@@ -1,10 +1,9 @@
 #include "../headers/header.h"
 
-int isRessource(int entity){
+int isMapRessource(int entity){
     if(entity== _plant1 || entity == _plant2 || entity == _plant3 ||
         entity == _wood1 || entity == _wood2 || entity == _wood3 ||
         entity == _rock1 || entity == _rock2 || entity == _rock3){
-
         return 1;
     }else{
         return 0;

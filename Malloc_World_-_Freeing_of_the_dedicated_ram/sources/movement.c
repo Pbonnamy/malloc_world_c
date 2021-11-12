@@ -6,7 +6,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
     if(targetRow >= 0 && targetRow < rows && targetColumn >= 0 && targetColumn < columns){
         int target = level->map[targetRow][targetColumn];
 
-        if(isRessource(target)){
+        if(isMapRessource(target)){
 
             printf("\nTODO : harvest ressource\n\n");
 

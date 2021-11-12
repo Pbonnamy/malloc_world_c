@@ -1,9 +1,9 @@
 #include "../headers/header.h"
 
-//{"entity", "name", "additionnal info"}
-                    //armor -> damage resistance
-                    //weapon -> damage
-                    //potion -> hp restored
+//{"entity", "name", "additionnal informations"}
+                        //armor -> damage resistance
+                        //weapon -> damage
+                        //potion -> hp restored
 
 char DATAS[TOTAL_DATAS][3][64] = {
     {"1", "Wood Sword", "1"},
