@@ -6,13 +6,11 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
     if(targetRow >= 0 && targetRow < rows && targetColumn >= 0 && targetColumn < columns){
         int target = level->map[targetRow][targetColumn];
 
-        if(target == _plant1 || target == _plant2 || target == _plant3 ||
-           target == _wood1 || target == _wood2 || target == _wood3 ||
-           target == _rock1 || target == _rock2 || target == _rock3){
+        if(isRessource(target)){
 
             printf("\nTODO : harvest ressource\n\n");
 
-        }else if (target >= _monster1 && target <= _boss){
+        }else if (isMonster(target)){
 
             printf("\nTODO : combat\n\n");
 

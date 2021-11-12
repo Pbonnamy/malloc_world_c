@@ -13,8 +13,8 @@ struct Levels{
 
 struct Level{
     int **map;
-    RessourceList *ressourceList;
-    MonsterList *monsterList;
+    RessourceNode *ressourceList;
+    MonsterNode *monsterList;
     int value;
 };
 

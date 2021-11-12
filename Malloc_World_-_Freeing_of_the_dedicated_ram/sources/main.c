@@ -7,8 +7,11 @@ int main()
     Levels *levels = malloc(sizeof(Levels));
     Player *player = malloc(sizeof(Player));
 
-    initMap(levels, 8, 8, player);
+    initMap(levels, 10, 10, player);
+    initPlayer(player);
 
+    //printRessourceList(levels->lv1->ressourceList);
+    //printMonsterList(levels->lv1->monsterList);
     handleMovement(levels, player);
 
     return 0;
