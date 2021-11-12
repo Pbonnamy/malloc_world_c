@@ -20,9 +20,23 @@ typedef struct RessourceList RessourceList;
 #include "map.h"
 #include "player.h"
 
-void initMap(Levels *levels, int rows, int columns, Player *player);
+//PLAYER
 void initPlayer(Player *player);
-void printMap(int **map, int rows, int columns);
+void printInventory(InventoryNode *inventoryNode);
+void addToInventory(InventoryNode **inventoryHead, int item, int quantity);
+
+//MOVEMENT
 void handleMovement(Levels *levels, Player *player);
+int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int columns);
+void move(Level *level, Player *player, char direction, int rows, int columns);
+
+// MAP
+int rand2 (int min, int max);
+void printMap(int **map, int rows, int columns);
+void createLevel(Level *level, int rows, int columns, int nbLevel);
+void addPlayer(Level *level, int rows, int columns, Player *player);
+void populate(int **map, int rows, int columns, int entity, int quantity);
+void populateLevel(Level *level, int rows, int columns);
+void initMap(Levels *levels, int rows, int columns, Player *player);
 
 #endif
