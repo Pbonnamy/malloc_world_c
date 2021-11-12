@@ -26,7 +26,10 @@ typedef struct RessourceNode RessourceNode;
 #define HAMMER_DURABILITY 5
 
 #define TOTAL_DATAS 34
-extern char DATAS[TOTAL_DATAS][3][64];
+extern char DATAS[TOTAL_DATAS][3][32];
+
+#define TOTAL_CONVERTED 9
+extern int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2];
 
 //PLAYER
 void initPlayer(Player *player);
@@ -52,6 +55,8 @@ void initMap(Levels *levels, int rows, int columns, Player *player);
 int isMapRessource(int entity);
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column);
 void printRessourceList(RessourceNode *ressourceNode);
+int mapToItemRessource(int ressource);
+void harvestRessource(int ressource);
 
 //COMBAT
 int isMonster(int entity);

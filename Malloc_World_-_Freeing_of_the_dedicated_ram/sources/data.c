@@ -5,7 +5,7 @@
                         //weapon -> damage
                         //potion -> hp restored
 
-char DATAS[TOTAL_DATAS][3][64] = {
+char DATAS[TOTAL_DATAS][3][32] = {
     {"1", "Wood Sword", "1"},
     {"2", "Wood Pickaxe", ""},
     {"3", "Wood Billhook", ""},
@@ -40,4 +40,16 @@ char DATAS[TOTAL_DATAS][3][64] = {
     {"32", "Diamond Hammer", "20"},
     {"33", "Diamond Armor", "40"},
     {"34", "Health Potion III", "200"}
+};
+
+int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2]= {
+    {_wood1, _fir},
+    {_wood2, _beech},
+    {_wood3, _oak},
+    {_rock1, _stone},
+    {_rock2, _iron},
+    {_rock3, _diamond},
+    {_plant1, _herb},
+    {_plant2, _lavender},
+    {_plant3, _hemp}
 };

@@ -8,7 +8,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
 
         if(isMapRessource(target)){
 
-            printf("\nTODO : harvest ressource\n\n");
+            harvestRessource(target);
 
         }else if (isMonster(target)){
 
