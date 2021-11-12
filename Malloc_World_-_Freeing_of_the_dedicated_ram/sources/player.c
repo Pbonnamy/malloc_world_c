@@ -2,13 +2,25 @@
 
 void printInventory(InventoryNode *inventoryNode){
     if(inventoryNode == NULL){
-        printf("Inventaire vide");
+        printf("Empty inventory");
     }else{
         while(inventoryNode != NULL){
-            printf("Value : %d | Quantity : %d\n",inventoryNode->value,inventoryNode->quantity);
+            printf("Entity : %d | Quantity : %d\n",inventoryNode->value,inventoryNode->quantity);
             inventoryNode = inventoryNode->next;
         }
     }
+
+    printf("\n---------------------------\n\n");
+}
+
+void displayCharacter(Player *player){
+    printf("----- Character sheet -----\n\n");
+    printf("Hp : %d / %d\n", player->currentHp,player->maxHp);
+    printf("level : %d\n", player->level);
+    printf("Xp : %d\n", player->xp);
+
+    printf("\nInventory :\n\n");
+    printInventory(player->inventory);
 }
 
 void addToInventory(InventoryNode **inventoryHead, int item, int quantity){

@@ -20,6 +20,7 @@ typedef struct RessourceNode RessourceNode;
 
 //PLAYER
 void initPlayer(Player *player);
+void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
 void addToInventory(InventoryNode **inventoryHead, int item, int quantity);
 

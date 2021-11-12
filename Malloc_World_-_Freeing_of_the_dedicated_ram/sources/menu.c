@@ -3,7 +3,7 @@
 void handleAction(Levels *levels, Player *player, char action){
 
     if(action == '1'){
-        printf("\nTODO : Display Character sheet\n\n");
+        displayCharacter(player);
     }else if(action == '2'){
         handleMovement(levels, player);
     }else if(action == '3'){
@@ -15,12 +15,12 @@ void handleAction(Levels *levels, Player *player, char action){
 void gameLoop(Levels *levels, Player *player){
     char action;
 
-    printf("\nWelcome to Malloc World !\n\n");
+    printf("\n------- MENU -------\n\n");
 
     do{
-        printMap(levels->lv1->map, levels->rows, levels->columns);
+        //printMap(levels->lv1->map, levels->rows, levels->columns);
 
-        printf("\n1 - Character sheet \n"
+        printf("1 - Character sheet \n"
                "2 - Move \n"
                "3 - Save \n"
                "4 - Exit \n"
