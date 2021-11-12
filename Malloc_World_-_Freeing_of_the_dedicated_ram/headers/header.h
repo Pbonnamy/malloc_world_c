@@ -47,4 +47,8 @@ int isMonster(int entity);
 void addToMonsterList(MonsterNode **monsterHead, int entity, int row, int column);
 void printMonsterList(MonsterNode *monsterNode);
 
+//MENU
+void gameLoop(Levels *levels, Player *player);
+void handleAction(Levels *levels, Player *player, char action);
+
 #endif

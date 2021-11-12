@@ -67,7 +67,7 @@ void handleMovement(Levels *levels, Player *player){
 
     char direction;
 
-    printf("\nWelcome to Malloc World !\n\n");
+    printf("\n\n\n");
 
     do{
 
@@ -82,4 +82,6 @@ void handleMovement(Levels *levels, Player *player){
         move(levels->lv1, player, direction, levels->rows, levels->columns);
 
     }while(direction != 'e');
+
+    printf("\n\n\n");
 }

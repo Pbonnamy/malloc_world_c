@@ -12,7 +12,8 @@ int main()
 
     //printRessourceList(levels->lv1->ressourceList);
     //printMonsterList(levels->lv1->monsterList);
-    handleMovement(levels, player);
+
+    gameLoop(levels, player);
 
     return 0;
 }
