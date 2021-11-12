@@ -51,10 +51,10 @@
 1635845294 source:c:\users\bonna\desktop\code\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\movement.c
 	"header.h"
 
-1636714851 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\map.c
+1636737088 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\map.c
 	"../headers/header.h"
 
-1636713989 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
+1636738062 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -63,17 +63,19 @@
 	"ressource.h"
 	"map.h"
 	"player.h"
+	"data.h"
+	"item.h"
 
-1636713919 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\movement.c
+1636726519 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\movement.c
 	"../headers/header.h"
 
-1636712911 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\player.c
+1636738243 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\player.c
 	"../headers/header.h"
 
 1636714394 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\map.h
 	"header.h"
 
-1636662981 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\player.h
+1636738004 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\player.h
 	"header.h"
 
 1636714400 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\combat.c
@@ -85,7 +87,7 @@
 1636713154 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\ressource.h
 	"header.h"
 
-1636714637 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\main.c
+1636724499 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\main.c
 	"../headers/header.h"
 
 1636642058 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\pnj.c
@@ -93,4 +95,25 @@
 
 1636713695 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\ressource.c
 	"../headers/header.h"
+
+1636726106 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\menu.c
+	"../headers/header.h"
+
+1636731570 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\dictionary.h
+	"header.h"
+
+1636738133 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\item.c
+	"../headers/header.h"
+
+1636735466 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\dictionary.c
+	"../headers/header.h"
+
+1636737504 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\data.c
+	"../headers/header.h"
+
+1636735906 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\data.h
+	"header.h"
+
+1636738050 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\item.h
+	"header.h"
 

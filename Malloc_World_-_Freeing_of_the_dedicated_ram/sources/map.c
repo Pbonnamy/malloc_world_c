@@ -35,7 +35,7 @@ void addPlayer(Level *level, int rows, int columns, Player *player){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
 
-    while(level->map[row][column] != 0){
+    while(level->map[row][column] != _empty){
         row = rand2(0,rows-1);
         column = rand2(0,rows-1);
     }
@@ -52,7 +52,7 @@ void populate(Level *level, int rows, int columns, int entity, int quantity){
     int monsterVal;
 
     for(int i = 0 ; i< quantity; i++){
-        while(level->map[row][column] != 0){
+        while(level->map[row][column] != _empty){
             row = rand2(0,rows-1);
             column = rand2(0,rows-1);
         }

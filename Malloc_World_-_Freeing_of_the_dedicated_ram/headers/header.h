@@ -17,9 +17,20 @@ typedef struct RessourceNode RessourceNode;
 #include "ressource.h"
 #include "map.h"
 #include "player.h"
+#include "data.h"
+#include "item.h"
+
+#define TOOL_DURABILITY 10
+#define SWORD_DURABILITY 10
+#define SPEAR_DURABILITY 8
+#define HAMMER_DURABILITY 5
+
+#define TOTAL_DATAS 34
+extern char DATAS[TOTAL_DATAS][3][64];
 
 //PLAYER
 void initPlayer(Player *player);
+void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
 void addToInventory(InventoryNode **inventoryHead, int item, int quantity);
 
@@ -46,5 +57,19 @@ void printRessourceList(RessourceNode *ressourceNode);
 int isMonster(int entity);
 void addToMonsterList(MonsterNode **monsterHead, int entity, int row, int column);
 void printMonsterList(MonsterNode *monsterNode);
+
+//MENU
+void gameLoop(Levels *levels, Player *player);
+void handleAction(Levels *levels, Player *player, char action);
+
+//ITEM
+int isWeapon(int entity);
+int isArmor(int entity);
+int isTool(int entity);
+int isHeal(int entity);
+int isItemRessource(int entity);
+int getDurability(int item);
+void printItem(int item, int reference, int quantity, int durability);
+int findItemReference(int entity);
 
 #endif
