@@ -76,12 +76,15 @@ int harvestRessource(RessourceNode *ressourceNode, int row, int column, Player *
     int converted = mapToItemRessource(ressourceNode->value);
     int allowed = 0;
 
-
     if(canHarvest(converted, player->inventory)){
         int quantity = rand2(1,4);
-        allowed = 1;
+
+        ressourceNode->harvested = RESPAWN_RESSOURCE;
         addToInventory(&player->inventory, converted, quantity);
+
         printf("\nYou just harvested %d %s\n\n", quantity, DATAS[ressourceNode->reference][_name]);
+
+        allowed = 1;
     }else{
         printf("\nYou don't have the required tool or its durability is too low\n\n");
     }

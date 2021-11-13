@@ -32,6 +32,9 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV2 2
 #define WEAR_LV3 4
 
+#define RESPAWN_RESSOURCE 10
+#define RESPAWN_MONSTER 15
+
 #define TOTAL_DATAS 34
 extern char DATAS[TOTAL_DATAS][3][32];
 
