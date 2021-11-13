@@ -8,7 +8,8 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
 
         if(isMapRessource(target)){
 
-            allowed = harvestRessource(target, targetRow, targetColumn, player, level);
+            RessourceNode *ressourceNode = findRessourceNode(level->ressourceList, targetRow, targetColumn);
+            allowed = harvestRessource(ressourceNode, targetRow, targetColumn, player, level);
 
         }else if (isMonster(target)){
 

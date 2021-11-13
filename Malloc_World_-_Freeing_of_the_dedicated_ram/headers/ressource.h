@@ -6,6 +6,7 @@
 struct RessourceNode{
     int harvested;
     int value;
+    int reference;
     int row;
     int column;
     RessourceNode *next;

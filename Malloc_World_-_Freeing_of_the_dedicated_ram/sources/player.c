@@ -64,7 +64,6 @@ void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
         if(count < MAX_INVENTORY_COUNT && quantity > 0){
             newNode->quantity = quantity;
             lastNode->next = newNode;
-
         }
 
     }

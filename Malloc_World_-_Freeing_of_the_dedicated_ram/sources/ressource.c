@@ -59,15 +59,29 @@ int getRessourceLevel(int ressource){
     return -1;
 }
 
+RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int column){
 
-int harvestRessource(int ressource, int row, int column, Player *player, Level *level){
-    int converted = mapToItemRessource(ressource);
+    while(ressourceNode != NULL){
+        if(ressourceNode->column == column && ressourceNode->row == row){
+            return ressourceNode;
+        }
+        ressourceNode = ressourceNode->next;
+    }
+
+    return NULL;
+}
+
+
+int harvestRessource(RessourceNode *ressourceNode, int row, int column, Player *player, Level *level){
+    int converted = mapToItemRessource(ressourceNode->value);
     int allowed = 0;
+
 
     if(canHarvest(converted, player->inventory)){
         int quantity = rand2(1,4);
         allowed = 1;
-        printf("\nYou just harvested %d %s\n\n", quantity, DATAS[findItemReference(converted)][_name]);
+        addToInventory(&player->inventory, converted, quantity);
+        printf("\nYou just harvested %d %s\n\n", quantity, DATAS[ressourceNode->reference][_name]);
     }else{
         printf("\nYou don't have the required tool or its durability is too low\n\n");
     }
@@ -80,6 +94,7 @@ void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int 
     newNode->row = row;
     newNode->column = column;
     newNode->value = entity;
+    newNode->reference = findItemReference(mapToItemRessource(entity));
     newNode->harvested = 0;
     newNode->next = NULL;
 

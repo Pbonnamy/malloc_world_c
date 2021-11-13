@@ -67,9 +67,10 @@ int isMapRessource(int entity);
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column);
 void printRessourceList(RessourceNode *ressourceNode);
 int mapToItemRessource(int ressource);
-int harvestRessource(int ressource, int row, int column, Player *player, Level *level);
+int harvestRessource(RessourceNode *ressource, int row, int column, Player *player, Level *level);
 int canHarvest(int ressource, InventoryNode *inventoryNode);
 int getRessourceLevel(int ressource);
+RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int column);
 
 //COMBAT
 int isMonster(int entity);
