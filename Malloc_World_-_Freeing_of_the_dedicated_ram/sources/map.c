@@ -70,7 +70,7 @@ void populate(Level *level, int rows, int columns, int entity, int quantity){
             level->map[row][column] = entity;
         }
 
-        if(isRessource(entity)){
+        if(isMapRessource(entity)){
             addToRessourceList(&level->ressourceList, entity, row, column);
         }else if (isMonster(entity)){
             addToMonsterList(&level->monsterList, monsterVal, row, column);

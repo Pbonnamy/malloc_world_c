@@ -18,13 +18,12 @@ void gameLoop(Levels *levels, Player *player){
     printf("\n------- MENU -------\n\n");
 
     do{
-        //printMap(levels->lv1->map, levels->rows, levels->columns);
 
         printf("1 - Character sheet \n"
                "2 - Move \n"
                "3 - Save \n"
                "4 - Exit \n"
-               "\nWhat do you want to do : ");
+               "\nChoose en option : ");
 
 
         fflush(stdin);

@@ -69,13 +69,63 @@ int getDurability(int item){
     return -1;
 }
 
+int checkDurability(int ressource, int durability){
+    int allowed = 1;
+
+    if(getRessourceLevel(ressource) == 1){
+        if(durability < WEAR_LV1){
+            allowed = 0;
+        }
+    }else if(getRessourceLevel(ressource) == 2){
+        if(durability < WEAR_LV2){
+            allowed = 0;
+        }
+    }else if(getRessourceLevel(ressource) == 3){
+        if (durability < WEAR_LV3){
+            allowed = 0;
+        }
+    }
+
+    return allowed;
+}
+
+int isRequiredTool(int tool, int ressource, int durability){
+    int allowed = 0;
+
+    for(int i = 0; i < TOTAL_REQUIRED; i++){
+        if(ressource == REQUIRED_TOOL[i][_ressource]){
+            for (int j = _firstPossibleTool; j <= _lastPossibleTool; j++){
+                if(tool == REQUIRED_TOOL[i][j] && checkDurability(ressource, durability)){
+                    allowed = 1;
+                }
+            }
+        }
+    }
+
+    return allowed;
+}
+
+void handleToolDurability(InventoryNode *inventoryNode, int ressource){
+    if(getRessourceLevel(ressource) == 1){
+        inventoryNode->durability -= WEAR_LV1;
+    }else if(getRessourceLevel(ressource) == 2){
+        inventoryNode->durability -= WEAR_LV2;
+    }else if(getRessourceLevel(ressource) == 3){
+        inventoryNode->durability -= WEAR_LV3;
+    }
+
+    if(inventoryNode->durability < 0){
+        inventoryNode->durability = 0;
+    }
+}
+
 void printItem(int item, int reference, int quantity, int durability){
     if(isTool(item)){
         printf("%s (durability : %d / %d)\n", DATAS[reference][_name], durability, getDurability(item));
     }else if(isWeapon(item)){
         printf("%s (durability : %d / %d) - (damage : %s)\n", DATAS[reference][_name], durability, getDurability(item), DATAS[reference][_info]);
     }else if(isArmor(item)){
-        printf("%s (damage resistance : %s %% )\n", DATAS[reference][_name], DATAS[reference][_info]);
+        printf("%s (damage resistance : %s %%)\n", DATAS[reference][_name], DATAS[reference][_info]);
     }else if(isItemRessource(item)){
         printf("%d %s\n", quantity, DATAS[reference][_name]);
     }else if(isHeal(item)){

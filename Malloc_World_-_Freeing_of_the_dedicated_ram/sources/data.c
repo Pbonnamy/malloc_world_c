@@ -1,11 +1,11 @@
 #include "../headers/header.h"
 
-//{"entity", "name", "additionnal info"}
-                    //armor -> damage resistance
-                    //weapon -> damage
-                    //potion -> hp restored
+//{"entity", "name", "additionnal informations"}
+                        //armor -> damage resistance
+                        //weapon -> damage
+                        //potion -> hp restored
 
-char DATAS[TOTAL_DATAS][3][64] = {
+char DATAS[TOTAL_DATAS][3][32] = {
     {"1", "Wood Sword", "1"},
     {"2", "Wood Pickaxe", ""},
     {"3", "Wood Billhook", ""},
@@ -40,4 +40,30 @@ char DATAS[TOTAL_DATAS][3][64] = {
     {"32", "Diamond Hammer", "20"},
     {"33", "Diamond Armor", "40"},
     {"34", "Health Potion III", "200"}
+};
+
+//{"map ressource", "item ressource"}
+int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2]= {
+    {_wood1, _fir},
+    {_wood2, _beech},
+    {_wood3, _oak},
+    {_rock1, _stone},
+    {_rock2, _iron},
+    {_rock3, _diamond},
+    {_plant1, _herb},
+    {_plant2, _lavender},
+    {_plant3, _hemp}
+};
+
+//{"ressource", "required tool 1", "required tool 2", "required tool 3"}
+int REQUIRED_TOOL[TOTAL_REQUIRED][4]= {
+    {_fir, _woodAxe, _stoneAxe, _ironAxe},
+    {_beech, -1, _stoneAxe, _ironAxe},
+    {_oak, -1, -1, _ironAxe},
+    {_stone, _woodPickaxe, _stonePickaxe, _ironPickaxe},
+    {_iron, -1, _stonePickaxe, _ironPickaxe},
+    {_diamond, -1, -1, _ironPickaxe},
+    {_herb, _woodBillhook, _stoneBillhook, _ironBillhook},
+    {_lavender, -1, _stoneBillhook, _ironBillhook},
+    {_hemp, -1, -1, _ironBillhook},
 };
