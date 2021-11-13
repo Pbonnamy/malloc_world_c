@@ -35,14 +35,18 @@ typedef struct RessourceNode RessourceNode;
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15
 
-#define TOTAL_DATAS 34
-extern char DATAS[TOTAL_DATAS][3][32];
+#define TOTAL_ITEMS 34
+extern char ITEMS[TOTAL_ITEMS][3][32];
 
 #define TOTAL_CONVERTED 9
 extern int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2];
 
 #define TOTAL_REQUIRED 9
-int REQUIRED_TOOL[TOTAL_REQUIRED][4];
+extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
+
+#define TOTAL_MONSTERS 16
+extern char MONSTERS[TOTAL_MONSTERS][6][32];
+
 
 //PLAYER
 void initPlayer(Player *player);

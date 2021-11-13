@@ -82,7 +82,7 @@ int harvestRessource(RessourceNode *ressourceNode, int row, int column, Player *
         ressourceNode->harvested = RESPAWN_RESSOURCE;
         addToInventory(&player->inventory, converted, quantity);
 
-        printf("\nYou just harvested %d %s\n\n", quantity, DATAS[ressourceNode->reference][_name]);
+        printf("\nYou just harvested %d %s\n\n", quantity, ITEMS[ressourceNode->reference][_name]);
 
         allowed = 1;
     }else{

@@ -4,8 +4,7 @@
                         //armor -> damage resistance
                         //weapon -> damage
                         //potion -> hp restored
-
-char DATAS[TOTAL_DATAS][3][32] = {
+char ITEMS[TOTAL_ITEMS][3][32] = {
     {"1", "Wood Sword", "1"},
     {"2", "Wood Pickaxe", ""},
     {"3", "Wood Billhook", ""},
@@ -67,3 +66,25 @@ int REQUIRED_TOOL[TOTAL_REQUIRED][4]= {
     {_lavender, -1, _stoneBillhook, _ironBillhook},
     {_hemp, -1, -1, _ironBillhook},
 };
+
+//{"entity", "name", "hp", "damage", "xp"}
+char MONSTERS[TOTAL_MONSTERS][6][32]={
+    {"12", "", "", "", ""},
+    {"13", "", "", "", ""},
+    {"14", "", "", "", ""},
+    {"15", "", "", "", ""},
+    {"16", "", "", "", ""},
+    {"17", "", "", "", ""},
+    {"18", "", "", "", ""},
+    {"19", "", "", "", ""},
+    {"20", "", "", "", ""},
+    {"21", "", "", "", ""},
+    {"22", "", "", "", ""},
+    {"23", "", "", "", ""},
+    {"24", "", "", "", ""},
+    {"25", "", "", "", ""},
+    {"26", "", "", "", ""},
+    {"99", "", "", "", ""},
+};
+
+
