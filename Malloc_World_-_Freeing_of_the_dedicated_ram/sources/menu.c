@@ -18,7 +18,7 @@ void gameLoop(Levels *levels, Player *player){
 
     do{
 
-        printf("\n------- MENU -------\n\n");
+        printf("\n----------- MENU ----------\n\n");
 
         printf("1 - Character sheet \n"
                "2 - Move \n"

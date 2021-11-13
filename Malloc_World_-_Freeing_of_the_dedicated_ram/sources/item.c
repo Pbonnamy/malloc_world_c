@@ -121,9 +121,9 @@ void handleToolDurability(InventoryNode *inventoryNode, int ressource){
 
 void printItem(int item, int reference, int quantity, int durability){
     if(isTool(item)){
-        printf("%s (durability : %d / %d)\n", ITEMS[reference][_name], durability, getDurability(item));
+        printf("%d/%d %s\n", durability, getDurability(item), ITEMS[reference][_name]);
     }else if(isWeapon(item)){
-        printf("%s (durability : %d / %d) - (damage : %s)\n", ITEMS[reference][_name], durability, getDurability(item), ITEMS[reference][_info]);
+        printf("%d/%d %s (damage : %s)\n", durability, getDurability(item), ITEMS[reference][_name], ITEMS[reference][_info]);
     }else if(isArmor(item)){
         printf("%s (damage resistance : %s %%)\n", ITEMS[reference][_name], ITEMS[reference][_info]);
     }else if(isItemRessource(item)){

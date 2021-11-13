@@ -47,6 +47,8 @@ extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
 #define TOTAL_MONSTERS 16
 extern char MONSTERS[TOTAL_MONSTERS][6][32];
 
+#define RED  "\x1B[31m"
+#define RESET "\x1B[0m"
 
 //PLAYER
 void initPlayer(Player *player);
