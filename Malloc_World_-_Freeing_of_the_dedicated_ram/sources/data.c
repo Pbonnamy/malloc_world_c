@@ -42,6 +42,7 @@ char DATAS[TOTAL_DATAS][3][32] = {
     {"34", "Health Potion III", "200"}
 };
 
+//{"map ressource", "item ressource"}
 int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2]= {
     {_wood1, _fir},
     {_wood2, _beech},
@@ -52,4 +53,17 @@ int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2]= {
     {_plant1, _herb},
     {_plant2, _lavender},
     {_plant3, _hemp}
+};
+
+//{"ressource", "required tool 1", "required tool 2", "required tool 3"}
+int REQUIRED_TOOL[TOTAL_REQUIRED][4]= {
+    {_fir, _woodAxe, _stoneAxe, _ironAxe},
+    {_beech, -1, _stoneAxe, _ironAxe},
+    {_oak, -1, -1, _ironAxe},
+    {_stone, _woodPickaxe, _stonePickaxe, _ironPickaxe},
+    {_iron, -1, _stonePickaxe, _ironPickaxe},
+    {_diamond, -1, -1, _ironPickaxe},
+    {_herb, _woodBillhook, _stoneBillhook, _ironBillhook},
+    {_lavender, -1, _stoneBillhook, _ironBillhook},
+    {_hemp, -1, -1, _ironBillhook},
 };

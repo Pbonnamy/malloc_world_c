@@ -32,10 +32,47 @@ void printRessourceList(RessourceNode *ressourceNode){
     }
 }
 
-void harvestRessource(int ressource){
+int canHarvest(int ressource, InventoryNode *inventoryNode){
+    int allowed = 0;
+
+    while(inventoryNode != NULL){
+        if(isRequiredTool(inventoryNode->value, ressource, inventoryNode->durability)){
+            handleToolDurability(inventoryNode, ressource);
+            allowed = 1;
+            break;
+        }
+        inventoryNode = inventoryNode->next;
+    }
+
+    return allowed;
+}
+
+int getRessourceLevel(int ressource){
+    if(ressource == _fir || ressource == _stone || ressource == _herb){
+        return 1;
+    }else if(ressource == _beech || ressource == _iron || ressource == _lavender){
+        return 2;
+    }else if(ressource == _oak || ressource == _diamond || ressource == _hemp){
+        return 3;
+    }
+
+    return -1;
+}
+
+
+int harvestRessource(int ressource, int row, int column, Player *player, Level *level){
     int converted = mapToItemRessource(ressource);
-    int quantity = rand2(1,4);
-    printf("\nYou just harvested %d %s\n\n", quantity, DATAS[findItemReference(converted)][_name]);
+    int allowed = 0;
+
+    if(canHarvest(converted, player->inventory)){
+        int quantity = rand2(1,4);
+        allowed = 1;
+        printf("\nYou just harvested %d %s\n\n", quantity, DATAS[findItemReference(converted)][_name]);
+    }else{
+        printf("\nYou don't have the required tool or its durability is too low\n\n");
+    }
+
+    return allowed;
 }
 
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column){
