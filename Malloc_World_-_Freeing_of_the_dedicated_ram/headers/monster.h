@@ -4,13 +4,12 @@
 #include "header.h"
 
 struct MonsterNode{
-    int maxHp;
-    int currentHp;
-    int damage;
+    int hp;
     int respawn;
     int row;
     int column;
     int value;
+    int reference;
     MonsterNode *next;
 };
 

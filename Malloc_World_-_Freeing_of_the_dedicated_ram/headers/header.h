@@ -13,7 +13,7 @@ typedef struct InventoryNode InventoryNode;
 typedef struct Player Player;
 typedef struct RessourceNode RessourceNode;
 
-#include "combat.h"
+#include "monster.h"
 #include "ressource.h"
 #include "map.h"
 #include "player.h"
@@ -45,7 +45,7 @@ extern int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2];
 extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
 
 #define TOTAL_MONSTERS 16
-extern char MONSTERS[TOTAL_MONSTERS][6][32];
+extern char MONSTERS[TOTAL_MONSTERS][5][32];
 
 #define RED  "\x1B[31m"
 #define RESET "\x1B[0m"
@@ -76,15 +76,20 @@ int isMapRessource(int entity);
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column);
 void printRessourceList(RessourceNode *ressourceNode);
 int mapToItemRessource(int ressource);
-int harvestRessource(RessourceNode *ressource, int row, int column, Player *player, Level *level);
+int harvestRessource(RessourceNode *ressource, Player *player);
 int canHarvest(int ressource, InventoryNode *inventoryNode);
 int getRessourceLevel(int ressource);
 RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int column);
 
-//COMBAT
+//MONSTER
 int isMonster(int entity);
 void addToMonsterList(MonsterNode **monsterHead, int entity, int row, int column);
 void printMonsterList(MonsterNode *monsterNode);
+int findMonsterReference(int entity);
+MonsterNode *findMonsterNode(MonsterNode *monsterNode, int row, int column);
+
+//COMBAT
+int handleCombat(MonsterNode *monsterNode, Player *player);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
