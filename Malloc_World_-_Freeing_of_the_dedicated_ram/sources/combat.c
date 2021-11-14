@@ -1,40 +1,20 @@
 #include "../headers/header.h"
 
-int isMonster(int entity){
-    if(entity >= _monster1 && entity <= _boss){
-        return 1;
-    }else{
-        return 0;
-    }
-}
+int handleCombat(MonsterNode *monsterNode, Player *player){
+    char action;
+    int loop = 1;
+    int defeated = 0;
 
-//DEBUG
-void printMonsterList(MonsterNode *monsterNode){
-    if(monsterNode == NULL){
-        printf("Vide");
-    }else{
-        while(monsterNode != NULL){
-            printf("Value : %d\n",monsterNode->value);
-            monsterNode = monsterNode->next;
-        }
-    }
-}
+    do{
+        printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
 
-void addToMonsterList(MonsterNode **monsterHead, int entity, int row, int column){
-    MonsterNode *newNode= malloc(sizeof(MonsterNode));
-    newNode->column = column;
-    newNode->row = row;
-    newNode->value = entity;
-    newNode->next = NULL;
+        printf("Choose an action ? (a : attack, p : use a potion, f : try to flee)  : ");
+        fflush(stdin);
+        scanf("%c", &action);
 
-    if(*monsterHead == NULL){
-        *monsterHead = newNode;
-    }else{
-        MonsterNode *lastNode = *monsterHead;
+        system("cls"); //clear console
 
-        while(lastNode->next != NULL){
-            lastNode = lastNode->next;
-        }
-        lastNode->next = newNode;
-    }
+    }while(loop);
+
+    return defeated;
 }

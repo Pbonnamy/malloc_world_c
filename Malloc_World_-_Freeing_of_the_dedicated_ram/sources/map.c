@@ -8,7 +8,12 @@ void printMap(int **map, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
-            printf(" %2d ", map[i][j]);
+            if(map[i][j] == _player){
+                printf(RED " %2d " RESET, map[i][j]);
+            }else{
+                printf(" %2d ", map[i][j]);
+            }
+
         }
         printf("\n");
     }

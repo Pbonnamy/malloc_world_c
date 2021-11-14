@@ -47,8 +47,8 @@ int isItemRessource(int entity){
 }
 
 int findItemReference(int entity){
-    for(int i = 0; i < TOTAL_DATAS;i++){
-        if(atoi(DATAS[i][_entity]) == entity){
+    for(int i = 0; i < TOTAL_ITEMS;i++){
+        if(atoi(ITEMS[i][_entity]) == entity){
             return i;
         }
     }
@@ -121,15 +121,15 @@ void handleToolDurability(InventoryNode *inventoryNode, int ressource){
 
 void printItem(int item, int reference, int quantity, int durability){
     if(isTool(item)){
-        printf("%s (durability : %d / %d)\n", DATAS[reference][_name], durability, getDurability(item));
+        printf("%d/%d %s\n", durability, getDurability(item), ITEMS[reference][_name]);
     }else if(isWeapon(item)){
-        printf("%s (durability : %d / %d) - (damage : %s)\n", DATAS[reference][_name], durability, getDurability(item), DATAS[reference][_info]);
+        printf("%d/%d %s (damage : %s)\n", durability, getDurability(item), ITEMS[reference][_name], ITEMS[reference][_info]);
     }else if(isArmor(item)){
-        printf("%s (damage resistance : %s %%)\n", DATAS[reference][_name], DATAS[reference][_info]);
+        printf("%s (damage resistance : %s %%)\n", ITEMS[reference][_name], ITEMS[reference][_info]);
     }else if(isItemRessource(item)){
-        printf("%d %s\n", quantity, DATAS[reference][_name]);
+        printf("%d %s\n", quantity, ITEMS[reference][_name]);
     }else if(isHeal(item)){
-        printf("%d %s (heal : %s HP)\n", quantity, DATAS[reference][_name], DATAS[reference][_info]);
+        printf("%d %s (heal : %s HP)\n", quantity, ITEMS[reference][_name], ITEMS[reference][_info]);
     }
 }
 

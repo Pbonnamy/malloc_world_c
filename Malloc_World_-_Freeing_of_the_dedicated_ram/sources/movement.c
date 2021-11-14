@@ -9,11 +9,12 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
         if(isMapRessource(target)){
 
             RessourceNode *ressourceNode = findRessourceNode(level->ressourceList, targetRow, targetColumn);
-            allowed = harvestRessource(ressourceNode, targetRow, targetColumn, player, level);
+            allowed = harvestRessource(ressourceNode, player);
 
         }else if (isMonster(target)){
 
-            printf("\nTODO : combat\n\n");
+            MonsterNode *monsterNode = findMonsterNode(level->monsterList, targetRow, targetColumn);
+            allowed = handleCombat(monsterNode, player);
 
         }else if (target == _portal1 || target == _portal2){
 
@@ -82,6 +83,4 @@ void handleMovement(Levels *levels, Player *player){
         move(levels->lv1, player, direction, levels->rows, levels->columns);
 
     }while(direction != 'e');
-
-    printf("\n\n\n");
 }

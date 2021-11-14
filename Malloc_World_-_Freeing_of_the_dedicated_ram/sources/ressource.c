@@ -26,7 +26,7 @@ void printRessourceList(RessourceNode *ressourceNode){
         printf("Vide");
     }else{
         while(ressourceNode != NULL){
-            printf("Value : %d\n",ressourceNode->value);
+            printf("Name : %s\n",ITEMS[ressourceNode->reference][_name]);
             ressourceNode = ressourceNode->next;
         }
     }
@@ -72,7 +72,7 @@ RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int colu
 }
 
 
-int harvestRessource(RessourceNode *ressourceNode, int row, int column, Player *player, Level *level){
+int harvestRessource(RessourceNode *ressourceNode, Player *player){
     int converted = mapToItemRessource(ressourceNode->value);
     int allowed = 0;
 
@@ -82,7 +82,7 @@ int harvestRessource(RessourceNode *ressourceNode, int row, int column, Player *
         ressourceNode->harvested = RESPAWN_RESSOURCE;
         addToInventory(&player->inventory, converted, quantity);
 
-        printf("\nYou just harvested %d %s\n\n", quantity, DATAS[ressourceNode->reference][_name]);
+        printf("\nYou just harvested %d %s\n\n", quantity, ITEMS[ressourceNode->reference][_name]);
 
         allowed = 1;
     }else{

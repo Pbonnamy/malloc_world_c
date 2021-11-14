@@ -11,7 +11,10 @@ enum dataType{
     _itemRessource = 1,
     _ressource = 0,
     _firstPossibleTool = 1,
-    _lastPossibleTool = 3
+    _lastPossibleTool = 3,
+    _monsterHp = 2,
+    _monsterDamage = 3,
+
 };
 
 #endif

@@ -11,7 +11,7 @@ void printInventory(InventoryNode *inventoryNode){
         }
     }
 
-    printf("\n---------------------------\n\n");
+    printf("\n---------------------------\n");
 }
 
 void displayCharacter(Player *player){
@@ -74,6 +74,7 @@ void initPlayer(Player *player){
     player->xp = 0;
     player->maxHp = 100;
     player->currentHp = 100;
+    player->currentMapLvl = 1;
     player->inventory = NULL;
 
     addToInventory(&player->inventory, _woodSword, 1);

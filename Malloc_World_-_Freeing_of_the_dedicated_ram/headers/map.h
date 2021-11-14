@@ -35,9 +35,9 @@ enum mapEntity{
     _rock3 = 10,
     _wood3 = 11,
     _monster1 = 12,
-    _monster2 = 22,
-    _monster3 = 32,
-    _lastMonster = 42,
+    _monster2 = 17,
+    _monster3 = 22,
+    _lastMonster = 27,
     _boss = 99
 };
 

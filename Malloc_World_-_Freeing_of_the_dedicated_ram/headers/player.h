@@ -18,6 +18,7 @@ struct Player{
     int currentHp;
     int row;
     int column;
+    int currentMapLvl;
     InventoryNode *inventory ;
 };
 

@@ -15,9 +15,10 @@ void handleAction(Levels *levels, Player *player, char action){
 void gameLoop(Levels *levels, Player *player){
     char action;
 
-    printf("\n------- MENU -------\n\n");
 
     do{
+
+        printf("\n----------- MENU ----------\n\n");
 
         printf("1 - Character sheet \n"
                "2 - Move \n"
