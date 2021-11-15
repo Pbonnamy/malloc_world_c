@@ -65,7 +65,6 @@ void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
             newNode->quantity = quantity;
             lastNode->next = newNode;
         }
-
     }
 }
 

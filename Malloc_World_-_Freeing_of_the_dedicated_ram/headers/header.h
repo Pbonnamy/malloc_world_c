@@ -35,6 +35,8 @@ typedef struct RessourceNode RessourceNode;
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15
 
+#define FLEE_RATE 30
+
 #define TOTAL_ITEMS 34
 extern char ITEMS[TOTAL_ITEMS][3][32];
 
@@ -90,6 +92,7 @@ MonsterNode *findMonsterNode(MonsterNode *monsterNode, int row, int column);
 
 //COMBAT
 int handleCombat(MonsterNode *monsterNode, Player *player);
+int flee();
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
