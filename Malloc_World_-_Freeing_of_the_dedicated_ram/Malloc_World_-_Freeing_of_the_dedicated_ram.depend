@@ -123,3 +123,63 @@
 1636887521 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\monster.c
 	"../headers/header.h"
 
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\data.c
+	"../headers/header.h"
+
+1637063071 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\header.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"monster.h"
+	"ressource.h"
+	"map.h"
+	"player.h"
+	"data.h"
+	"item.h"
+
+1636977885 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\monster.h
+	"header.h"
+
+1636977885 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\ressource.h
+	"header.h"
+
+1636977885 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\map.h
+	"header.h"
+
+1637063071 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\player.h
+	"header.h"
+
+1636977885 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\data.h
+	"header.h"
+
+1636977885 c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\headers\item.h
+	"header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\item.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\main.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\map.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\menu.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\movement.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\pnj.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\ressource.c
+	"../headers/header.h"
+
+1636977885 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\monster.c
+	"../headers/header.h"
+
+1637063071 source:c:\users\hub-grade\desktop\c\malloc_world_-_freeing_of_the_dedicated_ram\malloc_world_-_freeing_of_the_dedicated_ram\sources\player.c
+	"../headers/header.h"
+

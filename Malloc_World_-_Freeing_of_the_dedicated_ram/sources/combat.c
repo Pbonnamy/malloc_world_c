@@ -20,21 +20,28 @@ int flee(){
 InventoryNode *weaponSelect(InventoryNode *inventoryHead){
     printf("\nWeapon selection : \n\n");
 
-    int count = 0;
+    int count = 1 ;
 
     while(inventoryHead != NULL){
         if(isWeapon(inventoryHead->value)){
+            printf("%d - ", count);
             printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
             count ++;
         }
         inventoryHead = inventoryHead->next;
     }
+
+    return NULL;
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){
     char action;
     int loop = 1;
     int defeated = 0;
+
+    InventoryNode *weapon = weaponSelect(player->inventory);
+
+    return defeated;
 
     do{
         printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
