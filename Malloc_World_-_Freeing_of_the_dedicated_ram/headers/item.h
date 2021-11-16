@@ -40,4 +40,9 @@ enum items{
     _potion3 = 34
 };
 
+enum itemType{
+    _weapon = 1,
+    _armor = 2,
+    _heal = 3
+};
 #endif

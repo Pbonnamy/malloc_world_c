@@ -17,21 +17,52 @@ int flee(){
     return loop;
 }
 
-InventoryNode *weaponSelect(InventoryNode *inventoryHead){
-    printf("\nWeapon selection : \n\n");
+InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
 
-    int count = 1 ;
+}
+
+int availableItems(InventoryNode *inventoryHead, int itemType){
+    int count = 0;
 
     while(inventoryHead != NULL){
-        if(isWeapon(inventoryHead->value)){
+        if(isWeapon(inventoryHead->value) && itemType == _weapon){
+            count ++;
             printf("%d - ", count);
             printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
+        }else if(isArmor(inventoryHead->value) && itemType == _armor){
             count ++;
+            printf("%d - ", count);
+            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
+        }else if (isHeal(inventoryHead->value) && itemType == _heal){
+            count ++;
+            printf("%d - ", count);
+            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
         }
         inventoryHead = inventoryHead->next;
     }
 
-    return NULL;
+    return count;
+}
+
+InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
+    printf("\nWeapon selection : \n\n");
+    int chosen;
+
+    int index = availableItems(inventoryHead, itemType);
+
+    if(index == 0){
+        return NULL;
+    }else if(index == 1){
+        return findItem(inventoryHead, itemType, index);
+    }else{
+        do{
+            printf("Choose a weapon :\n");
+            fflush(stdin);
+            scanf("%d", &chosen);
+        }while(chosen <= 0 && chosen > index);
+
+        return findItem(inventoryHead, itemType, index);
+    }
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){
@@ -39,7 +70,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
     int loop = 1;
     int defeated = 0;
 
-    InventoryNode *weapon = weaponSelect(player->inventory);
+    InventoryNode *weapon = itemSelect(player->inventory, _weapon);
 
     return defeated;
 
