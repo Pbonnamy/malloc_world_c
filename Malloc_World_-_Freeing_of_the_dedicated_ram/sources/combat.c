@@ -18,7 +18,35 @@ int flee(){
 }
 
 InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
+    int count = 0;
 
+    while(inventoryHead != NULL){
+        if(isWeapon(inventoryHead->value) && itemType == _weapon){
+            count ++;
+            if(count == index){
+                printf("\n%s selected : ", ITEM_TYPE[itemType]);
+                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
+                return inventoryHead;
+            }
+        }else if(isArmor(inventoryHead->value) && itemType == _armor){
+            count ++;
+            if(count == index){
+                printf("\n%s selected : ", ITEM_TYPE[itemType]);
+                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
+                return inventoryHead;
+            }
+        }else if (isHeal(inventoryHead->value) && itemType == _heal){
+            count ++;
+            if(count == index){
+                printf("\n%s selected : ", ITEM_TYPE[itemType]);
+                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
+                return inventoryHead;
+            }
+        }
+        inventoryHead = inventoryHead->next;
+    }
+
+    return NULL;
 }
 
 int availableItems(InventoryNode *inventoryHead, int itemType){
@@ -45,18 +73,20 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
 }
 
 InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
-    printf("\nWeapon selection : \n\n");
+    printf("\n%s Availables : \n\n", ITEM_TYPE[itemType]);
     int chosen;
 
     int index = availableItems(inventoryHead, itemType);
 
     if(index == 0){
+        printf("No %s available !\n", ITEM_TYPE[itemType]);
         return NULL;
     }else if(index == 1){
         return findItem(inventoryHead, itemType, index);
     }else{
         do{
-            printf("Choose a weapon :\n");
+            printf("\nChoose a %s : ", ITEM_TYPE[itemType]);
+
             fflush(stdin);
             scanf("%d", &chosen);
         }while(chosen <= 0 && chosen > index);
@@ -72,8 +102,6 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
 
     InventoryNode *weapon = itemSelect(player->inventory, _weapon);
 
-    return defeated;
-
     do{
         printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
 
@@ -86,7 +114,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
         if(action == 'a'){
 
         }else if(action == 'p'){
-
+            InventoryNode *potion = itemSelect(player->inventory, _heal);
         }else if(action == 'f'){
             loop = flee();
         }

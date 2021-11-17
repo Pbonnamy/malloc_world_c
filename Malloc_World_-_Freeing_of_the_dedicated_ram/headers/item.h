@@ -41,8 +41,8 @@ enum items{
 };
 
 enum itemType{
-    _weapon = 1,
-    _armor = 2,
-    _heal = 3
+    _weapon = 0,
+    _armor = 1,
+    _heal = 2
 };
 #endif
