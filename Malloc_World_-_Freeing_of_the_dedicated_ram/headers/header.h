@@ -95,6 +95,9 @@ MonsterNode *findMonsterNode(MonsterNode *monsterNode, int row, int column);
 //COMBAT
 int handleCombat(MonsterNode *monsterNode, Player *player);
 int flee();
+InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
+int availableItems(InventoryNode *inventoryHead, int itemType);
+InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);

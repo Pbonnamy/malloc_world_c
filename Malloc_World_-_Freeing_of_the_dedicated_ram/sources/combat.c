@@ -95,16 +95,22 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
     }
 }
 
+void attack(MonsterNode *monsterNode, InventoryNode *weapon, InventoryNode *armor, Player *player){
+
+}
+
 int handleCombat(MonsterNode *monsterNode, Player *player){
     char action;
     int loop = 1;
     int defeated = 0;
 
+    printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
+
     InventoryNode *weapon = itemSelect(player->inventory, _weapon);
 
-    do{
-        printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
+    InventoryNode *armor = itemSelect(player->inventory, _armor);
 
+    do{
         printf("Choose an action ? (a : attack, p : use a potion, f : try to flee)  : ");
         fflush(stdin);
         scanf("%c", &action);
@@ -112,7 +118,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
         system("cls"); //clear console
 
         if(action == 'a'){
-
+            attack(monsterNode, weapon, armor, player);
         }else if(action == 'p'){
             InventoryNode *potion = itemSelect(player->inventory, _heal);
         }else if(action == 'f'){
