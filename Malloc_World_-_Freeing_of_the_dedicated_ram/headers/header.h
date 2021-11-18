@@ -31,6 +31,7 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV1 1
 #define WEAR_LV2 2
 #define WEAR_LV3 4
+#define WEAR_COMBAT 1
 
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15

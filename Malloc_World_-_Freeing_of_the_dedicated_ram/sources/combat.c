@@ -95,8 +95,24 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
     }
 }
 
-void attack(MonsterNode *monsterNode, InventoryNode *weapon, InventoryNode *armor, Player *player){
+void attack(MonsterNode *monsterNode, InventoryNode *weapon){
+    if(weapon != NULL && weapon->durability > 0){
+        int damage = atoi(ITEMS[monsterNode->reference][_info]);
+        monsterNode->hp -= damage;
 
+        if(monsterNode->hp <= 0){
+            monsterNode->hp = 0;
+        }
+
+        printf("You dealt %d damage\n", damage);
+        weapon->durability -= WEAR_COMBAT;
+
+        if(weapon->durability == 0){
+            printf("Your weapon is now broken\n");
+        }
+    }else{
+        printf("Your dealt 0 damage\n");
+    }
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){
@@ -118,7 +134,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
         system("cls"); //clear console
 
         if(action == 'a'){
-            attack(monsterNode, weapon, armor, player);
+            attack(monsterNode, weapon);
         }else if(action == 'p'){
             InventoryNode *potion = itemSelect(player->inventory, _heal);
         }else if(action == 'f'){
