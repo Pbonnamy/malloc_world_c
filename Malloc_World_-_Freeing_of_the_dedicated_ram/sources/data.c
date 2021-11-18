@@ -87,4 +87,5 @@ char MONSTERS[TOTAL_MONSTERS][5][32]={
     {"99", "Malloc Warlord", "", "", ""}
 };
 
-
+//{"item type name"}
+char ITEM_TYPE[3][32]= { "Weapon", "Armor", "Potion"};

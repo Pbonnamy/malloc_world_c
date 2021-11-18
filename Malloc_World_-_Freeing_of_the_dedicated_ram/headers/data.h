@@ -14,7 +14,6 @@ enum dataType{
     _lastPossibleTool = 3,
     _monsterHp = 2,
     _monsterDamage = 3,
-
 };
 
 #endif

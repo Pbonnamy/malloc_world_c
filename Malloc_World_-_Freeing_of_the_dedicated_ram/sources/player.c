@@ -65,7 +65,6 @@ void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
             newNode->quantity = quantity;
             lastNode->next = newNode;
         }
-
     }
 }
 
@@ -78,6 +77,7 @@ void initPlayer(Player *player){
     player->inventory = NULL;
 
     addToInventory(&player->inventory, _woodSword, 1);
+    addToInventory(&player->inventory, _stoneSword, 1);
     addToInventory(&player->inventory, _woodPickaxe, 1);
     addToInventory(&player->inventory, _woodBillhook, 1);
     addToInventory(&player->inventory, _woodAxe, 1);

@@ -31,11 +31,11 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="headers/combat.h" />
 		<Unit filename="headers/data.h" />
 		<Unit filename="headers/header.h" />
 		<Unit filename="headers/item.h" />
 		<Unit filename="headers/map.h" />
+		<Unit filename="headers/monster.h" />
 		<Unit filename="headers/player.h" />
 		<Unit filename="headers/ressource.h" />
 		<Unit filename="sources/combat.c">
@@ -54,6 +54,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sources/menu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sources/monster.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sources/movement.c">

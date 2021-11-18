@@ -31,9 +31,12 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV1 1
 #define WEAR_LV2 2
 #define WEAR_LV3 4
+#define WEAR_COMBAT 1
 
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15
+
+#define FLEE_RATE 30
 
 #define TOTAL_ITEMS 34
 extern char ITEMS[TOTAL_ITEMS][3][32];
@@ -46,6 +49,8 @@ extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
 
 #define TOTAL_MONSTERS 16
 extern char MONSTERS[TOTAL_MONSTERS][5][32];
+
+extern char ITEM_TYPE[3][32];
 
 #define RED  "\x1B[31m"
 #define RESET "\x1B[0m"
@@ -90,6 +95,10 @@ MonsterNode *findMonsterNode(MonsterNode *monsterNode, int row, int column);
 
 //COMBAT
 int handleCombat(MonsterNode *monsterNode, Player *player);
+int flee();
+InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
+int availableItems(InventoryNode *inventoryHead, int itemType);
+InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
