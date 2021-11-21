@@ -151,13 +151,6 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
                 printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
                 return inventoryHead;
             }
-        }else if (isHeal(inventoryHead->value) && itemType == _heal){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
         }
         inventoryHead = inventoryHead->next;
     }

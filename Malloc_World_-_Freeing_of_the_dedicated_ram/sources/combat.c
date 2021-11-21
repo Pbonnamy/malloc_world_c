@@ -80,6 +80,53 @@ void leveling(Player *player, MonsterNode *monster){
     }
 }
 
+void handlePotion(Player *player, int index){
+
+    int count = 0;
+
+    InventoryNode *inventoryHead = player->inventory;
+
+    while(inventoryHead != NULL){
+        if (isHeal(inventoryHead->value)){
+            count ++;
+            if(count == index){
+                player->currentHp += atoi(ITEMS[inventoryHead->reference][_info]);
+
+                if(player->currentHp > player->maxHp){
+                    player->currentHp = player->maxHp;
+                }
+
+                removeItem(player->inventory, _heal, index);
+
+                return;
+            }
+        }
+        inventoryHead = inventoryHead->next;
+    }
+}
+
+void potion(Player *player){
+    printf("\n%s Availables : \n\n", ITEM_TYPE[_heal]);
+    int chosen;
+
+    int index = availableItems(player->inventory, _heal);
+
+    if(index == 0){
+        printf("No %s available !\n", ITEM_TYPE[_heal]);
+    }else if(index == 1){
+        handlePotion(player, index);
+    }else{
+        do{
+            printf("\nChoose a %s : ", ITEM_TYPE[_heal]);
+
+            fflush(stdin);
+            scanf("%d", &chosen);
+        }while(chosen <= 0 && chosen > index);
+
+        handlePotion(player, index);
+    }
+}
+
 int handleCombat(MonsterNode *monsterNode, Player *player){
     char action;
     int loop = 1;
@@ -101,7 +148,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
         if(action == 'a'){
             attack(monsterNode, weapon);
         }else if(action == 'p'){
-            InventoryNode *potion = itemSelect(player->inventory, _heal);
+            potion(player);
         }else if(action == 'f'){
             loop = flee();
         }
