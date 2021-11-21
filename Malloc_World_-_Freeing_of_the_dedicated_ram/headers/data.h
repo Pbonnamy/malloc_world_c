@@ -14,6 +14,10 @@ enum dataType{
     _lastPossibleTool = 3,
     _monsterHp = 2,
     _monsterDamage = 3,
+    _monsterXp = 4,
+    _level = 0,
+    _xpRequired = 1,
+    _levelBonus = 2
 };
 
 #endif

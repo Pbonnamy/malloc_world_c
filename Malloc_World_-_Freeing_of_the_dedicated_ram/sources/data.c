@@ -89,3 +89,16 @@ char MONSTERS[TOTAL_MONSTERS][5][32]={
 
 //{"item type name"}
 char ITEM_TYPE[3][32]= { "Weapon", "Armor", "Potion"};
+
+// {"level", "xp required", "hp bonus"}
+int LEVELS[TOTAL_LEVELS][3] = {
+    {2, 1000, 10},
+    {3, 1100, 20},
+    {4, 1200, 30},
+    {5, 1300, 40},
+    {6, 1400, 50},
+    {7, 1600, 50},
+    {8, 1700, 50},
+    {9, 1800, 75},
+    {10, 1900, 75}
+};
