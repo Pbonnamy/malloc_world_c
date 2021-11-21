@@ -53,6 +53,9 @@ extern char MONSTERS[TOTAL_MONSTERS][5][32];
 
 extern char ITEM_TYPE[3][32];
 
+#define TOTAL_LEVELS 9
+extern int LEVELS[TOTAL_LEVELS][3];
+
 #define RED  "\x1B[31m"
 #define RESET "\x1B[0m"
 
@@ -97,9 +100,7 @@ MonsterNode *findMonsterNode(MonsterNode *monsterNode, int row, int column);
 //COMBAT
 int handleCombat(MonsterNode *monsterNode, Player *player);
 int flee();
-InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
-int availableItems(InventoryNode *inventoryHead, int itemType);
-InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
+void monsterAttack(Player *player, InventoryNode *armor, MonsterNode *monster);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
@@ -117,5 +118,8 @@ int findItemReference(int entity);
 int checkDurability(int ressource, int durability);
 int isRequiredTool(int tool, int ressource, int durability);
 void handleToolDurability(InventoryNode *inventoryNode, int ressource);
+InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
+int availableItems(InventoryNode *inventoryHead, int itemType);
+InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 
 #endif

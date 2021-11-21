@@ -17,84 +17,6 @@ int flee(){
     return loop;
 }
 
-InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
-    int count = 0;
-
-    while(inventoryHead != NULL){
-        if(isWeapon(inventoryHead->value) && itemType == _weapon){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
-        }else if(isArmor(inventoryHead->value) && itemType == _armor){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
-        }else if (isHeal(inventoryHead->value) && itemType == _heal){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
-        }
-        inventoryHead = inventoryHead->next;
-    }
-
-    return NULL;
-}
-
-int availableItems(InventoryNode *inventoryHead, int itemType){
-    int count = 0;
-
-    while(inventoryHead != NULL){
-        if(isWeapon(inventoryHead->value) && itemType == _weapon){
-            count ++;
-            printf("%d - ", count);
-            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-        }else if(isArmor(inventoryHead->value) && itemType == _armor){
-            count ++;
-            printf("%d - ", count);
-            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-        }else if (isHeal(inventoryHead->value) && itemType == _heal){
-            count ++;
-            printf("%d - ", count);
-            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-        }
-        inventoryHead = inventoryHead->next;
-    }
-
-    return count;
-}
-
-InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
-    printf("\n%s Availables : \n\n", ITEM_TYPE[itemType]);
-    int chosen;
-
-    int index = availableItems(inventoryHead, itemType);
-
-    if(index == 0){
-        printf("No %s available !\n", ITEM_TYPE[itemType]);
-        return NULL;
-    }else if(index == 1){
-        return findItem(inventoryHead, itemType, index);
-    }else{
-        do{
-            printf("\nChoose a %s : ", ITEM_TYPE[itemType]);
-
-            fflush(stdin);
-            scanf("%d", &chosen);
-        }while(chosen <= 0 && chosen > index);
-
-        return findItem(inventoryHead, itemType, index);
-    }
-}
-
 void attack(MonsterNode *monsterNode, InventoryNode *weapon){
     if(weapon != NULL && weapon->durability > 0){
         int damage = atoi(ITEMS[weapon->reference][_info]);
@@ -104,14 +26,14 @@ void attack(MonsterNode *monsterNode, InventoryNode *weapon){
             monsterNode->hp = 0;
         }
 
-        printf("You deal %d damage\n", damage);
+        printf("\nYou deal %d damage\n", damage);
         weapon->durability -= WEAR_COMBAT;
 
         if(weapon->durability == 0){
-            printf("Your weapon is now broken\n");
+            printf("\nYour weapon is now broken\n");
         }
     }else{
-        printf("Your deal 0 damage\n");
+        printf("\nYour deal 0 damage\n");
     }
 }
 
@@ -124,7 +46,38 @@ void monsterAttack(Player *player, InventoryNode *armor, MonsterNode *monster){
 
     player->currentHp -= damage;
 
-    printf("You take %d damage\n", damage);
+    printf("\nYou take %d damage\n", damage);
+}
+
+int findLevelRequirement(int level){
+
+    for(int i = 0; i < TOTAL_LEVELS; i++){
+        if(LEVELS[i][_level] == level){
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+void leveling(Player *player, MonsterNode *monster){
+    int xp = atoi(MONSTERS[monster->reference][_monsterXp]);
+    player->xp += xp;
+
+    printf("\nYou defeated '%s'. You gain %d xp.\n", MONSTERS[monster->reference][_name], xp);
+    int index = findLevelRequirement(player->level + 1);
+
+    if(index != -1){
+        if(player->xp >= LEVELS[index][_xpRequired]){
+            player->level = LEVELS[index][_level];
+            player->maxHp += LEVELS[index][_levelBonus];
+            player->currentHp = player->maxHp;
+
+            player->xp -= LEVELS[index][_xpRequired];
+
+            printf("\nYou level up ! You are now level %d\n", player->level);
+        }
+    }
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){
@@ -156,18 +109,25 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
         if(loop){
             if(monsterNode->hp > 0){
                 monsterAttack(player, armor, monsterNode);
+            }
 
-                printf("Your HP : %d | Ennemy HP : %d", player->currentHp, monsterNode->hp);
-            }else if(player->currentHp > 0){
-
-                loop = 0;
-                defeated = 1;
+            if(player->currentHp > 0){
+                if(monsterNode-> hp > 0){
+                    printf("\nYour HP : %d | Ennemy HP : %d\n", player->currentHp, monsterNode->hp);
+                }else{
+                    if(monsterNode->value != _boss){
+                        leveling(player, monsterNode);
+                        loop = 0;
+                        defeated = 1;
+                    }else{
+                        printf("\nYou killed the boss. YOU WIN.\n");
+                    }
+                }
             }else{
-                printf("You are dead. GAME OVER.");
+                printf("\nYou are dead. GAME OVER.\n");
                 loop = 0;
             }
         }
-
 
     }while(loop);
 
