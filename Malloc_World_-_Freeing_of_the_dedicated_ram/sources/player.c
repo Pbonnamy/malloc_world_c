@@ -78,6 +78,8 @@ void initPlayer(Player *player){
 
     addToInventory(&player->inventory, _woodSword, 1);
     addToInventory(&player->inventory, _stoneSword, 1);
+    addToInventory(&player->inventory, _potion1, 1);
+    addToInventory(&player->inventory, _potion2, 1);
     addToInventory(&player->inventory, _woodPickaxe, 1);
     addToInventory(&player->inventory, _woodBillhook, 1);
     addToInventory(&player->inventory, _woodAxe, 1);
