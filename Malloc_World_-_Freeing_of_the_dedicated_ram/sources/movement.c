@@ -69,9 +69,9 @@ void handleMovement(Levels *levels, Player *player){
 
     char direction;
 
-    printf("\n\n\n");
-
     do{
+        printf("\n\n\n");
+
         printMap(levels->lv1->map, levels->rows, levels->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");

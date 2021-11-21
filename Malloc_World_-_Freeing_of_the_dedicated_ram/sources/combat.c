@@ -83,14 +83,15 @@ void leveling(Player *player, MonsterNode *monster){
 void handlePotion(Player *player, InventoryNode *potion){
     int heal = atoi(ITEMS[potion->reference][_info]);
 
-    player->currentHp += heal;
-
-    if(player->currentHp > player->maxHp){
-        player->currentHp = player->maxHp;
+    if(player->currentHp + heal > player->maxHp){
+        heal = player->maxHp - player->currentHp;
     }
 
-    removeItem(player->inventory, potion);
+    player->currentHp += heal;
 
+    printf("\nYou healed %d HP\n", heal);
+
+    removeItem(&player->inventory, potion);
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){

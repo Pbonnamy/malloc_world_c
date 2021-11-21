@@ -124,6 +124,6 @@ void handleToolDurability(InventoryNode *inventoryNode, int ressource);
 InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
 int availableItems(InventoryNode *inventoryHead, int itemType);
 InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
-void removeItem(InventoryNode *inventoryHead, InventoryNode *nodeToRemove);
+void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove);
 
 #endif

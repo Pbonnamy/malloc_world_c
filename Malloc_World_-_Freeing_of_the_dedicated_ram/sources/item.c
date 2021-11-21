@@ -188,15 +188,23 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
     return count;
 }
 
-void removeItem(InventoryNode *inventoryHead, InventoryNode *nodeToRemove){
+void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove){
 
-    while(inventoryHead->next != NULL){
-        if(inventoryHead->next == nodeToRemove){
-            inventoryHead->next = nodeToRemove->next;
-            return;
+    if(*inventoryHead == nodeToRemove){
+        *inventoryHead = nodeToRemove->next;
+    }else{
+        InventoryNode *itemNode = *inventoryHead;
+
+        while(itemNode->next != NULL){
+            if(itemNode->next == nodeToRemove){
+                itemNode->next = nodeToRemove->next;
+                return;
+            }
+            itemNode = itemNode->next;
         }
-        inventoryHead = inventoryHead->next;
     }
+
+
 };
 
 InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
@@ -218,7 +226,7 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
             scanf("%d", &chosen);
         }while(chosen <= 0 && chosen > index);
 
-        return findItem(inventoryHead, itemType, index);
+        return findItem(inventoryHead, itemType, chosen);
     }
 }
 
