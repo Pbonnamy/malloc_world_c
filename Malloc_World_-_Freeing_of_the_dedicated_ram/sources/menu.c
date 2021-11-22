@@ -40,19 +40,20 @@ void gameLoop(Levels *levels, Player *player){
 //handling main menu action (1 -> play game / 2 -> load save)
 void handleMainMenu(char action){
 
+    Levels *levels = malloc(sizeof(Levels));
+    Player *player = malloc(sizeof(Player));
+
     if(action == '1'){
         Levels *levels = malloc(sizeof(Levels));
         Player *player = malloc(sizeof(Player));
 
-        initMap(levels, 10, 10, player);
-        initPlayer(player);
-
         //printRessourceList(levels->lv1->ressourceList);
         //printMonsterList(levels->lv1->monsterList);
 
-        gameLoop(levels, player);
     }else if(action == '2'){
         printf("\nTODO : Load Save\n\n");
     }
+
+    gameLoop(levels, player);
 
 }
