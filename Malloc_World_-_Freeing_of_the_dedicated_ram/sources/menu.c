@@ -37,8 +37,11 @@ void gameLoop(Levels *levels, Player *player){
     }while(action != '4');
 }
 
-//handling main menu action (1 -> play game / 2 -> load save)
+//handling main menu action (1 -> play game / 2 -> load save / 3 -> quit)
 void handleMainMenu(char action){
+    if(action == '3'){
+        return;
+    }
 
     Levels *levels = malloc(sizeof(Levels));
     Player *player = malloc(sizeof(Player));
