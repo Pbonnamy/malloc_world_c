@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//used to repair all the items of the player inventory
 void repair(InventoryNode *inventoryHead){
 
     while(inventoryHead != NULL){
@@ -10,6 +11,7 @@ void repair(InventoryNode *inventoryHead){
     printf("\nAll your items are now repaired.\n");
 }
 
+//main npc loop (repair, craft, item transfer between chest and player inventory)
 void handleNpc(Player *player){
     char action;
 

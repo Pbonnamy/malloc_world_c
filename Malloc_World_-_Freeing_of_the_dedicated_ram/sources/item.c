@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//test if an item is a weapon
 int isWeapon(int entity){
     if(entity == _woodSword || entity == _stoneSword || entity == _ironSword || entity == _diamondSword||
        entity == _stoneSpear || entity == _ironSpear || entity == _diamondSpear||
@@ -10,6 +11,7 @@ int isWeapon(int entity){
     }
 }
 
+//test if an item is an armor
 int isArmor(int entity){
     if(entity == _stoneArmor || entity == _ironArmor || entity == _diamondArmor){
         return 1;
@@ -18,6 +20,7 @@ int isArmor(int entity){
     }
 }
 
+//test if an item is an tool
 int isTool(int entity){
     if(entity == _woodPickaxe || entity == _woodBillhook || entity == _woodAxe ||
        entity == _stonePickaxe || entity == _stoneBillhook || entity == _stoneAxe ||
@@ -28,6 +31,7 @@ int isTool(int entity){
     }
 }
 
+//test if an item is a potion
 int isHeal(int entity){
     if(entity == _potion1 || entity == _potion2 || entity == _potion3){
         return 1;
@@ -36,6 +40,7 @@ int isHeal(int entity){
     }
 }
 
+//test if an item is a ressource
 int isItemRessource(int entity){
     if(entity == _fir || entity == _stone || entity == _herb ||
        entity == _beech || entity == _iron || entity == _lavender ||
@@ -46,6 +51,7 @@ int isItemRessource(int entity){
     }
 }
 
+//find the index of the item in the global ITEM array
 int findItemReference(int entity){
     for(int i = 0; i < TOTAL_ITEMS;i++){
         if(atoi(ITEMS[i][_entity]) == entity){
@@ -55,6 +61,7 @@ int findItemReference(int entity){
     return -1;
 }
 
+//find the maximum durability of a given item
 int getDurability(int item){
     if(isTool(item)){
         return TOOL_DURABILITY;
@@ -69,6 +76,7 @@ int getDurability(int item){
     return -1;
 }
 
+//check if has enough durability to harvest a ressource
 int checkDurability(int ressource, int durability){
     int allowed = 1;
 
@@ -89,6 +97,7 @@ int checkDurability(int ressource, int durability){
     return allowed;
 }
 
+//find if the given tool can harvest a specified ressource
 int isRequiredTool(int tool, int ressource, int durability){
     int allowed = 0;
 
@@ -105,6 +114,7 @@ int isRequiredTool(int tool, int ressource, int durability){
     return allowed;
 }
 
+//decrease durability of tool according to harvested ressource
 void handleToolDurability(InventoryNode *inventoryNode, int ressource){
     if(getRessourceLevel(ressource) == 1){
         inventoryNode->durability -= WEAR_LV1;
@@ -119,6 +129,7 @@ void handleToolDurability(InventoryNode *inventoryNode, int ressource){
     }
 }
 
+//print a single item
 void printItem(int item, int reference, int quantity, int durability){
     if(isTool(item)){
         printf("%d/%d %s\n", durability, getDurability(item), ITEMS[reference][_name]);
@@ -133,6 +144,7 @@ void printItem(int item, int reference, int quantity, int durability){
     }
 }
 
+//find an iteml in the inventory of the player with its type and a position index
 InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
     int count = 0;
 
@@ -165,6 +177,7 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
     return NULL;
 }
 
+//display all items present in the player inventory corresponding to the given type
 int availableItems(InventoryNode *inventoryHead, int itemType){
     int count = 0;
 
@@ -188,6 +201,7 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
     return count;
 }
 
+//remove an item from the inventory
 void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove){
 
     if(*inventoryHead == nodeToRemove){
@@ -207,6 +221,7 @@ void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove){
 
 };
 
+//handling item selection for a given type
 InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
     printf("\n%s Availables : \n\n", ITEM_TYPE[itemType]);
     int chosen;

@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//check if entity is a ressource on the map
 int isMapRessource(int entity){
     if(entity== _plant1 || entity == _plant2 || entity == _plant3 ||
         entity == _wood1 || entity == _wood2 || entity == _wood3 ||
@@ -10,6 +11,8 @@ int isMapRessource(int entity){
     }
 }
 
+//used to convert a map ressource to an item that can be kept in the player inventory
+//(as map ressource and item ressource doesnt have the same value)
 int mapToItemRessource(int ressource){
     for(int i = 0; i < TOTAL_CONVERTED; i++){
         if(CONVERTED_RESSOURCE[i][_mapRessource] == ressource){
@@ -32,6 +35,7 @@ void printRessourceList(RessourceNode *ressourceNode){
     }
 }
 
+//check if the player can harvest a ressource on the map
 int canHarvest(int ressource, InventoryNode *inventoryNode){
     int allowed = 0;
 
@@ -47,6 +51,7 @@ int canHarvest(int ressource, InventoryNode *inventoryNode){
     return allowed;
 }
 
+//to know which level is the given ressource
 int getRessourceLevel(int ressource){
     if(ressource == _fir || ressource == _stone || ressource == _herb){
         return 1;
@@ -59,6 +64,7 @@ int getRessourceLevel(int ressource){
     return -1;
 }
 
+//used to find a ressource in the level ressource linked list using its position (x, y)
 RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int column){
 
     while(ressourceNode != NULL){
@@ -71,7 +77,7 @@ RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int colu
     return NULL;
 }
 
-
+//harvest a ressource and add it to the player inventory if the player can do it
 int harvestRessource(RessourceNode *ressourceNode, Player *player){
     int converted = mapToItemRessource(ressourceNode->value);
     int allowed = 0;
@@ -92,6 +98,7 @@ int harvestRessource(RessourceNode *ressourceNode, Player *player){
     return allowed;
 }
 
+//used to add a ressource to the level ressource linked list
 void addToRessourceList(RessourceNode **ressourceHead, int entity, int row, int column){
     RessourceNode *newNode= malloc(sizeof(RessourceNode));
     newNode->row = row;

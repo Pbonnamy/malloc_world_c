@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//display the inventory of the player
 void printInventory(InventoryNode *inventoryNode){
     if(inventoryNode == NULL){
         printf("\nInventory : (empty)\n");
@@ -14,6 +15,7 @@ void printInventory(InventoryNode *inventoryNode){
     printf("\n---------------------------\n");
 }
 
+//display the character sheet of the player (statistics + inventory)
 void displayCharacter(Player *player){
     printf("\n----- Character sheet -----\n\n");
     printf("Hp : %d / %d\n", player->currentHp,player->maxHp);
@@ -23,6 +25,7 @@ void displayCharacter(Player *player){
     printInventory(player->inventory);
 }
 
+//try to add a certain quantity to an inventory node if its a ressource (which is stackable)
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity){
     if(isItemRessource(item) && inventoryNode->value == item && inventoryNode->quantity < MAX_RESSOURCE_STACK){
         if((inventoryNode->quantity + quantity) > MAX_RESSOURCE_STACK){
@@ -37,6 +40,7 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity){
     return quantity;
 }
 
+//add a certain amount of an item to the player inventory
 void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
     InventoryNode *newNode= malloc(sizeof(InventoryNode));
     newNode->value = item;
@@ -68,6 +72,7 @@ void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
     }
 }
 
+//used to init the player according to the rules
 void initPlayer(Player *player){
     player->level = 1;
     player->xp = 0;
@@ -76,12 +81,8 @@ void initPlayer(Player *player){
     player->currentMapLvl = 1;
     player->inventory = NULL;
 
-    addToInventory(&player->inventory, _potion1, 1);
     addToInventory(&player->inventory, _woodSword, 1);
-    addToInventory(&player->inventory, _stoneSword, 1);
-    addToInventory(&player->inventory, _potion2, 1);
     addToInventory(&player->inventory, _woodPickaxe, 1);
     addToInventory(&player->inventory, _woodBillhook, 1);
     addToInventory(&player->inventory, _woodAxe, 1);
-    addToInventory(&player->inventory, _potion3, 1);
 }
