@@ -22,7 +22,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
 
         }else if (target == _npc){
 
-            printf("\nTODO : handle npc\n\n");
+            handleNpc(player);
 
         }else if( target ==  _wall){
 

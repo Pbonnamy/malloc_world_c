@@ -104,6 +104,7 @@ void monsterAttack(Player *player, InventoryNode *armor, MonsterNode *monster);
 void leveling(Player *player, MonsterNode *monster);
 void attack(MonsterNode *monsterNode, InventoryNode *weapon);
 int findLevelRequirement(int level);
+void handlePotion(Player *player, InventoryNode *potion);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
@@ -125,5 +126,9 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType);
 int availableItems(InventoryNode *inventoryHead, int itemType);
 InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove);
+
+//NPC
+void handleNpc(Player *player);
+void repair(InventoryNode *inventoryHead);
 
 #endif
