@@ -1,9 +1,11 @@
 #include "../headers/header.h"
 
+//a simple function generating a random number between min and max included
 int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
+//used to display the map to the player
 void printMap(int **map, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
@@ -19,6 +21,7 @@ void printMap(int **map, int rows, int columns){
     }
 }
 
+//create a struct level (filled with 0)
 void createLevel(Level *level, int rows, int columns, int nbLevel){
     level->map = malloc(sizeof(int*)*rows);
     level->monsterList = NULL;
@@ -36,6 +39,7 @@ void createLevel(Level *level, int rows, int columns, int nbLevel){
     }
 }
 
+// add the player on the map
 void addPlayer(Level *level, int rows, int columns, Player *player){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
@@ -51,6 +55,7 @@ void addPlayer(Level *level, int rows, int columns, Player *player){
     level->map[row][column] = _player;
 }
 
+//will add a number of entity to the map
 void populate(Level *level, int rows, int columns, int entity, int quantity){
     int row = rand2(0,rows-1);
     int column = rand2(0,columns-1);
@@ -83,6 +88,7 @@ void populate(Level *level, int rows, int columns, int entity, int quantity){
     }
 }
 
+//used to add the different entities (monster, ressource, pnj...) to the map
 void populateLevel(Level *level, int rows, int columns){
     populate(level, rows, columns, _npc, 1);
     populate(level, rows, columns, _wall, 7);
@@ -110,6 +116,7 @@ void populateLevel(Level *level, int rows, int columns){
     }
 }
 
+//used to init the map (create & populate it)
 void initMap(Levels *levels, int rows, int columns, Player *player){
 
     levels->rows = rows;

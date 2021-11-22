@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//handling gameloop action (1 -> display character sheet / 2 -> move on the map / 3 -> Save progression
 void handleAction(Levels *levels, Player *player, char action){
 
     if(action == '1'){
@@ -11,9 +12,9 @@ void handleAction(Levels *levels, Player *player, char action){
     }
 }
 
+// main game loop
 void gameLoop(Levels *levels, Player *player){
     char action;
-
 
     do{
 
@@ -36,6 +37,7 @@ void gameLoop(Levels *levels, Player *player){
     }while(action != '4');
 }
 
+//handling main menu action (1 -> play game / 2 -> load save)
 void handleMainMenu(char action){
 
     if(action == '1'){

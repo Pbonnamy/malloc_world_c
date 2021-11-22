@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//handle the different encounter on the map (ressource, ennemies, pnj...)
 int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int columns, Player *player){
     int allowed = 0;
 
@@ -39,6 +40,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
     return allowed;
 }
 
+//used to change the postion of the player on the map according to the desired direction (up, down, left, right)
 void move (Level *level, Player *player, char direction, int rows, int columns){
 
     level->map[player->row][player->column] = _empty;
@@ -65,6 +67,7 @@ void move (Level *level, Player *player, char direction, int rows, int columns){
 
 }
 
+//main loop to handle movement (step 1 -> display the map, step 2 -> ask the player for an action to execute)
 void handleMovement(Levels *levels, Player *player){
 
     char direction;

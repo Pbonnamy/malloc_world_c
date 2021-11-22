@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//when the player is trying to flee during combat
 int flee(){
     int rate = rand2(1,100);
     int loop = 1;
@@ -17,6 +18,7 @@ int flee(){
     return loop;
 }
 
+//when the player is attacking the monster
 void attack(MonsterNode *monsterNode, InventoryNode *weapon){
     if(weapon != NULL && weapon->durability > 0){
         int damage = atoi(ITEMS[weapon->reference][_info]);
@@ -37,6 +39,7 @@ void attack(MonsterNode *monsterNode, InventoryNode *weapon){
     }
 }
 
+//when the monster is attacking the player
 void monsterAttack(Player *player, InventoryNode *armor, MonsterNode *monster){
     int damage = atoi(MONSTERS[monster->reference][_monsterDamage]);
 
@@ -49,6 +52,7 @@ void monsterAttack(Player *player, InventoryNode *armor, MonsterNode *monster){
     printf("\nYou take %d damage\n", damage);
 }
 
+//to find how many xp the player need to reach the new level
 int findLevelRequirement(int level){
 
     for(int i = 0; i < TOTAL_LEVELS; i++){
@@ -60,6 +64,8 @@ int findLevelRequirement(int level){
     return -1;
 }
 
+//calculate how many xp the player gained after defeating the monster
+//reach the next level is requirement are met
 void leveling(Player *player, MonsterNode *monster){
     int xp = atoi(MONSTERS[monster->reference][_monsterXp]);
     player->xp += xp;
@@ -82,6 +88,7 @@ void leveling(Player *player, MonsterNode *monster){
     monster->respawn = RESPAWN_MONSTER;
 }
 
+//when the player try to heal with a potion during a combat
 void handlePotion(Player *player, InventoryNode *potion){
     int heal = atoi(ITEMS[potion->reference][_info]);
 
@@ -96,6 +103,7 @@ void handlePotion(Player *player, InventoryNode *potion){
     removeItem(&player->inventory, potion);
 }
 
+//main combat loop : (step 1 -> gear selection) then (step 2 -> a loop (player attack then monster attack) till one die)
 int handleCombat(MonsterNode *monsterNode, Player *player){
     char action;
     int loop = 1;
