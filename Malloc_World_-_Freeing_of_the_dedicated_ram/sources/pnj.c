@@ -15,7 +15,7 @@ void handleNpc(Player *player){
 
     do{
 
-        printf("\nChoose an action ? (r : repair, c : craft, t : transfer) (e : exit) : ");
+        printf("\nChoose an action ? (r : repair, c : craft, t : transfer item) (e : exit) : ");
         fflush(stdin);
         scanf("%c", &action);
 
