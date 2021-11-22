@@ -1,19 +1,27 @@
 #include "../headers/header.h"
 
-int main()
-{
+int main(){
     srand(time(NULL));
 
-    Levels *levels = malloc(sizeof(Levels));
-    Player *player = malloc(sizeof(Player));
+    char action;
 
-    initMap(levels, 10, 10, player);
-    initPlayer(player);
+    do{
 
-    //printRessourceList(levels->lv1->ressourceList);
-    //printMonsterList(levels->lv1->monsterList);
+        printf("\n----------- MAIN MENU ----------\n\n");
 
-    gameLoop(levels, player);
+        printf("1 - PLAY \n"
+               "2 - LOAD SAVE \n"
+               "3 - EXIT \n"
+               "\nChoose en option : ");
+
+        fflush(stdin);
+        scanf("%c", &action);
+
+        system("cls"); //clear console
+
+        handleMainMenu(action);
+
+    }while(action != '3');
 
     int** map = malloc(sizeof(int*)*4);
     for (size_t i =0; i <4; i+=1) {

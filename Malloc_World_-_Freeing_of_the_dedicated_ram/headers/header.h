@@ -109,6 +109,7 @@ void handlePotion(Player *player, InventoryNode *potion);
 //MENU
 void gameLoop(Levels *levels, Player *player);
 void handleAction(Levels *levels, Player *player, char action);
+void handleMainMenu(char action);
 
 //ITEM
 int isWeapon(int entity);
