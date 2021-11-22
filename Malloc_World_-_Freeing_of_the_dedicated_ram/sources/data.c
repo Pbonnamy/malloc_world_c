@@ -69,11 +69,11 @@ int REQUIRED_TOOL[TOTAL_REQUIRED][4]= {
 
 //{"entity", "name", "hp", "damage", "xp"}
 char MONSTERS[TOTAL_MONSTERS][5][32]={
-    {"12", "Living Armor", "50", "1", "300"},
+    {"12", "Living Armor", "20", "1", "300"},
     {"13", "Zombie", "20", "2", "150"},
-    {"14", "Wild Bear", "40", "2", "350"},
-    {"15", "Bandit", "30", "1", "150"},
-    {"16", "Ghoul", "20", "1", "100"},
+    {"14", "Wild Bear", "15", "2", "350"},
+    {"15", "Bandit", "18", "1", "150"},
+    {"16", "Ghoul", "13", "1", "100"},
     {"17", "Manticore", "", "", ""},
     {"18", "Minotaur", "", "", ""},
     {"19", "Ogre", "", "", ""},
