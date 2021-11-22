@@ -22,7 +22,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
 
         }else if (target == _npc){
 
-            printf("\nTODO : handle npc\n\n");
+            handleNpc(player);
 
         }else if( target ==  _wall){
 
@@ -72,6 +72,7 @@ void handleMovement(Levels *levels, Player *player){
     printf("\n\n\n");
 
     do{
+
         printMap(levels->lv1->map, levels->rows, levels->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");

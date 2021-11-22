@@ -64,7 +64,7 @@ void leveling(Player *player, MonsterNode *monster){
     int xp = atoi(MONSTERS[monster->reference][_monsterXp]);
     player->xp += xp;
 
-    printf("\nYou defeated '%s'. You gain %d xp.\n", MONSTERS[monster->reference][_name], xp);
+    printf("\nYou defeated '%s'. You gain %d xp.\n\n", MONSTERS[monster->reference][_name], xp);
     int index = findLevelRequirement(player->level + 1);
 
     if(index != -1){
@@ -75,9 +75,25 @@ void leveling(Player *player, MonsterNode *monster){
 
             player->xp -= LEVELS[index][_xpRequired];
 
-            printf("\nYou level up ! You are now level %d\n", player->level);
+            printf("You level up ! You are now level %d.\n\n", player->level);
         }
     }
+
+    monster->respawn = RESPAWN_MONSTER;
+}
+
+void handlePotion(Player *player, InventoryNode *potion){
+    int heal = atoi(ITEMS[potion->reference][_info]);
+
+    if(player->currentHp + heal > player->maxHp){
+        heal = player->maxHp - player->currentHp;
+    }
+
+    player->currentHp += heal;
+
+    printf("\nYou healed %d HP\n", heal);
+
+    removeItem(&player->inventory, potion);
 }
 
 int handleCombat(MonsterNode *monsterNode, Player *player){
@@ -102,6 +118,7 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
             attack(monsterNode, weapon);
         }else if(action == 'p'){
             InventoryNode *potion = itemSelect(player->inventory, _heal);
+            handlePotion(player, potion);
         }else if(action == 'f'){
             loop = flee();
         }

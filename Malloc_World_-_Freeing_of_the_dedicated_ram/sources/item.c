@@ -151,7 +151,7 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
                 printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
                 return inventoryHead;
             }
-        }else if (isHeal(inventoryHead->value) && itemType == _heal){
+        }else if(isHeal(inventoryHead->value) && itemType == _heal){
             count ++;
             if(count == index){
                 printf("\n%s selected : ", ITEM_TYPE[itemType]);
@@ -188,6 +188,25 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
     return count;
 }
 
+void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove){
+
+    if(*inventoryHead == nodeToRemove){
+        *inventoryHead = nodeToRemove->next;
+    }else{
+        InventoryNode *itemNode = *inventoryHead;
+
+        while(itemNode->next != NULL){
+            if(itemNode->next == nodeToRemove){
+                itemNode->next = nodeToRemove->next;
+                return;
+            }
+            itemNode = itemNode->next;
+        }
+    }
+
+
+};
+
 InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
     printf("\n%s Availables : \n\n", ITEM_TYPE[itemType]);
     int chosen;
@@ -207,7 +226,7 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
             scanf("%d", &chosen);
         }while(chosen <= 0 && chosen > index);
 
-        return findItem(inventoryHead, itemType, index);
+        return findItem(inventoryHead, itemType, chosen);
     }
 }
 
