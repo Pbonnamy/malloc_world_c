@@ -8,7 +8,7 @@ void handleAction(Levels *levels, Player *player, char action){
     }else if(action == '2'){
         handleMovement(levels, player);
     }else if(action == '3'){
-        printf("\nTODO : Save\n\n");
+        printf("\nTODO : Save\n");
     }
 }
 
@@ -37,8 +37,11 @@ void gameLoop(Levels *levels, Player *player){
     }while(action != '4');
 }
 
-//handling main menu action (1 -> play game / 2 -> load save)
+//handling main menu action (1 -> play game / 2 -> load save / 3 -> quit)
 void handleMainMenu(char action){
+    if(action == '3'){
+        return;
+    }
 
     Levels *levels = malloc(sizeof(Levels));
     Player *player = malloc(sizeof(Player));
@@ -52,7 +55,7 @@ void handleMainMenu(char action){
         //printMonsterList(levels->lv1->monsterList);
 
     }else if(action == '2'){
-        printf("\nTODO : Load Save\n\n");
+        printf("\nTODO : Load Save\n");
     }
 
     gameLoop(levels, player);
