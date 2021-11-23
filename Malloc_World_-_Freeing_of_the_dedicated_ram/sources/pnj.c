@@ -11,8 +11,31 @@ void repair(InventoryNode *inventoryHead){
     printf("\nAll your items are now repaired.\n");
 }
 
+void transferItem(Player *player, InventoryNode *chest){
+    char choice;
+
+    do{
+        printf("\n1 - Transfer item from inventory to chest \n"
+               "2 - Transfer item from chest to inventory \n"
+               "3 - Exit \n"
+               "\nChoose en option : ");
+
+        fflush(stdin);
+        scanf("%c", &choice);
+
+        system("cls");
+
+        if(choice == '1'){
+
+        }else if(choice == '2'){
+
+        }
+
+    }while(choice != '3');
+}
+
 //main npc loop (repair, craft, item transfer between chest and player inventory)
-void handleNpc(Player *player){
+void handleNpc(Player *player, InventoryNode *chest){
     char action;
 
     do{
@@ -28,7 +51,7 @@ void handleNpc(Player *player){
         }else if(action == 'c'){
 
         }else if(action == 't'){
-
+            transferItem(player, chest);
         }
 
     }while(action != 'e');

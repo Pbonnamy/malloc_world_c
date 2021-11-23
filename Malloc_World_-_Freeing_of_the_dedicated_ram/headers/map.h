@@ -7,6 +7,7 @@ struct Levels{
     Level *lv1;
     Level *lv2;
     Level *lv3;
+    InventoryNode *chest;
 };
 
 struct Level{

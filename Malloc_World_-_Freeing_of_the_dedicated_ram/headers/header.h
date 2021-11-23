@@ -71,8 +71,8 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player);
-void move(Level *level, Player *player, char direction);
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest);
+void move(Level *level, Player *player, char direction, InventoryNode *chest);
 
 // MAP
 int rand2 (int min, int max);
@@ -132,7 +132,7 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove);
 
 //NPC
-void handleNpc(Player *player);
+void handleNpc(Player *player, InventoryNode *chest);
 void repair(InventoryNode *inventoryHead);
 
 #endif
