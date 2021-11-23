@@ -48,7 +48,7 @@ void handleMainMenu(char action){
 
     if(action == '1'){
 
-        initMap(levels, 10, 10, player);
+        initMap(levels, INIT_MAP_ROWS, INIT_MAP_COLUMNS, player);
         initPlayer(player);
 
         //printRessourceList(levels->lv1->ressourceList);

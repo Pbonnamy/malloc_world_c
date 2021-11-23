@@ -15,7 +15,6 @@ void printMap(int **map, int rows, int columns){
             }else{
                 printf(" %2d ", map[i][j]);
             }
-
         }
         printf("\n");
     }
@@ -43,13 +42,13 @@ void createLevel(Level *level, int rows, int columns, int nbLevel){
 
 // add the player on the map
 void addPlayer(Level *level, Player *player){
-    int row = rand2(0, level->rows-1);
-    int column = rand2(0, level->columns-1);
+    int row;
+    int column;
 
-    while(level->map[row][column] != _empty){
+    do{
         row = rand2(0, level->rows-1);
         column = rand2(0, level->columns-1);
-    }
+    }while(level->map[row][column] != _empty);
 
     player->row = row;
     player->column = column;
@@ -59,15 +58,15 @@ void addPlayer(Level *level, Player *player){
 
 //will add a number of entity to the map
 void populate(Level *level, int entity, int quantity){
-    int row = rand2(0, level->rows-1);
-    int column = rand2(0, level->columns-1);
+    int row;
+    int column;
     int monsterVal;
 
     for(int i = 0 ; i< quantity; i++){
-        while(level->map[row][column] != _empty){
+        do{
             row = rand2(0, level->rows-1);
             column = rand2(0, level->columns-1);
-        }
+        }while(level->map[row][column] != _empty);
 
         if(entity == _monster1){
             monsterVal = rand2(_monster1, _monster2-1);
