@@ -68,16 +68,16 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);
-int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int columns, Player *player);
-void move(Level *level, Player *player, char direction, int rows, int columns);
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player);
+void move(Level *level, Player *player, char direction);
 
 // MAP
 int rand2 (int min, int max);
 void printMap(int **map, int rows, int columns);
 void createLevel(Level *level, int rows, int columns, int nbLevel);
-void addPlayer(Level *level, int rows, int columns, Player *player);
-void populate(Level *level, int rows, int columns, int entity, int quantity);
-void populateLevel(Level *level, int rows, int columns);
+void addPlayer(Level *level, Player *player);
+void populate(Level *level, int entity, int quantity);
+void populateLevel(Level *level);
 void initMap(Levels *levels, int rows, int columns, Player *player);
 
 //RESSOURCE
