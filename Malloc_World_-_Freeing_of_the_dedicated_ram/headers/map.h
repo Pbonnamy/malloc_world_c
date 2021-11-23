@@ -7,8 +7,6 @@ struct Levels{
     Level *lv1;
     Level *lv2;
     Level *lv3;
-    int rows;
-    int columns;
 };
 
 struct Level{
@@ -16,6 +14,8 @@ struct Level{
     RessourceNode *ressourceList;
     MonsterNode *monsterList;
     int value;
+    int rows;
+    int columns;
 };
 
 enum mapEntity{

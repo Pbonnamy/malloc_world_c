@@ -1,10 +1,10 @@
 #include "../headers/header.h"
 
 //handle the different encounter on the map (ressource, ennemies, pnj...)
-int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int columns, Player *player){
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player){
     int allowed = 0;
 
-    if(targetRow >= 0 && targetRow < rows && targetColumn >= 0 && targetColumn < columns){
+    if(targetRow >= 0 && targetRow < level->rows && targetColumn >= 0 && targetColumn < level->columns){
         int target = level->map[targetRow][targetColumn];
 
         if(isMapRessource(target)){
@@ -41,24 +41,24 @@ int checkCollision(Level *level, int targetRow, int targetColumn, int rows, int 
 }
 
 //used to change the postion of the player on the map according to the desired direction (up, down, left, right)
-void move (Level *level, Player *player, char direction, int rows, int columns){
+void move (Level *level, Player *player, char direction){
 
     level->map[player->row][player->column] = _empty;
 
     if(direction == 'z'){
-        if(checkCollision(level, player->row-1, player->column, rows, columns, player)){
+        if(checkCollision(level, player->row-1, player->column, player)){
             player->row -= 1;
         }
     }else if(direction == 's'){
-        if(checkCollision(level, player->row+1, player->column, rows, columns, player)){
+        if(checkCollision(level, player->row+1, player->column, player)){
             player->row += 1;
         }
     }else if(direction == 'q'){
-        if(checkCollision(level, player->row, player->column-1, rows, columns, player)){
+        if(checkCollision(level, player->row, player->column-1, player)){
             player->column -= 1;
         }
     }else if (direction == 'd'){
-        if(checkCollision(level, player->row, player->column+1, rows, columns, player)){
+        if(checkCollision(level, player->row, player->column+1, player)){
             player->column += 1;
         }
     }
@@ -76,7 +76,7 @@ void handleMovement(Levels *levels, Player *player){
 
     do{
 
-        printMap(levels->lv1->map, levels->rows, levels->columns);
+        printMap(levels->lv1->map, levels->lv1->rows, levels->lv1->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");
         fflush(stdin);
@@ -84,7 +84,7 @@ void handleMovement(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        move(levels->lv1, player, direction, levels->rows, levels->columns);
+        move(levels->lv1, player, direction);
 
     }while(direction != 'e');
 }

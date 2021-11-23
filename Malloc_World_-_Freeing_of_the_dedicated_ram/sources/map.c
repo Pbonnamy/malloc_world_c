@@ -27,6 +27,8 @@ void createLevel(Level *level, int rows, int columns, int nbLevel){
     level->monsterList = NULL;
     level->ressourceList = NULL;
     level->value = nbLevel;
+    level->rows = rows;
+    level->columns = columns;
 
     for(int i = 0; i < columns; i ++){
         level->map[i] = malloc(sizeof(int)*columns);
@@ -40,13 +42,13 @@ void createLevel(Level *level, int rows, int columns, int nbLevel){
 }
 
 // add the player on the map
-void addPlayer(Level *level, int rows, int columns, Player *player){
-    int row = rand2(0,rows-1);
-    int column = rand2(0,columns-1);
+void addPlayer(Level *level, Player *player){
+    int row = rand2(0, level->rows-1);
+    int column = rand2(0, level->columns-1);
 
     while(level->map[row][column] != _empty){
-        row = rand2(0,rows-1);
-        column = rand2(0,rows-1);
+        row = rand2(0, level->rows-1);
+        column = rand2(0, level->columns-1);
     }
 
     player->row = row;
@@ -56,15 +58,15 @@ void addPlayer(Level *level, int rows, int columns, Player *player){
 }
 
 //will add a number of entity to the map
-void populate(Level *level, int rows, int columns, int entity, int quantity){
-    int row = rand2(0,rows-1);
-    int column = rand2(0,columns-1);
+void populate(Level *level, int entity, int quantity){
+    int row = rand2(0, level->rows-1);
+    int column = rand2(0, level->columns-1);
     int monsterVal;
 
     for(int i = 0 ; i< quantity; i++){
         while(level->map[row][column] != _empty){
-            row = rand2(0,rows-1);
-            column = rand2(0,rows-1);
+            row = rand2(0, level->rows-1);
+            column = rand2(0, level->columns-1);
         }
 
         if(entity == _monster1){
@@ -89,50 +91,47 @@ void populate(Level *level, int rows, int columns, int entity, int quantity){
 }
 
 //used to add the different entities (monster, ressource, pnj...) to the map
-void populateLevel(Level *level, int rows, int columns){
-    populate(level, rows, columns, _npc, 1);
-    populate(level, rows, columns, _wall, 7);
+void populateLevel(Level *level){
+    populate(level, _npc, 1);
+    populate(level, _wall, 7);
 
     if(level->value == 1){
-        populate(level, rows, columns, _plant1, 3);
-        populate(level, rows, columns, _rock1, 3);
-        populate(level, rows, columns, _wood1, 3);
-        populate(level, rows, columns, _portal1, 1);
-        populate(level, rows, columns, _monster1, 10);
+        populate(level, _plant1, 3);
+        populate(level, _rock1, 3);
+        populate(level, _wood1, 3);
+        populate(level, _portal1, 1);
+        populate(level, _monster1, 10);
     }else if(level->value == 2){
-        populate(level, rows, columns, _plant2, 3);
-        populate(level, rows, columns, _rock2, 3);
-        populate(level, rows, columns, _wood2, 3);
-        populate(level, rows, columns, _portal1, 1);
-        populate(level, rows, columns, _portal2, 1);
-        populate(level, rows, columns, _monster2, 10);
+        populate(level, _plant2, 3);
+        populate(level, _rock2, 3);
+        populate(level, _wood2, 3);
+        populate(level, _portal1, 1);
+        populate(level, _portal2, 1);
+        populate(level, _monster2, 10);
     }else if(level->value == 3){
-        populate(level, rows, columns, _plant3, 3);
-        populate(level, rows, columns, _rock3, 3);
-        populate(level, rows, columns, _wood3, 3);
-        populate(level, rows, columns, _portal2, 1);
-        populate(level, rows, columns, _monster3, 10);
-        populate(level, rows, columns, _boss, 1);
+        populate(level, _plant3, 3);
+        populate(level, _rock3, 3);
+        populate(level, _wood3, 3);
+        populate(level, _portal2, 1);
+        populate(level, _monster3, 10);
+        populate(level, _boss, 1);
     }
 }
 
 //used to init the map (create & populate it)
 void initMap(Levels *levels, int rows, int columns, Player *player){
 
-    levels->rows = rows;
-    levels->columns = columns;
-
     levels->lv1 = malloc(sizeof(Level));
     levels->lv2 = malloc(sizeof(Level));
     levels->lv3 = malloc(sizeof(Level));
 
     createLevel(levels->lv1, rows, columns, 1);
-    populateLevel(levels->lv1, rows, columns);
-    addPlayer(levels->lv1, rows, columns, player);
+    populateLevel(levels->lv1);
+    addPlayer(levels->lv1, player);
 
     createLevel(levels->lv2, rows, columns, 2);
-    populateLevel(levels->lv2, rows, columns);
+    populateLevel(levels->lv2);
 
     createLevel(levels->lv3, rows, columns, 3);
-    populateLevel(levels->lv3, rows, columns);
+    populateLevel(levels->lv3);
 }
