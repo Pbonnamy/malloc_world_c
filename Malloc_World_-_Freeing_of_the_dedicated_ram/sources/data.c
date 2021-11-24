@@ -57,14 +57,14 @@ int CONVERTED_RESSOURCE[TOTAL_CONVERTED][2]= {
 //{"ressource", "required tool 1", "required tool 2", "required tool 3"}
 int REQUIRED_TOOL[TOTAL_REQUIRED][4]= {
     {_fir, _woodAxe, _stoneAxe, _ironAxe},
-    {_beech, -1, _stoneAxe, _ironAxe},
-    {_oak, -1, -1, _ironAxe},
+    {_beech, _nothing, _stoneAxe, _ironAxe},
+    {_oak, _nothing, _nothing, _ironAxe},
     {_stone, _woodPickaxe, _stonePickaxe, _ironPickaxe},
-    {_iron, -1, _stonePickaxe, _ironPickaxe},
-    {_diamond, -1, -1, _ironPickaxe},
+    {_iron, _nothing, _stonePickaxe, _ironPickaxe},
+    {_diamond, _nothing, _nothing, _ironPickaxe},
     {_herb, _woodBillhook, _stoneBillhook, _ironBillhook},
-    {_lavender, -1, _stoneBillhook, _ironBillhook},
-    {_hemp, -1, -1, _ironBillhook},
+    {_lavender, _nothing, _stoneBillhook, _ironBillhook},
+    {_hemp, _nothing, _nothing, _ironBillhook},
 };
 
 //{"entity", "name", "hp", "damage", "xp"}
@@ -101,4 +101,33 @@ int LEVELS[TOTAL_LEVELS][3] = {
     {8, 1700, 50},
     {9, 1800, 75},
     {10, 1900, 75}
+};
+
+// {"item", "minimum map level", "ressource 1", "quantity ressource 1", "ressource 2", "quantity ressource 2"}
+int CRAFT[TOTAL_CRAFTS][6] = {
+    {_woodSword, 1, _fir, 3, _nothing, _nothing},
+    {_stoneSword, 1, _fir, 2, _stone, 3},
+    {_ironSword, 2, _beech, 2, _iron, 4},
+    {_diamondSword, 3, _oak, 2, _diamond, 5},
+    {_stoneSpear, 1, _fir, 3, _stone, 4},
+    {_ironSpear, 2, _beech, 3, _iron, 5},
+    {_diamondSpear, 3, _oak, 3, _diamond, 6},
+    {_stoneHammer, 1, _fir, 2, _stone, 6},
+    {_ironHammer, 2, _beech, 2, _iron, 7},
+    {_diamondHammer, 3, _oak, 2, _diamond, 8},
+    {_stoneArmor, 1, _stone, 10, _nothing, _nothing},
+    {_ironArmor, 2, _iron, 12, _nothing, _nothing},
+    {_diamondArmor, 3, _oak, 16, _nothing, _nothing},
+    {_woodPickaxe, 1, _fir, 3, _nothing, _nothing},
+    {_stonePickaxe, 1, _fir, 2, _stone, 3},
+    {_ironPickaxe, 2, _beech, 2, _iron, 4},
+    {_woodAxe, 1, _fir, 3, _nothing, _nothing},
+    {_stoneAxe, 1, _fir, 2, _stone, 3},
+    {_ironAxe, 2, _beech, 2, _iron, 4},
+    {_woodBillhook, 1, _fir, 3, _nothing, _nothing},
+    {_stoneBillhook, 1, _fir, 2, _stone, 3},
+    {_ironBillhook, 2, _beech, 2, _iron, 4},
+    {_potion1, 1, _herb, 2, _nothing, _nothing},
+    {_potion2, 2, _lavender, 2, _nothing, _nothing},
+    {_potion3, 3, _hemp, 2, _nothing, _nothing}
 };

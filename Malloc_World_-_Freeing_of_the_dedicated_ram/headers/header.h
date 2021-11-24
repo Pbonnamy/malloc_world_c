@@ -59,6 +59,9 @@ extern char ITEM_TYPE[4][32];
 #define TOTAL_LEVELS 9
 extern int LEVELS[TOTAL_LEVELS][3];
 
+#define TOTAL_CRAFTS 25
+extern int CRAFT[TOTAL_CRAFTS][6];
+
 #define RED  "\x1B[31m"
 #define RESET "\x1B[0m"
 
