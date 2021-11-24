@@ -34,6 +34,9 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV3 4
 #define WEAR_COMBAT 1
 
+#define INIT_MAP_ROWS 10
+#define INIT_MAP_COLUMNS 10
+
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15
 
@@ -51,7 +54,7 @@ extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
 #define TOTAL_MONSTERS 16
 extern char MONSTERS[TOTAL_MONSTERS][5][32];
 
-extern char ITEM_TYPE[3][32];
+extern char ITEM_TYPE[4][32];
 
 #define TOTAL_LEVELS 9
 extern int LEVELS[TOTAL_LEVELS][3];
@@ -68,8 +71,8 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player);
-void move(Level *level, Player *player, char direction);
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest);
+void move(Level *level, Player *player, char direction, InventoryNode *chest);
 
 // MAP
 int rand2 (int min, int max);
@@ -129,7 +132,9 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index);
 void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove);
 
 //NPC
-void handleNpc(Player *player);
+void handleNpc(Player *player, InventoryNode *chest);
 void repair(InventoryNode *inventoryHead);
+void transferItem(Player *player, InventoryNode *chest);
+int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit);
 
 #endif

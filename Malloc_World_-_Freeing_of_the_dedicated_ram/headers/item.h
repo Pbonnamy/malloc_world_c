@@ -43,6 +43,7 @@ enum items{
 enum itemType{
     _weapon = 0,
     _armor = 1,
-    _heal = 2
+    _heal = 2,
+    _none = 3,
 };
 #endif

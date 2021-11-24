@@ -140,7 +140,7 @@ void printItem(int item, int reference, int quantity, int durability){
     }else if(isItemRessource(item)){
         printf("%d %s\n", quantity, ITEMS[reference][_name]);
     }else if(isHeal(item)){
-        printf("%d %s (heal : %s HP)\n", quantity, ITEMS[reference][_name], ITEMS[reference][_info]);
+        printf("%s (heal : %s HP)\n", ITEMS[reference][_name], ITEMS[reference][_info]);
     }
 }
 
@@ -149,21 +149,11 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
     int count = 0;
 
     while(inventoryHead != NULL){
-        if(isWeapon(inventoryHead->value) && itemType == _weapon){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
-        }else if(isArmor(inventoryHead->value) && itemType == _armor){
-            count ++;
-            if(count == index){
-                printf("\n%s selected : ", ITEM_TYPE[itemType]);
-                printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-                return inventoryHead;
-            }
-        }else if(isHeal(inventoryHead->value) && itemType == _heal){
+        if((isWeapon(inventoryHead->value) && itemType == _weapon) ||
+           (isArmor(inventoryHead->value) && itemType == _armor) ||
+           (isHeal(inventoryHead->value) && itemType == _heal) ||
+            itemType == _none){
+
             count ++;
             if(count == index){
                 printf("\n%s selected : ", ITEM_TYPE[itemType]);
@@ -182,15 +172,11 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
     int count = 0;
 
     while(inventoryHead != NULL){
-        if(isWeapon(inventoryHead->value) && itemType == _weapon){
-            count ++;
-            printf("%d - ", count);
-            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-        }else if(isArmor(inventoryHead->value) && itemType == _armor){
-            count ++;
-            printf("%d - ", count);
-            printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
-        }else if (isHeal(inventoryHead->value) && itemType == _heal){
+        if((isWeapon(inventoryHead->value) && itemType == _weapon) ||
+           (isArmor(inventoryHead->value) && itemType == _armor) ||
+           (isHeal(inventoryHead->value) && itemType == _heal) ||
+           itemType == _none){
+
             count ++;
             printf("%d - ", count);
             printItem(inventoryHead->value, inventoryHead->reference, inventoryHead->quantity, inventoryHead->durability);
@@ -235,7 +221,7 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
         return findItem(inventoryHead, itemType, index);
     }else{
         do{
-            printf("\nChoose a %s : ", ITEM_TYPE[itemType]);
+            printf("\nWhich %s : ", ITEM_TYPE[itemType]);
 
             fflush(stdin);
             scanf("%d", &chosen);

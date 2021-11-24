@@ -1,7 +1,7 @@
 #include "../headers/header.h"
 
 //handle the different encounter on the map (ressource, ennemies, pnj...)
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player){
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest){
     int allowed = 0;
 
     if(targetRow >= 0 && targetRow < level->rows && targetColumn >= 0 && targetColumn < level->columns){
@@ -23,7 +23,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
         }else if (target == _npc){
 
-            handleNpc(player);
+            handleNpc(player, chest);
 
         }else if( target ==  _wall){
 
@@ -41,24 +41,24 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 }
 
 //used to change the postion of the player on the map according to the desired direction (up, down, left, right)
-void move (Level *level, Player *player, char direction){
+void move (Level *level, Player *player, char direction, InventoryNode *chest){
 
     level->map[player->row][player->column] = _empty;
 
     if(direction == 'z'){
-        if(checkCollision(level, player->row-1, player->column, player)){
+        if(checkCollision(level, player->row-1, player->column, player, chest)){
             player->row -= 1;
         }
     }else if(direction == 's'){
-        if(checkCollision(level, player->row+1, player->column, player)){
+        if(checkCollision(level, player->row+1, player->column, player, chest)){
             player->row += 1;
         }
     }else if(direction == 'q'){
-        if(checkCollision(level, player->row, player->column-1, player)){
+        if(checkCollision(level, player->row, player->column-1, player, chest)){
             player->column -= 1;
         }
     }else if (direction == 'd'){
-        if(checkCollision(level, player->row, player->column+1, player)){
+        if(checkCollision(level, player->row, player->column+1, player, chest)){
             player->column += 1;
         }
     }
@@ -84,7 +84,7 @@ void handleMovement(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        move(levels->lv1, player, direction);
+        move(levels->lv1, player, direction, levels->chest);
 
     }while(direction != 'e');
 }

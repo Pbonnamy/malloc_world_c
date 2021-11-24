@@ -126,7 +126,9 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
             attack(monsterNode, weapon);
         }else if(action == 'p'){
             InventoryNode *potion = itemSelect(player->inventory, _heal);
-            handlePotion(player, potion);
+            if(potion != NULL){
+                handlePotion(player, potion);
+            }
         }else if(action == 'f'){
             loop = flee();
         }
