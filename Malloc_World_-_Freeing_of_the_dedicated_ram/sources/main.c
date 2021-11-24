@@ -9,7 +9,7 @@ int main(){
 
         printf("\n----------- MAIN MENU ----------\n\n");
 
-        printf("1 - PLAY \n"
+        printf("1 - NEW GAME \n"
                "2 - LOAD SAVE \n"
                "3 - EXIT \n"
                "\nChoose en option : ");
