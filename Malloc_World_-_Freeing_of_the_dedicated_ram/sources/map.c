@@ -123,6 +123,7 @@ void initMap(Levels *levels, int rows, int columns, Player *player){
     levels->lv1 = malloc(sizeof(Level));
     levels->lv2 = malloc(sizeof(Level));
     levels->lv3 = malloc(sizeof(Level));
+    levels->chest = NULL;
 
     createLevel(levels->lv1, rows, columns, 1);
     populateLevel(levels->lv1);

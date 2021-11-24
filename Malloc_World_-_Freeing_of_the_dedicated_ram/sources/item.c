@@ -151,7 +151,9 @@ InventoryNode *findItem(InventoryNode *inventoryHead, int itemType, int index){
     while(inventoryHead != NULL){
         if((isWeapon(inventoryHead->value) && itemType == _weapon) ||
            (isArmor(inventoryHead->value) && itemType == _armor) ||
-           (isHeal(inventoryHead->value) && itemType == _heal)){
+           (isHeal(inventoryHead->value) && itemType == _heal) ||
+            itemType == _none){
+
             count ++;
             if(count == index){
                 printf("\n%s selected : ", ITEM_TYPE[itemType]);
@@ -172,7 +174,8 @@ int availableItems(InventoryNode *inventoryHead, int itemType){
     while(inventoryHead != NULL){
         if((isWeapon(inventoryHead->value) && itemType == _weapon) ||
            (isArmor(inventoryHead->value) && itemType == _armor) ||
-           (isHeal(inventoryHead->value) && itemType == _heal)){
+           (isHeal(inventoryHead->value) && itemType == _heal) ||
+           itemType == _none){
 
             count ++;
             printf("%d - ", count);
@@ -218,7 +221,7 @@ InventoryNode *itemSelect(InventoryNode *inventoryHead, int itemType){
         return findItem(inventoryHead, itemType, index);
     }else{
         do{
-            printf("\nChoose a %s : ", ITEM_TYPE[itemType]);
+            printf("\nWhich %s : ", ITEM_TYPE[itemType]);
 
             fflush(stdin);
             scanf("%d", &chosen);

@@ -54,7 +54,7 @@ extern int REQUIRED_TOOL[TOTAL_REQUIRED][4];
 #define TOTAL_MONSTERS 16
 extern char MONSTERS[TOTAL_MONSTERS][5][32];
 
-extern char ITEM_TYPE[3][32];
+extern char ITEM_TYPE[4][32];
 
 #define TOTAL_LEVELS 9
 extern int LEVELS[TOTAL_LEVELS][3];
@@ -134,5 +134,7 @@ void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove);
 //NPC
 void handleNpc(Player *player, InventoryNode *chest);
 void repair(InventoryNode *inventoryHead);
+void transferItem(Player *player, InventoryNode *chest);
+int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit);
 
 #endif

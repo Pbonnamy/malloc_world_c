@@ -88,7 +88,7 @@ char MONSTERS[TOTAL_MONSTERS][5][32]={
 };
 
 //{"item type name"}
-char ITEM_TYPE[3][32]= { "Weapon", "Armor", "Potion"};
+char ITEM_TYPE[4][32]= { "Weapon", "Armor", "Potion", "Item"};
 
 // {"level", "xp required", "hp bonus"}
 int LEVELS[TOTAL_LEVELS][3] = {

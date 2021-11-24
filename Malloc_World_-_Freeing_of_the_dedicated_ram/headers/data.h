@@ -17,7 +17,8 @@ enum dataType{
     _monsterXp = 4,
     _level = 0,
     _xpRequired = 1,
-    _levelBonus = 2
+    _levelBonus = 2,
+    _noStorageLimit = 0
 };
 
 #endif
