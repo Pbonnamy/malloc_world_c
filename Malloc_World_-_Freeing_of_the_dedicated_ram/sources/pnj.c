@@ -11,6 +11,33 @@ void repair(InventoryNode *inventoryHead){
     printf("\nAll your items are now repaired.\n");
 }
 
+
+void craftableItem(){
+    int item;
+    int ressourceRef;
+    int count = 0;
+
+    for(int i = 0; i < TOTAL_CRAFTS; i++){
+        item = CRAFT[i][_item];
+        count ++;
+
+        printf("%d - ", count);
+
+        ressourceRef = findItemReference(CRAFT[i][_craftRessource1]);
+
+        printf("%d %s ", CRAFT[i][_craftQuantity1], ITEMS[ressourceRef][_name]);
+
+        if(CRAFT[i][_craftRessource2] != _nothing){
+            ressourceRef = findItemReference(CRAFT[i][_craftRessource2]);
+            printf("+ %d %s ", CRAFT[i][_craftQuantity2], ITEMS[ressourceRef][_name]);
+        }
+
+        printf(": ");
+
+        printItem(item, findItemReference(item), 1, getDurability(item));
+    }
+}
+
 int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit){
 
     InventoryNode *newNode = malloc(sizeof(InventoryNode));
@@ -114,7 +141,7 @@ void handleNpc(Player *player, InventoryNode *chest){
         if(action == 'r'){
             repair(player->inventory);
         }else if(action == 'c'){
-
+            craftableItem();
         }else if(action == 't'){
             transferItem(player, chest);
         }
