@@ -11,6 +11,30 @@ void repair(InventoryNode *inventoryHead){
     printf("\nAll your items are now repaired.\n");
 }
 
+int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, int quantity){
+
+    while(inventory != NULL){
+        if(inventory->value == ressource){
+            quantity -= inventory->quantity;
+        }
+        inventory = inventory->next;
+    }
+
+    while(chest != NULL){
+        if(chest->value == ressource){
+            quantity -= inventory->quantity;
+        }
+        chest = chest->next;
+    }
+
+    if(quantity <= 0){
+        return 1;
+    }else{
+        return 0;
+    }
+
+}
+
 
 void craftableItem(){
     int item;
