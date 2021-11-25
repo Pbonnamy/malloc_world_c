@@ -17,6 +17,8 @@ void craftableItem(){
     int ressourceRef;
     int count = 0;
 
+    printf("\nCraftable items : \n\n");
+
     for(int i = 0; i < TOTAL_CRAFTS; i++){
         item = CRAFT[i][_item];
         count ++;
@@ -131,7 +133,6 @@ void handleNpc(Player *player, InventoryNode *chest){
     char action;
 
     do{
-
         printf("\nChoose an action ? (r : repair, c : craft, t : transfer item) (e : exit) : ");
         fflush(stdin);
         scanf("%c", &action);
@@ -147,4 +148,6 @@ void handleNpc(Player *player, InventoryNode *chest){
         }
 
     }while(action != 'e');
+
+    printf("\n\n\n");
 }

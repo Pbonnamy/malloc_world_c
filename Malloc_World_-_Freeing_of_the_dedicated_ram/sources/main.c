@@ -9,9 +9,9 @@ int main(){
 
         printf("\n----------- MAIN MENU ----------\n\n");
 
-        printf("1 - NEW GAME \n"
-               "2 - LOAD SAVE \n"
-               "3 - EXIT \n"
+        printf("1 - New Game \n"
+               "2 - Load Save \n"
+               "3 - Exit \n"
                "\nChoose en option : ");
 
         fflush(stdin);
