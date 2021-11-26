@@ -22,7 +22,7 @@ int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, 
 
     while(chest != NULL){
         if(chest->value == ressource){
-            quantity -= inventory->quantity;
+            quantity -= chest->quantity;
         }
         chest = chest->next;
     }
@@ -32,11 +32,38 @@ int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, 
     }else{
         return 0;
     }
-
 }
 
+int craftIndex(int item){
+    for(int i = 0; i < TOTAL_CRAFTS; i++){
+        if(CRAFT[i][_item] == item){
+            return i;
+        }
+    }
 
-void craftableItem(){
+    return -1;
+}
+
+int canCraft(InventoryNode *inventory, InventoryNode *chest, int item){
+    int index = craftIndex(item);
+
+    int ressource1 = CRAFT[index][_craftRessource1];
+    int quantity1 = CRAFT[index][_craftQuantity1];
+    int ressource2 = CRAFT[index][_craftRessource2];
+    int quantity2 = CRAFT[index][_craftQuantity2];
+
+    if(!hasRessource(inventory, chest, ressource1, quantity1)){
+        return 0;
+    }
+
+    if(ressource2 != _nothing && !hasRessource(inventory, chest, ressource2, quantity2)){
+        return 0;
+    }
+
+    return 1;
+}
+
+void craftableItemList(InventoryNode *inventory, InventoryNode *chest){
     int item;
     int ressourceRef;
     int count = 0;
@@ -45,22 +72,28 @@ void craftableItem(){
 
     for(int i = 0; i < TOTAL_CRAFTS; i++){
         item = CRAFT[i][_item];
-        count ++;
 
-        printf("%d - ", count);
+        if(canCraft(inventory, chest, item)){
+            count ++;
+            printf("%d - ", count);
 
-        ressourceRef = findItemReference(CRAFT[i][_craftRessource1]);
+            ressourceRef = findItemReference(CRAFT[i][_craftRessource1]);
 
-        printf("%d %s ", CRAFT[i][_craftQuantity1], ITEMS[ressourceRef][_name]);
+            printf("%d %s ", CRAFT[i][_craftQuantity1], ITEMS[ressourceRef][_name]);
 
-        if(CRAFT[i][_craftRessource2] != _nothing){
-            ressourceRef = findItemReference(CRAFT[i][_craftRessource2]);
-            printf("+ %d %s ", CRAFT[i][_craftQuantity2], ITEMS[ressourceRef][_name]);
+            if(CRAFT[i][_craftRessource2] != _nothing){
+                ressourceRef = findItemReference(CRAFT[i][_craftRessource2]);
+                printf("+ %d %s ", CRAFT[i][_craftQuantity2], ITEMS[ressourceRef][_name]);
+            }
+
+            printf(": ");
+
+            printItem(item, findItemReference(item), 1, getDurability(item));
         }
+    }
 
-        printf(": ");
-
-        printItem(item, findItemReference(item), 1, getDurability(item));
+    if(count == 0){
+        printf("No craftable Items\n");
     }
 }
 
@@ -166,7 +199,7 @@ void handleNpc(Player *player, InventoryNode *chest){
         if(action == 'r'){
             repair(player->inventory);
         }else if(action == 'c'){
-            craftableItem();
+            craftableItemList(player->inventory, chest);
         }else if(action == 't'){
             transferItem(player, chest);
         }
