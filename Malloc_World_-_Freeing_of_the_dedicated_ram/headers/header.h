@@ -28,6 +28,7 @@ typedef struct RessourceNode RessourceNode;
 
 #define MAX_RESSOURCE_STACK 20
 #define MAX_INVENTORY_COUNT 10
+#define NO_STORAGE_LIMIT 0
 
 #define WEAR_LV1 1
 #define WEAR_LV2 2
@@ -69,8 +70,9 @@ extern int CRAFT[TOTAL_CRAFTS][6];
 void initPlayer(Player *player);
 void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
-void addToInventory(InventoryNode **inventoryHead, int item, int quantity);
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit);
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
+int playerInventoryIsFull(InventoryNode *inventoryHead);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);

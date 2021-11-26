@@ -18,7 +18,6 @@ enum dataType{
     _level = 0,
     _xpRequired = 1,
     _levelBonus = 2,
-    _noStorageLimit = 0,
     _nothing = -1,
     _item = 0,
     _minCraftlvl = 1,
