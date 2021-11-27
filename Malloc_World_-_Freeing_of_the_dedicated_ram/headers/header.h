@@ -63,8 +63,16 @@ extern int LEVELS[TOTAL_LEVELS][3];
 #define TOTAL_CRAFTS 25
 extern int CRAFT[TOTAL_CRAFTS][6];
 
-#define RED  "\x1B[31m"
-#define RESET "\x1B[0m"
+
+#define BLACK "\033[0;30m"
+#define RED "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define BLUE "\033[0;34m"
+#define MAGENTA "\033[0;35m"
+#define CYAN "\033[0;36m"
+
+#define RESET "\033[0m"
 
 //PLAYER
 void initPlayer(Player *player);

@@ -5,16 +5,28 @@ int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
+void getColor(int entity){
+    if(entity == _player){
+        printf(YELLOW);
+    }else if(isMapRessource(entity)){
+        printf(GREEN);
+    }else if(entity == _wall){
+        printf(MAGENTA);
+    }else if(entity == _npc){
+        printf(BLUE);
+    }else if(isMonster(entity)){
+        printf(RED);
+    }else if(entity == _portal1 || entity == _portal2){
+        printf(CYAN);
+    }
+}
 //used to display the map to the player
 void printMap(int **map, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
-            if(map[i][j] == _player){
-                printf(RED " %2d " RESET, map[i][j]);
-            }else{
-                printf(" %2d ", map[i][j]);
-            }
+            getColor(map[i][j]);
+            printf(" %2d " RESET, map[i][j]);
         }
         printf("\n");
     }
@@ -91,29 +103,29 @@ void populate(Level *level, int entity, int quantity){
 
 //used to add the different entities (monster, ressource, pnj...) to the map
 void populateLevel(Level *level){
-    //populate(level, _npc, 1);
+    populate(level, _npc, 1);
     populate(level, _wall, 7);
 
     if(level->value == 1){
-        //populate(level, _plant1, 3);
-        //populate(level, _rock1, 3);
-        //populate(level, _wood1, 3);
+        populate(level, _plant1, 3);
+        populate(level, _rock1, 3);
+        populate(level, _wood1, 3);
         populate(level, _portal1, 1);
-        //populate(level, _monster1, 10);
+        populate(level, _monster1, 10);
     }else if(level->value == 2){
-        //populate(level, _plant2, 3);
-        //populate(level, _rock2, 3);
-        //populate(level, _wood2, 3);
+        populate(level, _plant2, 3);
+        populate(level, _rock2, 3);
+        populate(level, _wood2, 3);
         populate(level, _portal1, 1);
         populate(level, _portal2, 1);
-        //populate(level, _monster2, 10);
+        populate(level, _monster2, 10);
     }else if(level->value == 3){
-        //populate(level, _plant3, 3);
-        //populate(level, _rock3, 3);
-        //populate(level, _wood3, 3);
+        populate(level, _plant3, 3);
+        populate(level, _rock3, 3);
+        populate(level, _wood3, 3);
         populate(level, _portal2, 1);
-       // populate(level, _monster3, 10);
-        //populate(level, _boss, 1);
+        populate(level, _monster3, 10);
+        populate(level, _boss, 1);
     }
 }
 

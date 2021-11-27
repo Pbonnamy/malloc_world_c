@@ -107,6 +107,4 @@ void initPlayer(Player *player){
     addToStorage(&player->inventory, _woodPickaxe, 1, MAX_INVENTORY_COUNT);
     addToStorage(&player->inventory, _woodBillhook, 1, MAX_INVENTORY_COUNT);
     addToStorage(&player->inventory, _woodAxe, 1, MAX_INVENTORY_COUNT);
-
-    addToStorage(&player->inventory, _hemp, 10, MAX_INVENTORY_COUNT);
 }
