@@ -125,7 +125,7 @@ void checkMapSize(FILE *file, Level *level){
     level->rows = countRow;
 }
 
-void fillLevel(Level *level, FILE *file){
+void fillLevel(Level *level, FILE *file, Player *player){
     int col = 0;
     int row = 0;
     char buffer[255];
@@ -145,6 +145,10 @@ void fillLevel(Level *level, FILE *file){
                 addToRessourceList(&level->ressourceList, entity, row, col);
             }else if(isMonster(entity)){
                 addToMonsterList(&level->monsterList, entity, row, col);
+            }else if (entity == _player){
+                player->currentMapLvl = level->value;
+                player->row = row;
+                player->column = col;
             }
 
             column = strtok(NULL, " ");
@@ -156,7 +160,7 @@ void fillLevel(Level *level, FILE *file){
     }
 }
 
-void loadLevels(FILE *file, Levels *levels){
+void loadLevels(FILE *file, Levels *levels, Player *player){
     skipLine(file, 2);
 
     levels->lv1 = malloc(sizeof(Level));
@@ -174,11 +178,11 @@ void loadLevels(FILE *file, Levels *levels){
     fseek(file, 0, SEEK_SET);
     skipLine(file, 2);
 
-    fillLevel(levels->lv1, file);
+    fillLevel(levels->lv1, file, player);
     skipLine(file, 1);
-    fillLevel(levels->lv2, file);
+    fillLevel(levels->lv2, file, player);
     skipLine(file, 1);
-    fillLevel(levels->lv3, file);
+    fillLevel(levels->lv3, file, player);
 }
 
 int processItemLine(char buffer[255], int infoPos){
@@ -279,7 +283,7 @@ void loadSave(Levels *levels, Player *player) {
         return;
     }
 
-    loadLevels(file, levels);
+    loadLevels(file, levels, player);
     skipLine(file, 1);
     loadPlayer(file, player, levels);
 
