@@ -35,8 +35,8 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV3 4
 #define WEAR_COMBAT 1
 
-#define INIT_MAP_ROWS 2
-#define INIT_MAP_COLUMNS 2
+#define INIT_MAP_ROWS 10
+#define INIT_MAP_COLUMNS 10
 
 #define RESPAWN_RESSOURCE 10
 #define RESPAWN_MONSTER 15
@@ -76,8 +76,10 @@ int playerInventoryIsFull(InventoryNode *inventoryHead);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest);
-void move(Level *level, Player *player, char direction, InventoryNode *chest);
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels);
+void move(Level *level, Player *player, char direction, Levels *levels);
+Level *getCurrentMap(Player *player, Levels *levels);
+void switchLevel(int target, Player *player, Levels *levels);
 
 // MAP
 int rand2 (int min, int max);

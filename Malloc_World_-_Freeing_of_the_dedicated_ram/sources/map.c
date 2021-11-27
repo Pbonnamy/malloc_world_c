@@ -91,29 +91,29 @@ void populate(Level *level, int entity, int quantity){
 
 //used to add the different entities (monster, ressource, pnj...) to the map
 void populateLevel(Level *level){
-    populate(level, _npc, 1);
+    //populate(level, _npc, 1);
     populate(level, _wall, 7);
 
     if(level->value == 1){
-        populate(level, _plant1, 3);
-        populate(level, _rock1, 3);
-        populate(level, _wood1, 3);
+        //populate(level, _plant1, 3);
+        //populate(level, _rock1, 3);
+        //populate(level, _wood1, 3);
         populate(level, _portal1, 1);
-        populate(level, _monster1, 10);
+        //populate(level, _monster1, 10);
     }else if(level->value == 2){
-        populate(level, _plant2, 3);
-        populate(level, _rock2, 3);
-        populate(level, _wood2, 3);
+        //populate(level, _plant2, 3);
+        //populate(level, _rock2, 3);
+        //populate(level, _wood2, 3);
         populate(level, _portal1, 1);
         populate(level, _portal2, 1);
-        populate(level, _monster2, 10);
+        //populate(level, _monster2, 10);
     }else if(level->value == 3){
-        populate(level, _plant3, 3);
-        populate(level, _rock3, 3);
-        populate(level, _wood3, 3);
+        //populate(level, _plant3, 3);
+        //populate(level, _rock3, 3);
+        //populate(level, _wood3, 3);
         populate(level, _portal2, 1);
-        populate(level, _monster3, 10);
-        populate(level, _boss, 1);
+       // populate(level, _monster3, 10);
+        //populate(level, _boss, 1);
     }
 }
 
