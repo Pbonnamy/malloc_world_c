@@ -92,7 +92,7 @@ void populate(Level *level, int entity, int quantity){
 //used to add the different entities (monster, ressource, pnj...) to the map
 void populateLevel(Level *level){
     populate(level, _npc, 1);
-    /*populate(level, _wall, 7);
+    populate(level, _wall, 7);
 
     if(level->value == 1){
         populate(level, _plant1, 3);
@@ -114,7 +114,7 @@ void populateLevel(Level *level){
         populate(level, _portal2, 1);
         populate(level, _monster3, 10);
         populate(level, _boss, 1);
-    }*/
+    }
 }
 
 //used to init the map (create & populate it)

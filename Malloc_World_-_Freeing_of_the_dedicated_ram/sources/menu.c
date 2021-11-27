@@ -47,7 +47,7 @@ void handleMainMenu(char action){
     Player *player = malloc(sizeof(Player));
 
     if(action == '1'){
-
+        printf("ok");
         initMap(levels, INIT_MAP_ROWS, INIT_MAP_COLUMNS, player);
         initPlayer(player);
 

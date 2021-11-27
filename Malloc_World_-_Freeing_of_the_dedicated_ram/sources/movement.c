@@ -1,5 +1,33 @@
 #include "../headers/header.h"
 
+void switchLevel(int target, Player *player){
+    if(target == _portal1){
+       if(player->currentMapLvl == 1){
+            player->currentMapLvl = 2;
+       }else if (player->currentMapLvl == 2){
+            player->currentMapLvl = 1;
+       }
+    }else if(target == _portal2){
+        if(player->currentMapLvl == 2){
+            player->currentMapLvl = 3;
+       }else if (player->currentMapLvl == 3){
+            player->currentMapLvl = 2;
+       }
+    }
+}
+
+Level *getCurrentMap(Player *player, Levels *levels){
+    if(player->currentMapLvl == 1){
+        return levels->lv1;
+    }else if(player->currentMapLvl == 2){
+        return levels->lv2;
+    }else if(player->currentMapLvl == 3){
+        return levels->lv3;
+    }
+
+    return NULL;
+}
+
 //handle the different encounter on the map (ressource, ennemies, pnj...)
 int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest){
     int allowed = 0;
@@ -19,7 +47,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
         }else if (target == _portal1 || target == _portal2){
 
-            printf("\nTODO : switch level\n\n");
+            switchLevel(target, player);
 
         }else if (target == _npc){
 
@@ -39,6 +67,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
     return allowed;
 }
+
 
 //used to change the postion of the player on the map according to the desired direction (up, down, left, right)
 void move (Level *level, Player *player, char direction, InventoryNode *chest){
@@ -75,7 +104,9 @@ void handleMovement(Levels *levels, Player *player){
     printf("\n\n\n");
 
     do{
-        printMap(levels->lv1->map, levels->lv1->rows, levels->lv1->columns);
+        Level *currentLevel = getCurrentMap(player, levels);
+
+        printMap(currentLevel->map, currentLevel->rows, currentLevel->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");
         fflush(stdin);
@@ -83,7 +114,7 @@ void handleMovement(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        move(levels->lv1, player, direction, levels->chest);
+        move(currentLevel, player, direction, levels->chest);
 
     }while(direction != 'e');
 }
