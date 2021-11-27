@@ -81,5 +81,6 @@ void save(Levels *levels, Player *player){
 
     savePlayer(player, file, levels->chest);
 
+    printf("\nGame saved.\n");
     fclose(file);
 }
