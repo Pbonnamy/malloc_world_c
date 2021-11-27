@@ -71,6 +71,9 @@
 		<Unit filename="sources/ressource.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sources/save.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

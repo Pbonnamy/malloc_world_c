@@ -61,7 +61,7 @@ int findLevelRequirement(int level){
         }
     }
 
-    return -1;
+    return TOTAL_LEVELS-1;
 }
 
 //calculate how many xp the player gained after defeating the monster
@@ -73,7 +73,7 @@ void leveling(Player *player, MonsterNode *monster){
     printf("\nYou defeated '%s'. You gain %d xp.\n\n", MONSTERS[monster->reference][_name], xp);
     int index = findLevelRequirement(player->level + 1);
 
-    if(index != -1){
+    if(player->level < MAX_LEVEL){
         if(player->xp >= LEVELS[index][_xpRequired]){
             player->level = LEVELS[index][_level];
             player->maxHp += LEVELS[index][_levelBonus];

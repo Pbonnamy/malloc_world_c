@@ -35,6 +35,8 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV3 4
 #define WEAR_COMBAT 1
 
+#define MAX_LEVEL 10
+
 #define INIT_MAP_ROWS 10
 #define INIT_MAP_COLUMNS 10
 
@@ -151,5 +153,16 @@ void handleNpc(Player *player, InventoryNode *chest);
 void repair(InventoryNode *inventoryHead);
 void transferItem(Player *player, InventoryNode *chest);
 int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit);
+int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, int quantity);
+int craftIndex(int item);
+int canCraft(InventoryNode *inventory, InventoryNode *chest, int item, int currentMapLevel);
+int craftableItemList(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel);
+int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index, int currentMapLevel);
+int removeRessource(InventoryNode *inventoryHead, int ressource, int quantity);
+void craftItem(InventoryNode *inventory, InventoryNode *chest, int item);
+void craft(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel);
+
+//SAVE
+void save(Levels *levels, Player *player);
 
 #endif

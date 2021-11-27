@@ -20,7 +20,9 @@ void displayCharacter(Player *player){
     printf("\n----- Character sheet -----\n\n");
     printf("Hp : %d / %d\n", player->currentHp,player->maxHp);
     printf("Level : %d\n", player->level);
-    printf("Xp : %d\n", player->xp);
+
+    int index = findLevelRequirement(player->level + 1);
+    printf("Xp : %d/%d\n", player->xp, LEVELS[index][_xpRequired]);
 
     printInventory(player->inventory);
 }
@@ -107,4 +109,6 @@ void initPlayer(Player *player){
     addToStorage(&player->inventory, _woodPickaxe, 1, MAX_INVENTORY_COUNT);
     addToStorage(&player->inventory, _woodBillhook, 1, MAX_INVENTORY_COUNT);
     addToStorage(&player->inventory, _woodAxe, 1, MAX_INVENTORY_COUNT);
+
+    addToStorage(&player->inventory, _hemp, 10, MAX_INVENTORY_COUNT);
 }

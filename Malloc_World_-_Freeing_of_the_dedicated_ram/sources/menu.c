@@ -8,7 +8,7 @@ void handleAction(Levels *levels, Player *player, char action){
     }else if(action == '2'){
         handleMovement(levels, player);
     }else if(action == '3'){
-        printf("\nTODO : Save\n");
+        save(levels, player);
     }
 }
 
@@ -54,10 +54,10 @@ void handleMainMenu(char action){
         //printRessourceList(levels->lv1->ressourceList);
         //printMonsterList(levels->lv1->monsterList);
 
+        gameLoop(levels, player);
+
     }else if(action == '2'){
         printf("\nTODO : Load Save\n");
     }
-
-    gameLoop(levels, player);
 
 }
