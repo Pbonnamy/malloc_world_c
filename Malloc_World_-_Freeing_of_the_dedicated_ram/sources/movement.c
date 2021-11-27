@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//get the current level the player is in
 Level *getCurrentMap(Player *player, Levels *levels){
     if(player->currentMapLvl == 1){
         return levels->lv1;
@@ -12,6 +13,7 @@ Level *getCurrentMap(Player *player, Levels *levels){
     return NULL;
 }
 
+//used to switch between the 3 different map level
 void switchLevel(int target, Player *player, Levels *levels){
 
     Level *currentMap = getCurrentMap(player, levels);

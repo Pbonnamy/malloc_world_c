@@ -5,6 +5,7 @@ int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
+//used to handle the respawn of monsters on the map
 void respawnMonsters(Level *level, MonsterNode *list, Player *player){
 
     while(list != NULL){
@@ -20,6 +21,7 @@ void respawnMonsters(Level *level, MonsterNode *list, Player *player){
     }
 }
 
+//used to handle the respawn of ressource on the map
 void respawnRessource(Level *level, RessourceNode *list, Player *player){
 
     while(list != NULL){
@@ -35,6 +37,7 @@ void respawnRessource(Level *level, RessourceNode *list, Player *player){
     }
 }
 
+//change the color of a given entity in the console
 void getColor(int entity){
     if(entity == _player){
         printf(YELLOW);
@@ -50,7 +53,8 @@ void getColor(int entity){
         printf(CYAN);
     }
 }
-//used to display the map to the player
+
+//used to display the map to the user
 void printMap(int **map, int rows, int columns){
 
     for (int i = 0; i < rows; i++){

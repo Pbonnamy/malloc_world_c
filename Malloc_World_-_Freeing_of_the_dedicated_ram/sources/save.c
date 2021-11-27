@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//used to write a map in the save file
 void saveMap(Level *level, FILE *file){
 
     fprintf(file,"-- ZONE %d --\n", level->value);
@@ -16,6 +17,7 @@ void saveMap(Level *level, FILE *file){
     }
 }
 
+//used to write the player inventory in the save file
 void saveInventory(InventoryNode *inventoryHead, FILE *file){
     int count = 0;
     int durability;
@@ -39,6 +41,7 @@ void saveInventory(InventoryNode *inventoryHead, FILE *file){
     }
 }
 
+//used to write the chest content in the save file
 void saveChest(InventoryNode *chest, FILE *file){
 
     while(chest != NULL){
@@ -51,6 +54,7 @@ void saveChest(InventoryNode *chest, FILE *file){
     }
 }
 
+//used to write the player in the save file
 void savePlayer(Player *player, FILE *file, InventoryNode *chest){
     fprintf(file,"{%d}\n", player->level);
 
@@ -68,6 +72,7 @@ void savePlayer(Player *player, FILE *file, InventoryNode *chest){
     saveChest(chest, file);
 }
 
+//main save function (1 -> save map, 2-> save player (info + inventory + chest))
 void save(Levels *levels, Player *player){
     FILE *file = fopen("save.txt", "w");
 
@@ -85,6 +90,7 @@ void save(Levels *levels, Player *player){
     fclose(file);
 }
 
+//used to skip a line in the text file
 void skipLine(FILE *file, int skip){
     int count = 0;
     char buffer[255];
@@ -96,6 +102,7 @@ void skipLine(FILE *file, int skip){
 
 }
 
+//retrieve the size of the map in the save file
 void checkMapSize(FILE *file, Level *level){
     char buffer[255];
     int countRow = 0;
@@ -125,6 +132,7 @@ void checkMapSize(FILE *file, Level *level){
     level->rows = countRow;
 }
 
+//will populate the level with the informations from the save file
 void fillLevel(Level *level, FILE *file, Player *player){
     int col = 0;
     int row = 0;
@@ -160,6 +168,7 @@ void fillLevel(Level *level, FILE *file, Player *player){
     }
 }
 
+//used to retrieve info of the 3 different levels in the save file
 void loadLevels(FILE *file, Levels *levels, Player *player){
     skipLine(file, 2);
 
@@ -185,6 +194,7 @@ void loadLevels(FILE *file, Levels *levels, Player *player){
     fillLevel(levels->lv3, file, player);
 }
 
+//used to retrieve different informations from a line containing an item ({QTY}@{OBJECTID}@{DURABILITY?})
 int processItemLine(char buffer[255], int infoPos){
     char *splited;
     char *res;
@@ -208,6 +218,7 @@ int processItemLine(char buffer[255], int infoPos){
     return atoi(res);
 }
 
+//used to retrieve the different items of the player inventory in the save file
 void loadInventory(FILE *file, Player *player){
     int count = 0;
     char buffer[255];
@@ -234,6 +245,7 @@ void loadInventory(FILE *file, Player *player){
     }
 }
 
+//used to retrieve the different items of the chest in the save file
 void loadChest(FILE *file, Levels *levels){
     char buffer[255];
     int item;
@@ -247,6 +259,7 @@ void loadChest(FILE *file, Levels *levels){
     }
 }
 
+//used to retrieve the info of a player from teh save file (1 -> info, 2 -> inventory, 3-> chest)
 void loadPlayer(FILE *file, Player *player, Levels *levels){
     char buffer[255];
     char *res;
@@ -275,6 +288,7 @@ void loadPlayer(FILE *file, Player *player, Levels *levels){
     loadChest(file, levels);
 }
 
+//main function to load the different informations from the save.txt file (1 -> load level, 2 -> load player)
 void loadSave(Levels *levels, Player *player) {
     FILE *file = fopen("save.txt", "r");
 
