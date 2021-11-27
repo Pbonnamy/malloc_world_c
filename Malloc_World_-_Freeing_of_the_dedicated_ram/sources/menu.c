@@ -51,12 +51,12 @@ void handleMainMenu(char action){
         initMap(levels, INIT_MAP_ROWS, INIT_MAP_COLUMNS, player);
         initPlayer(player);
 
-        //printRessourceList(levels->lv1->ressourceList);
-        //printMonsterList(levels->lv1->monsterList);
-
-        gameLoop(levels, player);
-
     }else if(action == '2'){
         loadSave(levels, player);
     }
+
+    //printRessourceList(levels->lv1->ressourceList);
+    //printMonsterList(levels->lv1->monsterList);
+
+    gameLoop(levels, player);
 }

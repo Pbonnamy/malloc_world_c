@@ -20,6 +20,7 @@ typedef struct RessourceNode RessourceNode;
 #include "player.h"
 #include "data.h"
 #include "item.h"
+#include "save.h"
 
 #define TOOL_DURABILITY 10
 #define SWORD_DURABILITY 10
@@ -80,7 +81,7 @@ extern int CRAFT[TOTAL_CRAFTS][6];
 void initPlayer(Player *player);
 void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
-void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit);
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit, int durability);
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 int playerInventoryIsFull(InventoryNode *inventoryHead);
 

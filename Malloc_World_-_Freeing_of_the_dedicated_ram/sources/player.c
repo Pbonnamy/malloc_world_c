@@ -22,7 +22,7 @@ void displayCharacter(Player *player){
     printf("Level : %d\n", player->level);
 
     int index = findLevelRequirement(player->level + 1);
-    printf("Xp : %d/%d\n", player->xp, LEVELS[index][_xpRequired]);
+    printf("Xp : %d / %d\n", player->xp, LEVELS[index][_xpRequired]);
 
     printInventory(player->inventory);
 }
@@ -58,11 +58,17 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity){
 }
 
 //add a certain amount of an item to the player inventory
-void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit){
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit, int durability){
     InventoryNode *newNode= malloc(sizeof(InventoryNode));
     newNode->value = item;
+
+    if(durability == _notSpecified){
+        newNode->durability = getDurability(item);
+    }else{
+        newNode->durability = durability;
+    }
+
     newNode->quantity = quantity;
-    newNode->durability = getDurability(item);
     newNode->reference = findItemReference(item);
     newNode->next = NULL;
 
@@ -105,8 +111,8 @@ void initPlayer(Player *player){
     player->currentMapLvl = 1;
     player->inventory = NULL;
 
-    addToStorage(&player->inventory, _woodSword, 1, MAX_INVENTORY_COUNT);
-    addToStorage(&player->inventory, _woodPickaxe, 1, MAX_INVENTORY_COUNT);
-    addToStorage(&player->inventory, _woodBillhook, 1, MAX_INVENTORY_COUNT);
-    addToStorage(&player->inventory, _woodAxe, 1, MAX_INVENTORY_COUNT);
+    addToStorage(&player->inventory, _woodSword, 1, MAX_INVENTORY_COUNT, _notSpecified);
+    addToStorage(&player->inventory, _woodPickaxe, 1, MAX_INVENTORY_COUNT, _notSpecified);
+    addToStorage(&player->inventory, _woodBillhook, 1, MAX_INVENTORY_COUNT, _notSpecified);
+    addToStorage(&player->inventory, _woodAxe, 1, MAX_INVENTORY_COUNT, _notSpecified);
 }

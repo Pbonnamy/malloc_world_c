@@ -166,10 +166,10 @@ void craftItem(InventoryNode *inventory, InventoryNode *chest, int item){
     }
 
     if(playerInventoryIsFull(inventory)){
-        addToStorage(&chest, item, 1, NO_STORAGE_LIMIT);
+        addToStorage(&chest, item, 1, NO_STORAGE_LIMIT, _notSpecified);
         printf("\nA %s was stored in your chest.\n", ITEMS[findItemReference(item)][_name]);
     }else{
-        addToStorage(&inventory, item, 1, MAX_INVENTORY_COUNT);
+        addToStorage(&inventory, item, 1, MAX_INVENTORY_COUNT, _notSpecified);
         printf("\nA %s was crafted in your inventory.\n", ITEMS[findItemReference(item)][_name]);
     }
 

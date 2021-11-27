@@ -25,6 +25,7 @@ enum dataType{
     _craftQuantity1 = 3,
     _craftRessource2 = 4,
     _craftQuantity2 = 5,
+    _notSpecified = -1
 };
 
 #endif

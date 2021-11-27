@@ -107,7 +107,6 @@ void checkMapSize(FILE *file, Level *level){
         if(buffer[1] == '=' || buffer[1] == '-'){
             break;
         }
-
         countRow++;
 
         if(!calculatedCol){
@@ -131,16 +130,23 @@ void fillLevel(Level *level, FILE *file){
     int row = 0;
     char buffer[255];
     char *column;
+    int entity;
 
     while(row < level->rows){
         fgets(buffer, 255, file);
-
         buffer[strcspn(buffer, "\n")] = 0;
-
         column = strtok(buffer, " ");
 
         while(column != NULL ) {
-            level->map[row][col] = atoi(column);
+            entity = atoi(column);
+            level->map[row][col] = entity;
+
+            if(isMapRessource(entity)){
+                addToRessourceList(&level->ressourceList, entity, row, col);
+            }else if(isMonster(entity)){
+                addToMonsterList(&level->monsterList, entity, row, col);
+            }
+
             column = strtok(NULL, " ");
             col ++;
         }
@@ -149,7 +155,6 @@ void fillLevel(Level *level, FILE *file){
         row ++;
     }
 }
-
 
 void loadLevels(FILE *file, Levels *levels){
     skipLine(file, 2);
@@ -174,7 +179,96 @@ void loadLevels(FILE *file, Levels *levels){
     fillLevel(levels->lv2, file);
     skipLine(file, 1);
     fillLevel(levels->lv3, file);
+}
 
+int processItemLine(char buffer[255], int infoPos){
+    char *splited;
+    char *res;
+    int count = 0;
+    char tmpBuffer[255];
+
+    strncpy(tmpBuffer, buffer, 255);
+
+    while(count < infoPos){
+        if(count == 0){
+            splited = strtok(tmpBuffer, "@");
+        }else{
+            splited = strtok(NULL, "@");
+        }
+
+        count ++;
+    }
+
+    res = strtok(splited, "{}");
+
+    return atoi(res);
+}
+
+void loadInventory(FILE *file, Player *player){
+    int count = 0;
+    char buffer[255];
+    int quantity;
+    int item;
+    int durability;
+
+    while(count < MAX_INVENTORY_COUNT){
+        fgets(buffer, 255, file);
+
+        item = processItemLine(buffer, _itemPos);
+        quantity = processItemLine(buffer, _quantityPos);
+        durability = processItemLine(buffer, _durabilityPos);
+
+        if(durability == 0){
+            durability = _notSpecified;
+        }
+
+        if(item != 0){
+            addToStorage(&player->inventory, item, quantity, MAX_INVENTORY_COUNT, durability);
+        }
+
+        count++;
+    }
+}
+
+void loadChest(FILE *file, Levels *levels){
+    char buffer[255];
+    int item;
+    int quantity;
+
+    while(fgets(buffer, 255, file)){
+        item = processItemLine(buffer, _itemPos);
+        quantity = processItemLine(buffer, _quantityPos);
+
+        addToStorage(&levels->chest, item, quantity, NO_STORAGE_LIMIT, _notSpecified);
+    }
+}
+
+void loadPlayer(FILE *file, Player *player, Levels *levels){
+    char buffer[255];
+    char *res;
+
+    fgets(buffer, 255, file); //level
+    res = strtok(buffer, "{}");
+    player->level = atoi(res);
+
+    fgets(buffer, 255, file); //xp
+    res = strtok(buffer, "{}");
+    player->xp = atoi(res);
+
+    fgets(buffer, 255, file); //hp / current hp
+    res = strtok(buffer, "{}");
+    player->currentHp = atoi(res);
+    res = strtok(NULL, "{}");
+    res = strtok(NULL, "{}");
+    player->maxHp = atoi(res);
+
+    skipLine(file, 1);
+    player->inventory = NULL;
+    loadInventory(file, player);
+
+    skipLine(file, 1);
+    levels->chest = NULL;
+    loadChest(file, levels);
 }
 
 void loadSave(Levels *levels, Player *player) {
@@ -186,9 +280,10 @@ void loadSave(Levels *levels, Player *player) {
     }
 
     loadLevels(file, levels);
+    skipLine(file, 1);
+    loadPlayer(file, player, levels);
 
-    //gameLoop(levels, player);
-
+    printInventory(levels->chest);
     fclose(file);
 }
 

@@ -86,7 +86,7 @@ int harvestRessource(RessourceNode *ressourceNode, Player *player){
         int quantity = rand2(1,4);
 
         ressourceNode->harvested = RESPAWN_RESSOURCE;
-        addToStorage(&player->inventory, converted, quantity, MAX_INVENTORY_COUNT);
+        addToStorage(&player->inventory, converted, quantity, MAX_INVENTORY_COUNT, _notSpecified);
 
         printf("\nYou just harvested %d %s\n\n", quantity, ITEMS[ressourceNode->reference][_name]);
 

@@ -38,6 +38,7 @@
 		<Unit filename="headers/monster.h" />
 		<Unit filename="headers/player.h" />
 		<Unit filename="headers/ressource.h" />
+		<Unit filename="headers/save.h" />
 		<Unit filename="sources/combat.c">
 			<Option compilerVar="CC" />
 		</Unit>
