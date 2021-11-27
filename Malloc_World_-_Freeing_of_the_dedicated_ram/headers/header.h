@@ -28,6 +28,7 @@ typedef struct RessourceNode RessourceNode;
 
 #define MAX_RESSOURCE_STACK 20
 #define MAX_INVENTORY_COUNT 10
+#define NO_STORAGE_LIMIT 0
 
 #define WEAR_LV1 1
 #define WEAR_LV2 2
@@ -59,20 +60,34 @@ extern char ITEM_TYPE[4][32];
 #define TOTAL_LEVELS 9
 extern int LEVELS[TOTAL_LEVELS][3];
 
-#define RED  "\x1B[31m"
-#define RESET "\x1B[0m"
+#define TOTAL_CRAFTS 25
+extern int CRAFT[TOTAL_CRAFTS][6];
+
+
+#define BLACK "\033[0;30m"
+#define RED "\033[0;31m"
+#define GREEN "\033[0;32m"
+#define YELLOW "\033[0;33m"
+#define BLUE "\033[0;34m"
+#define MAGENTA "\033[0;35m"
+#define CYAN "\033[0;36m"
+
+#define RESET "\033[0m"
 
 //PLAYER
 void initPlayer(Player *player);
 void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
-void addToInventory(InventoryNode **inventoryHead, int item, int quantity);
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit);
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
+int playerInventoryIsFull(InventoryNode *inventoryHead);
 
 //MOVEMENT
 void handleMovement(Levels *levels, Player *player);
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest);
-void move(Level *level, Player *player, char direction, InventoryNode *chest);
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels);
+void move(Level *level, Player *player, char direction, Levels *levels);
+Level *getCurrentMap(Player *player, Levels *levels);
+void switchLevel(int target, Player *player, Levels *levels);
 
 // MAP
 int rand2 (int min, int max);

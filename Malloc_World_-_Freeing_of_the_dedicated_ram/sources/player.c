@@ -25,6 +25,21 @@ void displayCharacter(Player *player){
     printInventory(player->inventory);
 }
 
+int playerInventoryIsFull(InventoryNode *inventoryHead){
+    int count = 0;
+
+    while(inventoryHead != NULL){
+        count ++;
+        inventoryHead = inventoryHead->next;
+    }
+
+    if(count == MAX_INVENTORY_COUNT){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 //try to add a certain quantity to an inventory node if its a ressource (which is stackable)
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity){
     if(isItemRessource(item) && inventoryNode->value == item && inventoryNode->quantity < MAX_RESSOURCE_STACK){
@@ -41,7 +56,7 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity){
 }
 
 //add a certain amount of an item to the player inventory
-void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit){
     InventoryNode *newNode= malloc(sizeof(InventoryNode));
     newNode->value = item;
     newNode->quantity = quantity;
@@ -65,9 +80,16 @@ void addToInventory(InventoryNode **inventoryHead, int item, int quantity){
             quantity = addIfStackable(item, lastNode, quantity);
         }
 
-        if(count < MAX_INVENTORY_COUNT && quantity > 0){
-            newNode->quantity = quantity;
-            lastNode->next = newNode;
+        if(storageLimit){
+            if(count < storageLimit && quantity > 0){
+                newNode->quantity = quantity;
+                lastNode->next = newNode;
+            }
+        }else{
+            if(quantity > 0){
+                newNode->quantity = quantity;
+                lastNode->next = newNode;
+            }
         }
     }
 }
@@ -81,9 +103,8 @@ void initPlayer(Player *player){
     player->currentMapLvl = 1;
     player->inventory = NULL;
 
-    addToInventory(&player->inventory, _woodSword, 1);
-    addToInventory(&player->inventory, _woodPickaxe, 1);
-    addToInventory(&player->inventory, _woodBillhook, 1);
-    addToInventory(&player->inventory, _woodAxe, 1);
-
+    addToStorage(&player->inventory, _woodSword, 1, MAX_INVENTORY_COUNT);
+    addToStorage(&player->inventory, _woodPickaxe, 1, MAX_INVENTORY_COUNT);
+    addToStorage(&player->inventory, _woodBillhook, 1, MAX_INVENTORY_COUNT);
+    addToStorage(&player->inventory, _woodAxe, 1, MAX_INVENTORY_COUNT);
 }

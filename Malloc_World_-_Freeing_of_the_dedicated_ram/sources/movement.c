@@ -1,7 +1,44 @@
 #include "../headers/header.h"
 
+Level *getCurrentMap(Player *player, Levels *levels){
+    if(player->currentMapLvl == 1){
+        return levels->lv1;
+    }else if(player->currentMapLvl == 2){
+        return levels->lv2;
+    }else if(player->currentMapLvl == 3){
+        return levels->lv3;
+    }
+
+    return NULL;
+}
+
+void switchLevel(int target, Player *player, Levels *levels){
+
+    Level *currentMap = getCurrentMap(player, levels);
+    currentMap->map[player->row][player->column] = _empty;
+
+    if(target == _portal1){
+       if(player->currentMapLvl == 1){
+            player->currentMapLvl = 2;
+       }else if (player->currentMapLvl == 2){
+            player->currentMapLvl = 1;
+       }
+    }else if(target == _portal2){
+        if(player->currentMapLvl == 2){
+            player->currentMapLvl = 3;
+       }else if (player->currentMapLvl == 3){
+            player->currentMapLvl = 2;
+       }
+    }
+
+    printf("\nYou switched to map level %d\n\n", player->currentMapLvl);
+
+    Level *newMap = getCurrentMap(player, levels);
+    addPlayer(newMap, player);
+}
+
 //handle the different encounter on the map (ressource, ennemies, pnj...)
-int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, InventoryNode *chest){
+int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels){
     int allowed = 0;
 
     if(targetRow >= 0 && targetRow < level->rows && targetColumn >= 0 && targetColumn < level->columns){
@@ -19,11 +56,11 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
         }else if (target == _portal1 || target == _portal2){
 
-            printf("\nTODO : switch level\n\n");
+            switchLevel(target, player, levels);
 
         }else if (target == _npc){
 
-            handleNpc(player, chest);
+            handleNpc(player, levels->chest);
 
         }else if( target ==  _wall){
 
@@ -40,30 +77,32 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
     return allowed;
 }
 
+
 //used to change the postion of the player on the map according to the desired direction (up, down, left, right)
-void move (Level *level, Player *player, char direction, InventoryNode *chest){
+void move (Level *level, Player *player, char direction, Levels *levels){
 
     level->map[player->row][player->column] = _empty;
 
     if(direction == 'z'){
-        if(checkCollision(level, player->row-1, player->column, player, chest)){
+        if(checkCollision(level, player->row-1, player->column, player, levels)){
             player->row -= 1;
         }
     }else if(direction == 's'){
-        if(checkCollision(level, player->row+1, player->column, player, chest)){
+        if(checkCollision(level, player->row+1, player->column, player, levels)){
             player->row += 1;
         }
     }else if(direction == 'q'){
-        if(checkCollision(level, player->row, player->column-1, player, chest)){
+        if(checkCollision(level, player->row, player->column-1, player, levels)){
             player->column -= 1;
         }
     }else if (direction == 'd'){
-        if(checkCollision(level, player->row, player->column+1, player, chest)){
+        if(checkCollision(level, player->row, player->column+1, player, levels)){
             player->column += 1;
         }
     }
 
-    level->map[player->row][player->column] = _player;
+    Level *current = getCurrentMap(player, levels); //if level has changed
+    current->map[player->row][player->column] = _player;
 
 }
 
@@ -75,8 +114,9 @@ void handleMovement(Levels *levels, Player *player){
     printf("\n\n\n");
 
     do{
+        Level *currentLevel = getCurrentMap(player, levels);
 
-        printMap(levels->lv1->map, levels->lv1->rows, levels->lv1->columns);
+        printMap(currentLevel->map, currentLevel->rows, currentLevel->columns);
 
         printf("\nWhich direction ? (z : up, s : down, q : left, d : right ) (e : exit) : ");
         fflush(stdin);
@@ -84,7 +124,7 @@ void handleMovement(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        move(levels->lv1, player, direction, levels->chest);
+        move(currentLevel, player, direction, levels);
 
     }while(direction != 'e');
 }

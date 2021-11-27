@@ -5,16 +5,28 @@ int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
+void getColor(int entity){
+    if(entity == _player){
+        printf(YELLOW);
+    }else if(isMapRessource(entity)){
+        printf(GREEN);
+    }else if(entity == _wall){
+        printf(MAGENTA);
+    }else if(entity == _npc){
+        printf(BLUE);
+    }else if(isMonster(entity)){
+        printf(RED);
+    }else if(entity == _portal1 || entity == _portal2){
+        printf(CYAN);
+    }
+}
 //used to display the map to the player
 void printMap(int **map, int rows, int columns){
 
     for (int i = 0; i < rows; i++){
         for(int j = 0; j < columns; j++){
-            if(map[i][j] == _player){
-                printf(RED " %2d " RESET, map[i][j]);
-            }else{
-                printf(" %2d ", map[i][j]);
-            }
+            getColor(map[i][j]);
+            printf(" %2d " RESET, map[i][j]);
         }
         printf("\n");
     }
