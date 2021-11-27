@@ -5,6 +5,36 @@ int rand2 (int min, int max){
     return (rand()%(max-min+1)) + min;
 }
 
+void respawnMonsters(Level *level, MonsterNode *list, Player *player){
+
+    while(list != NULL){
+        if(list->respawn > 1 ){
+            list->respawn -= 1;
+        }else if (list->respawn == 1){
+            if(list->row != player->row && list->column != player->column){
+                list->respawn = 0;
+                level->map[list->row][list->column] = list->value;
+            }
+        }
+        list = list->next;
+    }
+}
+
+void respawnRessource(Level *level, RessourceNode *list, Player *player){
+
+    while(list != NULL){
+        if(list->harvested > 1 ){
+            list->harvested -= 1;
+        }else if (list->harvested == 1){
+            if(list->row != player->row && list->column != player->column){
+                list->harvested = 0;
+                level->map[list->row][list->column] = list->value;
+            }
+        }
+        list = list->next;
+    }
+}
+
 void getColor(int entity){
     if(entity == _player){
         printf(YELLOW);

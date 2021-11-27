@@ -86,9 +86,9 @@ int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 int playerInventoryIsFull(InventoryNode *inventoryHead);
 
 //MOVEMENT
-void handleMovement(Levels *levels, Player *player);
+int handleMovement(Levels *levels, Player *player);
 int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels);
-void move(Level *level, Player *player, char direction, Levels *levels);
+int move(Level *level, Player *player, char direction, Levels *levels);
 Level *getCurrentMap(Player *player, Levels *levels);
 void switchLevel(int target, Player *player, Levels *levels);
 
@@ -100,6 +100,9 @@ void addPlayer(Level *level, Player *player);
 void populate(Level *level, int entity, int quantity);
 void populateLevel(Level *level);
 void initMap(Levels *levels, int rows, int columns, Player *player);
+void getColor(int entity);
+void respawnMonsters(Level *level, MonsterNode *list, Player *player);
+void respawnRessource(Level *level, RessourceNode *list, Player *player);
 
 //RESSOURCE
 int isMapRessource(int entity);
@@ -129,7 +132,7 @@ void handlePotion(Player *player, InventoryNode *potion);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
-void handleAction(Levels *levels, Player *player, char action);
+int handleAction(Levels *levels, Player *player, char action);
 void handleMainMenu(char action);
 
 //ITEM
@@ -170,5 +173,13 @@ void saveChest(InventoryNode *chest, FILE *file);
 void saveInventory(InventoryNode *inventoryHead, FILE *file);
 void saveMap(Level *level, FILE *file);
 void loadSave(Levels *levels, Player *player);
+void skipLine(FILE *file, int skip);
+void checkMapSize(FILE *file, Level *level);
+void fillLevel(Level *level, FILE *file, Player *player);
+void loadLevels(FILE *file, Levels *levels, Player *player);
+int processItemLine(char buffer[255], int infoPos);
+void loadInventory(FILE *file, Player *player);
+void loadChest(FILE *file, Levels *levels);
+void loadPlayer(FILE *file, Player *player, Levels *levels);
 
 #endif

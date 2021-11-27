@@ -80,7 +80,7 @@ RessourceNode *findRessourceNode(RessourceNode *ressourceNode, int row, int colu
 //harvest a ressource and add it to the player inventory if the player can do it
 int harvestRessource(RessourceNode *ressourceNode, Player *player){
     int converted = mapToItemRessource(ressourceNode->value);
-    int allowed = 0;
+    int allowed = _notAllowed;
 
     if(canHarvest(converted, player->inventory)){
         int quantity = rand2(1,4);
@@ -90,7 +90,7 @@ int harvestRessource(RessourceNode *ressourceNode, Player *player){
 
         printf("\nYou just harvested %d %s\n\n", quantity, ITEMS[ressourceNode->reference][_name]);
 
-        allowed = 1;
+        allowed = _allowed;
     }else{
         printf("\nYou don't have the required tool or its durability is too low\n\n");
     }

@@ -107,7 +107,7 @@ void initPlayer(Player *player){
     player->level = 1;
     player->xp = 0;
     player->maxHp = 100;
-    player->currentHp = 100;
+    player->currentHp = 5;
     player->currentMapLvl = 1;
     player->inventory = NULL;
 
