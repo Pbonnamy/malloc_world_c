@@ -57,7 +57,6 @@ void handleMainMenu(char action){
         gameLoop(levels, player);
 
     }else if(action == '2'){
-        printf("\nTODO : Load Save\n");
+        loadSave(levels, player);
     }
-
 }

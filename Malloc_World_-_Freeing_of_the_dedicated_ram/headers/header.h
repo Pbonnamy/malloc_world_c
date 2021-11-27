@@ -168,5 +168,6 @@ void savePlayer(Player *player, FILE *file, InventoryNode *chest);
 void saveChest(InventoryNode *chest, FILE *file);
 void saveInventory(InventoryNode *inventoryHead, FILE *file);
 void saveMap(Level *level, FILE *file);
+void loadSave(Levels *levels, Player *player);
 
 #endif

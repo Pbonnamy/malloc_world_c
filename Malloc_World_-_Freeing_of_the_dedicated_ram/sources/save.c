@@ -84,3 +84,112 @@ void save(Levels *levels, Player *player){
     printf("\nGame saved.\n");
     fclose(file);
 }
+
+void skipLine(FILE *file, int skip){
+    int count = 0;
+    char buffer[255];
+
+    while(count < skip){
+        count ++;
+        fgets(buffer, 255, file);
+    }
+
+}
+
+void checkMapSize(FILE *file, Level *level){
+    char buffer[255];
+    int countRow = 0;
+    int countCol = 0;
+    int calculatedCol = 0;
+
+    while(fgets(buffer, 255, file)){
+
+        if(buffer[1] == '=' || buffer[1] == '-'){
+            break;
+        }
+
+        countRow++;
+
+        if(!calculatedCol){
+            char *column = strtok(buffer, " ");
+
+            while(column != NULL ) {
+              column = strtok(NULL, " ");
+              countCol++;
+            }
+
+           calculatedCol = 1;
+        }
+    };
+
+    level->columns = countCol;
+    level->rows = countRow;
+}
+
+void fillLevel(Level *level, FILE *file){
+    int col = 0;
+    int row = 0;
+    char buffer[255];
+    char *column;
+
+    while(row < level->rows){
+        fgets(buffer, 255, file);
+
+        buffer[strcspn(buffer, "\n")] = 0;
+
+        column = strtok(buffer, " ");
+
+        while(column != NULL ) {
+            level->map[row][col] = atoi(column);
+            column = strtok(NULL, " ");
+            col ++;
+        }
+        col = 0;
+
+        row ++;
+    }
+}
+
+
+void loadLevels(FILE *file, Levels *levels){
+    skipLine(file, 2);
+
+    levels->lv1 = malloc(sizeof(Level));
+    levels->lv2 = malloc(sizeof(Level));
+    levels->lv3 = malloc(sizeof(Level));
+
+    checkMapSize(file, levels->lv1);
+    checkMapSize(file, levels->lv2);
+    checkMapSize(file, levels->lv3);
+
+    createLevel(levels->lv1, levels->lv1->rows, levels->lv1->columns, 1);
+    createLevel(levels->lv2, levels->lv2->rows, levels->lv2->columns, 2);
+    createLevel(levels->lv3, levels->lv3->rows, levels->lv3->columns, 3);
+
+    fseek(file, 0, SEEK_SET);
+    skipLine(file, 2);
+
+    fillLevel(levels->lv1, file);
+    skipLine(file, 1);
+    fillLevel(levels->lv2, file);
+    skipLine(file, 1);
+    fillLevel(levels->lv3, file);
+
+}
+
+void loadSave(Levels *levels, Player *player) {
+    FILE *file = fopen("save.txt", "r");
+
+    if(!file){
+        printf("\nNo save file available\n");
+        return;
+    }
+
+    loadLevels(file, levels);
+
+    //gameLoop(levels, player);
+
+    fclose(file);
+}
+
+
