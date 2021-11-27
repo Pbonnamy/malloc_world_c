@@ -1,5 +1,6 @@
 #include "../headers/header.h"
 
+//get the current level the player is in
 Level *getCurrentMap(Player *player, Levels *levels){
     if(player->currentMapLvl == 1){
         return levels->lv1;
@@ -12,6 +13,7 @@ Level *getCurrentMap(Player *player, Levels *levels){
     return NULL;
 }
 
+//used to switch between the 3 different map level
 void switchLevel(int target, Player *player, Levels *levels){
 
     Level *currentMap = getCurrentMap(player, levels);
@@ -39,7 +41,7 @@ void switchLevel(int target, Player *player, Levels *levels){
 
 //handle the different encounter on the map (ressource, ennemies, pnj...)
 int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels){
-    int allowed = 0;
+    int allowed = _notAllowed;
 
     if(targetRow >= 0 && targetRow < level->rows && targetColumn >= 0 && targetColumn < level->columns){
         int target = level->map[targetRow][targetColumn];
@@ -68,7 +70,7 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
         }else{
             printf("\n\n\n");
-            allowed = 1;
+            allowed = _allowed;
         }
     }else{
         printf("\nError : movement not allowed\n\n");
@@ -79,24 +81,25 @@ int checkCollision(Level *level, int targetRow, int targetColumn, Player *player
 
 
 //used to change the postion of the player on the map according to the desired direction (up, down, left, right)
-void move (Level *level, Player *player, char direction, Levels *levels){
+int move (Level *level, Player *player, char direction, Levels *levels){
 
     level->map[player->row][player->column] = _empty;
+    int state = _notAllowed;
 
     if(direction == 'z'){
-        if(checkCollision(level, player->row-1, player->column, player, levels)){
+        if((state = checkCollision(level, player->row-1, player->column, player, levels))){
             player->row -= 1;
         }
     }else if(direction == 's'){
-        if(checkCollision(level, player->row+1, player->column, player, levels)){
+        if((state = checkCollision(level, player->row+1, player->column, player, levels))){
             player->row += 1;
         }
     }else if(direction == 'q'){
-        if(checkCollision(level, player->row, player->column-1, player, levels)){
+        if((state = checkCollision(level, player->row, player->column-1, player, levels))){
             player->column -= 1;
         }
     }else if (direction == 'd'){
-        if(checkCollision(level, player->row, player->column+1, player, levels)){
+        if((state = checkCollision(level, player->row, player->column+1, player, levels))){
             player->column += 1;
         }
     }
@@ -104,17 +107,22 @@ void move (Level *level, Player *player, char direction, Levels *levels){
     Level *current = getCurrentMap(player, levels); //if level has changed
     current->map[player->row][player->column] = _player;
 
+    return state;
 }
 
 //main loop to handle movement (step 1 -> display the map, step 2 -> ask the player for an action to execute)
-void handleMovement(Levels *levels, Player *player){
+int handleMovement(Levels *levels, Player *player){
 
     char direction;
+    int state = _continu;
 
     printf("\n\n\n");
 
     do{
         Level *currentLevel = getCurrentMap(player, levels);
+
+        respawnMonsters(currentLevel, currentLevel->monsterList, player);
+        respawnRessource(currentLevel, currentLevel->ressourceList, player);
 
         printMap(currentLevel->map, currentLevel->rows, currentLevel->columns);
 
@@ -124,7 +132,9 @@ void handleMovement(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        move(currentLevel, player, direction, levels);
+        state = move(currentLevel, player, direction, levels);
 
-    }while(direction != 'e');
+    }while(direction != 'e' && state != _end);
+
+    return state;
 }

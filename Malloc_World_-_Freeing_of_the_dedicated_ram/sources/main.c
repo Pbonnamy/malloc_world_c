@@ -6,7 +6,6 @@ int main(){
     char action;
 
     do{
-
         printf("\n----------- MAIN MENU ----------\n\n");
 
         printf("1 - New Game \n"

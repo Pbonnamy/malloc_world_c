@@ -20,6 +20,7 @@ typedef struct RessourceNode RessourceNode;
 #include "player.h"
 #include "data.h"
 #include "item.h"
+#include "save.h"
 
 #define TOOL_DURABILITY 10
 #define SWORD_DURABILITY 10
@@ -34,6 +35,8 @@ typedef struct RessourceNode RessourceNode;
 #define WEAR_LV2 2
 #define WEAR_LV3 4
 #define WEAR_COMBAT 1
+
+#define MAX_LEVEL 10
 
 #define INIT_MAP_ROWS 10
 #define INIT_MAP_COLUMNS 10
@@ -78,14 +81,14 @@ extern int CRAFT[TOTAL_CRAFTS][6];
 void initPlayer(Player *player);
 void displayCharacter(Player *player);
 void printInventory(InventoryNode *inventoryNode);
-void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit);
+void addToStorage(InventoryNode **inventoryHead, int item, int quantity, int storageLimit, int durability);
 int addIfStackable(int item, InventoryNode * inventoryNode, int quantity);
 int playerInventoryIsFull(InventoryNode *inventoryHead);
 
 //MOVEMENT
-void handleMovement(Levels *levels, Player *player);
+int handleMovement(Levels *levels, Player *player);
 int checkCollision(Level *level, int targetRow, int targetColumn, Player *player, Levels *levels);
-void move(Level *level, Player *player, char direction, Levels *levels);
+int move(Level *level, Player *player, char direction, Levels *levels);
 Level *getCurrentMap(Player *player, Levels *levels);
 void switchLevel(int target, Player *player, Levels *levels);
 
@@ -97,6 +100,9 @@ void addPlayer(Level *level, Player *player);
 void populate(Level *level, int entity, int quantity);
 void populateLevel(Level *level);
 void initMap(Levels *levels, int rows, int columns, Player *player);
+void getColor(int entity);
+void respawnMonsters(Level *level, MonsterNode *list, Player *player);
+void respawnRessource(Level *level, RessourceNode *list, Player *player);
 
 //RESSOURCE
 int isMapRessource(int entity);
@@ -126,7 +132,7 @@ void handlePotion(Player *player, InventoryNode *potion);
 
 //MENU
 void gameLoop(Levels *levels, Player *player);
-void handleAction(Levels *levels, Player *player, char action);
+int handleAction(Levels *levels, Player *player, char action);
 void handleMainMenu(char action);
 
 //ITEM
@@ -151,5 +157,29 @@ void handleNpc(Player *player, InventoryNode *chest);
 void repair(InventoryNode *inventoryHead);
 void transferItem(Player *player, InventoryNode *chest);
 int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit);
+int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, int quantity);
+int craftIndex(int item);
+int canCraft(InventoryNode *inventory, InventoryNode *chest, int item, int currentMapLevel);
+int craftableItemList(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel);
+int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index, int currentMapLevel);
+int removeRessource(InventoryNode *inventoryHead, int ressource, int quantity);
+void craftItem(InventoryNode *inventory, InventoryNode *chest, int item);
+void craft(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel);
+
+//SAVE
+void save(Levels *levels, Player *player);
+void savePlayer(Player *player, FILE *file, InventoryNode *chest);
+void saveChest(InventoryNode *chest, FILE *file);
+void saveInventory(InventoryNode *inventoryHead, FILE *file);
+void saveMap(Level *level, FILE *file);
+void loadSave(Levels *levels, Player *player);
+void skipLine(FILE *file, int skip);
+void checkMapSize(FILE *file, Level *level);
+void fillLevel(Level *level, FILE *file, Player *player);
+void loadLevels(FILE *file, Levels *levels, Player *player);
+int processItemLine(char buffer[255], int infoPos);
+void loadInventory(FILE *file, Player *player);
+void loadChest(FILE *file, Levels *levels);
+void loadPlayer(FILE *file, Player *player, Levels *levels);
 
 #endif

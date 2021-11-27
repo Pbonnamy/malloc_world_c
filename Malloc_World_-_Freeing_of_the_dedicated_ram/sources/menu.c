@@ -1,21 +1,24 @@
 #include "../headers/header.h"
 
 //handling gameloop action (1 -> display character sheet / 2 -> move on the map / 3 -> Save progression
-void handleAction(Levels *levels, Player *player, char action){
+int handleAction(Levels *levels, Player *player, char action){
+    int state = _continu;
 
     if(action == '1'){
         displayCharacter(player);
     }else if(action == '2'){
-        handleMovement(levels, player);
+        state = handleMovement(levels, player);
     }else if(action == '3'){
-        printf("\nTODO : Save\n");
+        save(levels, player);
     }
+
+    return state;
 }
 
 // main game loop
 void gameLoop(Levels *levels, Player *player){
     char action;
-
+    int state = _continu;
     do{
 
         printf("\n----------- MENU ----------\n\n");
@@ -32,9 +35,9 @@ void gameLoop(Levels *levels, Player *player){
 
         system("cls"); //clear console
 
-        handleAction(levels, player, action);
+        state = handleAction(levels, player, action);
 
-    }while(action != '4');
+    }while(action != '4' && state != _end);
 }
 
 //handling main menu action (1 -> play game / 2 -> load save / 3 -> quit)
@@ -51,13 +54,12 @@ void handleMainMenu(char action){
         initMap(levels, INIT_MAP_ROWS, INIT_MAP_COLUMNS, player);
         initPlayer(player);
 
-        //printRessourceList(levels->lv1->ressourceList);
-        //printMonsterList(levels->lv1->monsterList);
-
     }else if(action == '2'){
-        printf("\nTODO : Load Save\n");
+        loadSave(levels, player);
     }
 
-    gameLoop(levels, player);
+    //printRessourceList(levels->lv1->ressourceList);
+    //printMonsterList(levels->lv1->monsterList);
 
+    gameLoop(levels, player);
 }

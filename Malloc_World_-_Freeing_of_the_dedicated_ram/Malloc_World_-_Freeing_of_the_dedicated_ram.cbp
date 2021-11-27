@@ -38,6 +38,7 @@
 		<Unit filename="headers/monster.h" />
 		<Unit filename="headers/player.h" />
 		<Unit filename="headers/ressource.h" />
+		<Unit filename="headers/save.h" />
 		<Unit filename="sources/combat.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -69,6 +70,9 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sources/ressource.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sources/save.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

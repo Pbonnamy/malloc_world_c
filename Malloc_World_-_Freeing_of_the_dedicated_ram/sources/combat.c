@@ -61,7 +61,7 @@ int findLevelRequirement(int level){
         }
     }
 
-    return -1;
+    return TOTAL_LEVELS-1;
 }
 
 //calculate how many xp the player gained after defeating the monster
@@ -73,7 +73,7 @@ void leveling(Player *player, MonsterNode *monster){
     printf("\nYou defeated '%s'. You gain %d xp.\n\n", MONSTERS[monster->reference][_name], xp);
     int index = findLevelRequirement(player->level + 1);
 
-    if(index != -1){
+    if(player->level < MAX_LEVEL){
         if(player->xp >= LEVELS[index][_xpRequired]){
             player->level = LEVELS[index][_level];
             player->maxHp += LEVELS[index][_levelBonus];
@@ -107,7 +107,7 @@ void handlePotion(Player *player, InventoryNode *potion){
 int handleCombat(MonsterNode *monsterNode, Player *player){
     char action;
     int loop = 1;
-    int defeated = 0;
+    int state = 0;
 
     printf("\nYour are fighting a %s - Hp : %d | Dmg : %s\n", MONSTERS[monsterNode->reference][_name], monsterNode->hp, MONSTERS[monsterNode->reference][_monsterDamage]);
 
@@ -145,18 +145,22 @@ int handleCombat(MonsterNode *monsterNode, Player *player){
                     if(monsterNode->value != _boss){
                         leveling(player, monsterNode);
                         loop = 0;
-                        defeated = 1;
+                        state = _allowed;
                     }else{
-                        printf("\nYou killed the boss. YOU WIN.\n");
+                        state = _end;
+                        system("cls");
+                        printf(GREEN "\nYou killed the boss. YOU WIN.\n" RESET);
                     }
                 }
             }else{
-                printf("\nYou are dead. GAME OVER.\n");
+                system("cls");
+                printf(RED "\nYou are dead. GAME OVER.\n" RESET);
+                state = _end;
                 loop = 0;
             }
         }
 
     }while(loop);
 
-    return defeated;
+    return state;
 }

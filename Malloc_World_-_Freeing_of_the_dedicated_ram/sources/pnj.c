@@ -11,6 +11,7 @@ void repair(InventoryNode *inventoryHead){
     printf("\nAll your items are now repaired.\n");
 }
 
+//check if the player as enough ressource in his storage (chest + inventory)
 int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, int quantity){
 
     while(inventory != NULL){
@@ -34,6 +35,7 @@ int hasRessource(InventoryNode *inventory, InventoryNode *chest, int ressource, 
     }
 }
 
+//retrieve the index of the item in the CRAFT array
 int craftIndex(int item){
     for(int i = 0; i < TOTAL_CRAFTS; i++){
         if(CRAFT[i][_item] == item){
@@ -44,6 +46,7 @@ int craftIndex(int item){
     return -1;
 }
 
+//check if a player can craft a given item
 int canCraft(InventoryNode *inventory, InventoryNode *chest, int item, int currentMapLevel){
     int index = craftIndex(item);
 
@@ -68,6 +71,7 @@ int canCraft(InventoryNode *inventory, InventoryNode *chest, int item, int curre
     return 1;
 }
 
+//will display all the items that the player can craft
 int craftableItemList(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel){
     int item;
     int ressourceRef;
@@ -104,6 +108,7 @@ int craftableItemList(InventoryNode *inventory, InventoryNode *chest, int curren
     return count;
 }
 
+//return the item taht the player want to craft given an index
 int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index, int currentMapLevel){
     int item;
     int count = 0;
@@ -122,6 +127,7 @@ int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index, i
     return -1;
 }
 
+//remove a certain amount of ressource from the storage of a player
 int removeRessource(InventoryNode *inventoryHead, int ressource, int quantity){
     InventoryNode *lastNode = inventoryHead;
 
@@ -143,6 +149,7 @@ int removeRessource(InventoryNode *inventoryHead, int ressource, int quantity){
     return quantity;
 }
 
+//handle the craft of an item (1 -> remove ressource from storage | 2 - add the crafted item to the storage)
 void craftItem(InventoryNode *inventory, InventoryNode *chest, int item){
     int index = craftIndex(item);
 
@@ -166,15 +173,16 @@ void craftItem(InventoryNode *inventory, InventoryNode *chest, int item){
     }
 
     if(playerInventoryIsFull(inventory)){
-        addToStorage(&chest, item, 1, NO_STORAGE_LIMIT);
+        addToStorage(&chest, item, 1, NO_STORAGE_LIMIT, _notSpecified);
         printf("\nA %s was stored in your chest.\n", ITEMS[findItemReference(item)][_name]);
     }else{
-        addToStorage(&inventory, item, 1, MAX_INVENTORY_COUNT);
+        addToStorage(&inventory, item, 1, MAX_INVENTORY_COUNT, _notSpecified);
         printf("\nA %s was crafted in your inventory.\n", ITEMS[findItemReference(item)][_name]);
     }
 
 }
 
+//main loop to the crafting handling
 void craft(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel){
     int chosen;
     int count;
@@ -196,6 +204,7 @@ void craft(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel){
     }
 }
 
+//transfer an item from a storage to another storage
 int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimit){
 
     InventoryNode *newNode = malloc(sizeof(InventoryNode));
@@ -249,6 +258,7 @@ int transfer(InventoryNode **inventoryHead, InventoryNode *item, int storageLimi
     return transfered;
 }
 
+//main loop for transfering item between storage (1 -> select item to transfer, 2 -> create item in new storage, 3 -> remove item from ancient storage)
 void transferItem(Player *player, InventoryNode *chest){
     char choice;
 
