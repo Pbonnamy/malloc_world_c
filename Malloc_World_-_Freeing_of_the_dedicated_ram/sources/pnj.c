@@ -44,13 +44,18 @@ int craftIndex(int item){
     return -1;
 }
 
-int canCraft(InventoryNode *inventory, InventoryNode *chest, int item){
+int canCraft(InventoryNode *inventory, InventoryNode *chest, int item, int currentMapLevel){
     int index = craftIndex(item);
 
     int ressource1 = CRAFT[index][_craftRessource1];
     int quantity1 = CRAFT[index][_craftQuantity1];
     int ressource2 = CRAFT[index][_craftRessource2];
     int quantity2 = CRAFT[index][_craftQuantity2];
+    int requiredMapLevel = CRAFT[index][_minCraftlvl];
+
+    if(currentMapLevel < requiredMapLevel){
+        return 0;
+    }
 
     if(!hasRessource(inventory, chest, ressource1, quantity1)){
         return 0;
@@ -63,7 +68,7 @@ int canCraft(InventoryNode *inventory, InventoryNode *chest, int item){
     return 1;
 }
 
-int craftableItemList(InventoryNode *inventory, InventoryNode *chest){
+int craftableItemList(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel){
     int item;
     int ressourceRef;
     int count = 0;
@@ -73,7 +78,7 @@ int craftableItemList(InventoryNode *inventory, InventoryNode *chest){
     for(int i = 0; i < TOTAL_CRAFTS; i++){
         item = CRAFT[i][_item];
 
-        if(canCraft(inventory, chest, item)){
+        if(canCraft(inventory, chest, item, currentMapLevel)){
             count ++;
             printf("%d - ", count);
 
@@ -99,14 +104,14 @@ int craftableItemList(InventoryNode *inventory, InventoryNode *chest){
     return count;
 }
 
-int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index){
+int findItemToCraft(InventoryNode *inventory, InventoryNode *chest, int index, int currentMapLevel){
     int item;
     int count = 0;
 
     for(int i = 0; i < TOTAL_CRAFTS; i++){
         item = CRAFT[i][_item];
 
-        if(canCraft(inventory, chest, item)){
+        if(canCraft(inventory, chest, item, currentMapLevel)){
             count ++;
             if(count == index){
                 return item;
@@ -170,11 +175,11 @@ void craftItem(InventoryNode *inventory, InventoryNode *chest, int item){
 
 }
 
-void craft(InventoryNode *inventory, InventoryNode *chest){
+void craft(InventoryNode *inventory, InventoryNode *chest, int currentMapLevel){
     int chosen;
     int count;
 
-    count = craftableItemList(inventory, chest);
+    count = craftableItemList(inventory, chest, currentMapLevel);
 
     if(count == 0){
         return;
@@ -185,7 +190,7 @@ void craft(InventoryNode *inventory, InventoryNode *chest){
         scanf("%d", &chosen);
 
         if(chosen > 0 && chosen <= count){
-            int itemToCraft = findItemToCraft(inventory, chest, chosen);
+            int itemToCraft = findItemToCraft(inventory, chest, chosen, currentMapLevel);
             craftItem(inventory, chest, itemToCraft);
         }
     }
@@ -293,7 +298,7 @@ void handleNpc(Player *player, InventoryNode *chest){
         if(action == 'r'){
             repair(player->inventory);
         }else if(action == 'c'){
-            craft(player->inventory, chest);
+            craft(player->inventory, chest, player->currentMapLvl);
         }else if(action == 't'){
             transferItem(player, chest);
         }
