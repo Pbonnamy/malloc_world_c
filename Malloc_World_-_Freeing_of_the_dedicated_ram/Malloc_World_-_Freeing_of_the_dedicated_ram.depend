@@ -89,7 +89,7 @@
 1638042945 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\ressource.h
 	"header.h"
 
-1638048086 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\main.c
+1638097476 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\main.c
 	"../headers/header.h"
 
 1638048576 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\pnj.c
@@ -194,4 +194,77 @@
 
 1638025376 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\headers\save.h
 	"header.h"
+
+1638047795 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\combat.c
+	"../headers/header.h"
+
+1638047689 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\header.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	<math.h>
+	"monster.h"
+	"ressource.h"
+	"map.h"
+	"player.h"
+	"data.h"
+	"item.h"
+	"save.h"
+
+1636833883 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\monster.h
+	"header.h"
+
+1638042945 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\ressource.h
+	"header.h"
+
+1638007279 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\map.h
+	"header.h"
+
+1637271875 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\player.h
+	"header.h"
+
+1638047650 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\data.h
+	"header.h"
+
+1638007279 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\item.h
+	"header.h"
+
+1638025376 c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\headers\save.h
+	"header.h"
+
+1638049204 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\data.c
+	"../headers/header.h"
+
+1638007279 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\item.c
+	"../headers/header.h"
+
+1638097476 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\main.c
+	"../headers/header.h"
+
+1638048163 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\map.c
+	"../headers/header.h"
+
+1638047627 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\menu.c
+	"../headers/header.h"
+
+1638007279 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\monster.c
+	"../headers/header.h"
+
+1638048217 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\movement.c
+	"../headers/header.h"
+
+1638096369 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\player.c
+	"../headers/header.h"
+
+1638048576 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\pnj.c
+	"../headers/header.h"
+
+1638047121 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\ressource.c
+	"../headers/header.h"
+
+1638096480 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\sources\sources\save.c
+	"../headers/header.h"
+
+1638099741 source:c:\users\pierre\desktop\esgi\code\projet c malloc world\malloc_world_-_freeing_of_the_dedicated_ram\ressources\icon.rc
 
