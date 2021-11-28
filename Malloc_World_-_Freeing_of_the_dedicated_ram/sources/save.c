@@ -301,7 +301,6 @@ void loadSave(Levels *levels, Player *player) {
     skipLine(file, 1);
     loadPlayer(file, player, levels);
 
-    printInventory(levels->chest);
     fclose(file);
 }
 
