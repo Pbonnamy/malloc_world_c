@@ -31,48 +31,51 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="headers/data.h" />
-		<Unit filename="headers/header.h" />
-		<Unit filename="headers/item.h" />
-		<Unit filename="headers/map.h" />
-		<Unit filename="headers/monster.h" />
-		<Unit filename="headers/player.h" />
-		<Unit filename="headers/ressource.h" />
-		<Unit filename="headers/save.h" />
-		<Unit filename="sources/combat.c">
+		<Unit filename="ressources/icon.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="sources/headers/data.h" />
+		<Unit filename="sources/headers/header.h" />
+		<Unit filename="sources/headers/item.h" />
+		<Unit filename="sources/headers/map.h" />
+		<Unit filename="sources/headers/monster.h" />
+		<Unit filename="sources/headers/player.h" />
+		<Unit filename="sources/headers/ressource.h" />
+		<Unit filename="sources/headers/save.h" />
+		<Unit filename="sources/sources/combat.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/data.c">
+		<Unit filename="sources/sources/data.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/item.c">
+		<Unit filename="sources/sources/item.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/main.c">
+		<Unit filename="sources/sources/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/map.c">
+		<Unit filename="sources/sources/map.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/menu.c">
+		<Unit filename="sources/sources/menu.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/monster.c">
+		<Unit filename="sources/sources/monster.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/movement.c">
+		<Unit filename="sources/sources/movement.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/player.c">
+		<Unit filename="sources/sources/player.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/pnj.c">
+		<Unit filename="sources/sources/pnj.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/ressource.c">
+		<Unit filename="sources/sources/ressource.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sources/save.c">
+		<Unit filename="sources/sources/save.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
