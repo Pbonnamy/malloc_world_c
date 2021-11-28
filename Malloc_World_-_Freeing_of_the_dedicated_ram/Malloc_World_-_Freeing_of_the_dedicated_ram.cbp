@@ -48,6 +48,9 @@
 		<Unit filename="sources/sources/data.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sources/sources/free.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="sources/sources/item.c">
 			<Option compilerVar="CC" />
 		</Unit>
