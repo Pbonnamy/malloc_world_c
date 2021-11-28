@@ -204,7 +204,7 @@ void removeItem(InventoryNode **inventoryHead, InventoryNode *nodeToRemove){
         }
     }
 
-
+    free(nodeToRemove);
 };
 
 //handling item selection for a given type

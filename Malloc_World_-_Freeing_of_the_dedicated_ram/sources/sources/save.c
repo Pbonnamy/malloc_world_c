@@ -289,12 +289,12 @@ void loadPlayer(FILE *file, Player *player, Levels *levels){
 }
 
 //main function to load the different informations from the save.txt file (1 -> load level, 2 -> load player)
-void loadSave(Levels *levels, Player *player) {
+int loadSave(Levels *levels, Player *player) {
     FILE *file = fopen("save.txt", "r");
 
     if(!file){
         printf("\nNo save file available\n");
-        return;
+        return _notAllowed;
     }
 
     loadLevels(file, levels, player);
@@ -302,6 +302,8 @@ void loadSave(Levels *levels, Player *player) {
     loadPlayer(file, player, levels);
 
     fclose(file);
+
+    return _allowed;
 }
 
 

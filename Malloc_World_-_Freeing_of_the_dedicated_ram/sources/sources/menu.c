@@ -38,6 +38,8 @@ void gameLoop(Levels *levels, Player *player){
         state = handleAction(levels, player, action);
 
     }while(action != '4' && state != _end);
+
+    freeEverything(levels, player);
 }
 
 //handling main menu action (1 -> play game / 2 -> load save / 3 -> quit)
@@ -45,6 +47,8 @@ void handleMainMenu(char action){
     if(action == '3'){
         return;
     }
+
+    int state = _allowed;
 
     Levels *levels = malloc(sizeof(Levels));
     Player *player = malloc(sizeof(Player));
@@ -55,11 +59,13 @@ void handleMainMenu(char action){
         initPlayer(player);
 
     }else if(action == '2'){
-        loadSave(levels, player);
+        state = loadSave(levels, player);
     }
 
     //printRessourceList(levels->lv1->ressourceList);
     //printMonsterList(levels->lv1->monsterList);
 
-    gameLoop(levels, player);
+    if(state == _allowed){
+        gameLoop(levels, player);
+    }
 }

@@ -75,7 +75,7 @@ void createLevel(Level *level, int rows, int columns, int nbLevel){
     level->rows = rows;
     level->columns = columns;
 
-    for(int i = 0; i < columns; i ++){
+    for(int i = 0; i < rows; i ++){
         level->map[i] = malloc(sizeof(int)*columns);
     }
 

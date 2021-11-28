@@ -172,7 +172,7 @@ void savePlayer(Player *player, FILE *file, InventoryNode *chest);
 void saveChest(InventoryNode *chest, FILE *file);
 void saveInventory(InventoryNode *inventoryHead, FILE *file);
 void saveMap(Level *level, FILE *file);
-void loadSave(Levels *levels, Player *player);
+int loadSave(Levels *levels, Player *player);
 void skipLine(FILE *file, int skip);
 void checkMapSize(FILE *file, Level *level);
 void fillLevel(Level *level, FILE *file, Player *player);
@@ -181,5 +181,13 @@ int processItemLine(char buffer[255], int infoPos);
 void loadInventory(FILE *file, Player *player);
 void loadChest(FILE *file, Levels *levels);
 void loadPlayer(FILE *file, Player *player, Levels *levels);
+
+//FREE
+void freeMonsterList(MonsterNode *head);
+void freeRessourceList(RessourceNode *head);
+void freeMap(int **map, int rows);
+void freeStorage(InventoryNode *head);
+void freeLevel(Level *level);
+void freeEverything(Levels *levels, Player *player);
 
 #endif
