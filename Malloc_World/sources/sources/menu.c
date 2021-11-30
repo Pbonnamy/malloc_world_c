@@ -65,7 +65,10 @@ void handleMainMenu(char action){
     //printRessourceList(levels->lv1->ressourceList);
     //printMonsterList(levels->lv1->monsterList);
 
-    if(state == _allowed){
-        gameLoop(levels, player);
+    if(action == '1' || action == '2'){
+        if(state == _allowed){
+            gameLoop(levels, player);
+        }
     }
+
 }
